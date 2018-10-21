@@ -1,0 +1,5 @@
+.example_grid .row div{
+	border:2px solid black;
+	height:260px;
+	/*background:lightblue;*/
+}

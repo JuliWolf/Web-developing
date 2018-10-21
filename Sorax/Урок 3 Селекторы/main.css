@@ -1,0 +1,22 @@
+body {
+	font-family:Verona;
+	font-size:13px;
+	color:#333;
+	background:#f3f3f3;
+}
+a{
+	color:#cb2c2c;
+	text-decoration:none;
+}
+
+:hover <!-- при наведении мыши-->
+:active <!-- активные ссылки-->
+:focus <!-- для полей ввода во время наведения курсора-->
+
+:hover {
+ 	border: 1px solid black;
+}
+li: 
+first-child {
+	color:red;
+}
