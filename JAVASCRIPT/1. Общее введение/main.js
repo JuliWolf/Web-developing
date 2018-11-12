@@ -6,6 +6,7 @@
 4. Undefined - тип данных неопределено
 5. NaN - Not a nubmer 
 6. Function - Функция
+7. Array - Массив
 */
 
 /*
@@ -43,6 +44,9 @@
 Тернарный оператор 
 1. выражение ? случай истинности : случай не истинности;  **link 388
 
+Операторы доступа
+1. .  - Оператор доступа к свойству объекта, если это не строка. 
+2. [] - Оператор доступа к свойству объекта или элементу массива. 
 */
 
 
@@ -403,17 +407,121 @@
 
 
 
+// Массивы 
+
+// Массивы - это нумерованный список данных, разделенных запятой. Доступ к элементам массива осуществляется по индексу. 
+// У массива есть длина. Доступ к длине массива можно получить с помощью свойства "length". 
+// Длину массива можно задавать с помощью свойства "name.length = sum;"
+// Присвоить новое значение элементу массива можно с помощью "arr[1] = 10;"
+
+// var arr = ["Hello World", 23, true, undefined, 12, 45, "Hi", false, "name"];
+
+
+// for (var i = 0; i < 9; i++){
+// 	console.log (arr[i])
+// }
+
+
+
+// Удаление элементов из массива
+
+//var arr = ["Hello", "World",",", "Я", "изучаю", "JavaScript", "!"];
+ 
+//arr.splice (2, 2);
+//alert (arr);
+
+
+
+// Удаление элементов и вставка других на их место 
+
+// var arr = ["Hello", "World", "Я", "изучаю", "JavaScript", "!"];
+
+// arr.splice (2, 2, "Мы", "изучаем");
+// alert (arr);
+
+
+//Вставка элементов без удаления
+
+// var arr = ["Hello", "World", "Я", "изучаю", "JavaScript", "!"];
+
+// arr.splice (3, 0, "сложный", "язык");
+// alert (arr); 
+
+
+
+// Копирование участка массива, не меняя его
+
+// var arr = ["Hello", "World", "Я", "изучаю", "JavaScript", "!"];
+
+// var arr2 = arr.slice(0, 2);
+// alert (arr2);
+
+
+
+// Копирование всего массива
+
+// var arr = ["Hello", "World", "Я", "изучаю", "JavaScript", "!"];
+// alert (arr.slice(2));
+
+
+
+// Копирование всего массивка
+
+// var arr = ["Hello", "World", "Я", "изучаю", "JavaScript", "!"];
+// var fullcopy = arr.slice();
+
+// console.log(fullcopy);
+
+
+
+// Цикл "for ... in " используется для перебора свойств массива или объекта, включая унаследованные
+
+// var arr = ['hello', 'world', 34];
+
+
+// for(var i in arr){
+// 	if(arr.hasOwnProperty(i)){
+// 		console.log(arr[i]);
+// 	}
+// }
 
 
 
 
 
+//Объекты
+
+// var person = {
+// 	"name": "John",
+// 	"age": 25,
+// 	"voice": function (){
+// 		console.log ("Hello, I'm " + this.name);//метод объекта
+// 	} 
+// }
+
+// var arr = [];
+// for (var i in person){
+// 	if (person.hasOwnProperty(i)){
+// 		arr.push(person[i]);
+// 	}
+// }
 
 
 
 
 
+var obj = {
+	param: 'hello',
+	foo: function(){
+		var self = this;
+		function bar(){
+			console.log(self);
+		}
+		bar();
+	}
+}
 
+obj.foo();
 
 
 
