@@ -1,0 +1,39 @@
+#redSquare{
+	background:red;
+	width:300px;
+	height:300px;
+	margin:5px;
+	font-size:50px;
+	text-align:center;
+	color:white;
+	line-height: 300px;
+	transition:all 2s;
+}
+#blueSquare {
+	background:blue;
+	width:300px;
+	height:300px;
+	margin:5px;
+	font-size:50px;
+	text-align:center;
+	color:white;
+	line-height: 300px;
+	transition:all 2s;
+}
+
+#greenSquare {
+	background:green;
+	width:300px;
+	height:300px;
+	margin:5px;
+	font-size:50px;
+	text-align:center;
+	color:white;
+	line-height: 300px;
+}
+
+.addedClass{
+	background:black !important;
+	transform: translate(200px);
+	transition:all 2s;
+}

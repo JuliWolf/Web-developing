@@ -1,0 +1,72 @@
+.exampleBlock{
+	background:black;
+	width:400px;
+	height:200px;
+	color:white;
+	font-size:20px;
+}
+
+.clickBlock{
+	background:green;
+	width:40px;
+	height:50px;
+	color:white;
+	font-size:20px;
+	position:absolute;
+}
+.bigBlock{
+	width:500px;
+	height:500px;
+	background:blue;
+	margin:0 auto;
+	position:relative;
+}
+
+.mainBlock{
+	width:300px;
+	height:300px;
+	background:black;
+	margin:0 auto;
+	position:relative;
+}
+.middleBlock{
+	width:200px;
+	height:200px;
+	background:white;
+	position:relative;
+	margin:15px;
+}
+.smallBlock{
+	width:100px;
+	height:100px;
+	background:red;
+	position:relative;
+	margin:15px;
+}
+.form_box{
+	position:relative;
+	border:1px solid black;
+	width:300px;
+	height:300px;
+	padding:10px;
+	display:inline-block;
+	vertical-align: top;
+}
+.form_block{
+	height:300px;
+	width:300px;
+	border:1px solid black;
+	margin:0 10px 10px 10px ;
+	display:inline-block;
+	vertical-align: top;
+}
+.wrapper{
+	margin:20px;
+}
+.first_part,.other_parts{
+	display:inline-block;
+	vertical-align: top;
+}
+.other_parts{
+	width:1500px;
+}
