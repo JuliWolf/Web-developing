@@ -1,0 +1,29 @@
+body{
+	background: #333;
+}
+
+
+
+form{
+	background: white;
+	padding: 20px;
+	border: 1px solid black;
+}
+#file_input_element{
+	display:none;
+}
+#label_block{
+	margin:0 auto;
+	width:500px;
+	height: 500px;
+	border:2px solid;
+	display:block;
+	line-height:500px;
+	background-size:cover;
+	background-position: center;
+	background-color:white;
+}
+.wrapper{
+	text-align:center;
+	vertical-align:center;
+}
