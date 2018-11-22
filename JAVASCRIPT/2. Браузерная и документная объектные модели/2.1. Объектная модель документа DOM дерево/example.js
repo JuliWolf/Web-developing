@@ -206,5 +206,115 @@
 // };
 
 
+/*=======================================================================================*/
+// Объект window
 
 
+// Объекты
+
+// History - отвечает за посещенные страницы
+	// console.log(history.length); //количество открытых ранее страниц
+	
+	// console.log(history.back());//метод для загрузки предыдущей страницы
+	
+	// console.log(history.forward());//метод для загрузки следующей страницы
+	
+	// console.log(history.go());//на сколько страниц перейти вперед или назад
+
+
+// Navigator - браузере
+
+
+//Screen - отвечает за монитор пользователя
+	// function f(){
+	// 	var s = "";
+	// 	for (var p in screen){
+	// 		console.log(p,":", screen[p]);
+	// 	}
+	// }
+
+
+//Location - отвечает за адресную строку браузера
+// http://www.site.ru:81/abour/index.html?x=10#metka
+
+	// console.log(location.protocol);//"http:"
+
+	// console.log(location.hostname);//"www.site.ru"
+
+	// console.log(location.post);//"81"
+
+	// console.log(location.host);//"www.site.ru:81"
+
+	// console.log(location.pathname);//"/about/index.html"
+  
+	// console.log(location.search);/"?x=10"
+
+	// console.log(location.hash);//"#metka"
+	
+	// console.log(location.href);//http://www.site.ru:81/abour/index.html?x=10#metka
+
+	// function f(){
+	// 	var s = "";
+	// 	for (var p in location){
+	// 		console.log(p,":", location[p]);
+	// 	}
+	// }
+	// reload(); //перезапускает страницу
+	// assign();//загружает тот контент, который указан в параметрах
+	// replace();//заменяет в историю данную страницу на другую
+
+
+// Document
+	// function f(){
+	// 	var s = "";
+	// 	for (var p in document){
+	// 		console.log(p,":", document[p]);
+	// 	}
+	// }
+
+	//write(); //Добавляет какую-либо информацию
+	// document.write("<div> Содержание добавленоь из скрипта в head </div>")
+	// open();//открывает документ для перезаписи
+	// close(); //закрывает документ для перезаписи
+
+
+// Методы окна window
+
+	// alert("Hello World");//Окно оповещения
+	// confirm("Are you sure?");//Окно запроса
+	// prompt("Are you sure?", "Yes");//Диалоговое окно с заранее заданным ответом
+
+	// setTimeout - задает таймер для выполнения какого-либо события на странице
+	// var timer;
+	// function demoSetTimeout(){
+	// 	timer = window.setTimeout("alert('setTimeout')",1000);
+	// }
+
+	// function User(){
+	// 	this.name = name;
+	// 	this.say = function(){
+	// 		console.log(this.name);
+	// 	};
+	// }
+	// var john = new User("John");
+	// function foo(){
+	// 	timer = window.setTimeout(
+	// 		function(){
+	// 			john.say();
+	// 		}, 1000);
+	// }
+
+
+	// open();//открывает новое окно
+	// close();//закрывает открытое окно
+
+	// var w;
+	// function demoOpen(p){
+	// 	w = window.open("http:ya.ru")
+	// }
+
+	// function demoClose(p){
+	// 	w.close()
+	// }
+
+	

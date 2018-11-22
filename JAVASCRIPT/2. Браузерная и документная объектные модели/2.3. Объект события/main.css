@@ -70,3 +70,51 @@
 .other_parts{
 	width:1500px;
 }
+
+.person_information{
+	margin:20px;
+}
+.box_form{
+	position:relative;
+	border:1px solid black;
+	width:300px;
+	height:350px;
+	padding:10px;
+	display:inline-block;
+	vertical-align: top;
+}
+.main_block_class{
+	height:300px;
+	width:350px;
+	border:1px solid black;
+	margin:0 10px 10px 10px ;
+	display:inline-block;
+	vertical-align: top;
+}
+.person_block_form{
+	height:280px;
+	width:200px;
+	display:inline-block;
+	vertical-align: top;
+	padding:10px;
+	word-wrap:break-word;
+	overflow: auto;
+}
+.user_image_block{
+	display:inline-block;
+	text-align:left;
+	vertical-align: top;
+	margin-top:10px;
+}
+.user_image{
+	width:100px;
+	height:100px;
+}
+.text_form_name,.text_form_lastname{
+	font:20px bold black;
+}
+
+.text_form_interest,.text_form_about{
+	font:16px normal black;
+}
+

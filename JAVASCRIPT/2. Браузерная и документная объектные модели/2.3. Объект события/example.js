@@ -158,6 +158,8 @@
 // });
 
 
+/*=======================================================================================*/
+
 
 //Задание
 
@@ -169,3 +171,78 @@
 // 4.Интересы (блоки как при выборе специализации)
 // 5.О Себе
 //Идентификатор пользователя
+
+var form = document.getElementsByClassName("form_quat")[0];
+
+
+var fileInput = document.getElementById("file_input_element");
+var fileReader = new FileReader();
+var idName = 1;
+
+
+function addUser(r){
+
+	
+	var wrapper = document.getElementsByClassName("other_parts")[1];
+
+	var mainBlock = document.createElement("div");
+
+
+	var block = document.createElement("div");
+	var userName = document.createElement("p");
+	var userLastname = document.createElement("p");
+	var userInterest = document.createElement("p");
+	var userAbout = document.createElement("p");
+	mainBlock.classList.add("main_block_class");
+	mainBlock.setAttribute("numberId", idName);
+
+
+	wrapper.insertBefore(mainBlock,wrapper.childNodes[0]);
+	mainBlock.appendChild(block);
+	block.appendChild(userName);
+	block.appendChild(userLastname);
+	block.appendChild(userInterest);
+	block.appendChild(userAbout);
+	block.classList.add("person_block_form");
+
+	var textUserName = document.createTextNode("Имя: "+r.user_name);
+	var textUserLastname = document.createTextNode("Фамилия: "+r.user_lastname);
+	var textUserInterest = document.createTextNode("Интересы: "+r.user_interest);
+	var textUserAbout = document.createTextNode("О себе: "+r.user_about);
+
+	userName.appendChild(textUserName);
+	userLastname.appendChild(textUserLastname);
+	userInterest.appendChild(textUserInterest);
+	userAbout.appendChild(textUserAbout);
+
+	userName.classList.add("text_form_name");
+	userLastname.classList.add("text_form_lastname");
+	userInterest.classList.add("text_form_interest");
+	userAbout.classList.add("text_form_about");
+
+	fileReader.onload = function(){
+		var elImage = document.createElement('img');
+		var imageBlock = document.createElement('div');
+		elImage.src = fileReader.result;
+		elImage.classList.add("user_image");
+		imageBlock.classList.add("user_image_block");
+		imageBlock.appendChild(elImage);
+		mainBlock.appendChild(imageBlock);
+	}		
+	idName++;
+}
+
+form.addEventListener("submit", function(e){
+	e.preventDefault();
+	var result = {};
+	for (var i = 0; i<e.target.elements.length; i++){
+		if (e.target.elements[i].name !== ""){
+			result[e.target.elements[i].name] = e.target.elements[i].value;
+		}
+	}
+	addUser(result);
+	fileReader.readAsDataURL(fileInput.files[0])
+});
+
+
+
