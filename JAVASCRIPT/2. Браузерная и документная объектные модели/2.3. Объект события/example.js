@@ -181,7 +181,6 @@ var idName = 1;
 
 
 function addUser(r){
-
 	
 	var wrapper = document.getElementsByClassName("other_parts")[1];
 
@@ -220,29 +219,30 @@ function addUser(r){
 	userInterest.classList.add("text_form_interest");
 	userAbout.classList.add("text_form_about");
 
-	fileReader.onload = function(){
-		var elImage = document.createElement('img');
-		var imageBlock = document.createElement('div');
-		elImage.src = fileReader.result;
-		elImage.classList.add("user_image");
-		imageBlock.classList.add("user_image_block");
-		imageBlock.appendChild(elImage);
-		mainBlock.appendChild(imageBlock);
-	}		
+		fileReader.onload = function(){
+			var elImage = document.createElement("img");
+			var blockImage = document.createElement("div");
+			elImage.src = fileReader.result;
+			elImage.classList.add("user_image");
+			blockImage.classList.add("user_image_block");
+			blockImage.appendChild(elImage);
+			mainBlock.appendChild(blockImage);
+		};
+
 	idName++;
 }
 
+
 form.addEventListener("submit", function(e){
 	e.preventDefault();
+	console.log(e);
 	var result = {};
-	for (var i = 0; i<e.target.elements.length; i++){
-		if (e.target.elements[i].name !== ""){
+	for(var i=0; i<e.target.elements.length;i++){
+		if(e.target.elements[i].value !== ""){
 			result[e.target.elements[i].name] = e.target.elements[i].value;
-		}
+		}	
 	}
 	addUser(result);
-	fileReader.readAsDataURL(fileInput.files[0])
-});
-
-
+	fileReader.readAsDataURL(fileInput.files[0]);
+})
 

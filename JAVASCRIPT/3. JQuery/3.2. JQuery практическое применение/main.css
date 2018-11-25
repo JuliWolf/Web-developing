@@ -1,0 +1,36 @@
+.form_block{
+	margin:0 auto;
+	position:relative;
+	top:50px;
+	
+}
+.img-circle{
+	height:150px;
+	width:150px;
+	display:inline-block;
+	text-align:center;
+}
+
+.row_wrapper{
+	border:1px solid black;
+	border-radius:10px;
+	background: #1be5fc3d;
+	margin:10px;
+	padding:10px;
+}
+.box_interest{
+	margin-top:10px;
+	padding:3px;
+
+}
+.box_interest span{
+	margin:2px;
+	border:1px solid black;
+	padding:2px;
+	display:inline-block;
+	text-align:center;
+	background:white;
+}
+.warning{
+	border:2px solid red;
+}

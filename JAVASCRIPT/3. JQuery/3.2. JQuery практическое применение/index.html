@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- Последняя компиляция и сжатый CSS -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Дополнение к теме -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 form_block">
+
+				<form class="form-horizontal">
+
+				<div class="form-group">
+					<label for="user_name" class="col-sm-3 control-label">Имя</label>
+					<div class="col-sm-9">
+						<input type="user_name" name="user_name" class="user_name" id="user_name" placeholder="Имя">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="user_status" class="col-sm-3 control-label">Статус</label>
+					<div class="col-sm-9">
+						<input type="user_status" name="user_status" class="user_status" id="user_status" placeholder="Статус">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="user_about" class="col-sm-3 control-label">О себе</label>
+					<div class="col-sm-9">
+						<input type="user_about" name="user_about" class="user_about" id="user_about" placeholder="О себе">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="user_interest" class="col-sm-3 control-label">Интересы</label>
+					<div class="col-sm-6">
+						<input type="user_interest" name="user_interest" class="user_interest" id="user_interest" placeholder="Интересы">
+						<div class="box_interest"></div>
+					</div>
+					<div class="col-sm-3">
+						<button class="btn btn-info" id="btn_add_int" style="height:25px; width:25px;text-align:center;padding:2px;">+</button>
+					</div>
+				</div>
+
+  				<div class="form-group">
+  					<div class="col-sm-offset-3 col-sm-9">
+						<label for="user_photo" class="btn btn-info"
+						style="display:block;width:160px;">Выберите файл</label>
+  				  		<input type="file" id="user_photo" style="display:none;" >
+  				  	</div>		
+  				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-9">
+						<button type="submit" class="btn btn-info" style="display:block;">Зарегистрироваться</button>
+					</div>
+				</div>
+
+				</form>
+
+			</div>
+
+			<div class="col-md-8 wrapper">
+					
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="JQuery.js"></script>
+	<script type="text/javascript" src="example.js"></script>
+</body>
+</html>
