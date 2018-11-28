@@ -317,4 +317,226 @@
 	// 	w.close()
 	// }
 
+
+/*=======================================================================================*/
+// Коллекции объекта document
+
+
+// document.links//количество ссылок на странице
+// document.links[0]
+
+// document.images//количество картинок на сайте
+// document.images[0]
+
+// document.forms//количество форм на странице
+// document.forms[]
+
+// document.links[0].style.color = "red";//можно обращаться к свойствам выбранного элемента и задавать новые параметры
+// document.links[0].style.backgroundColor = "red"//если свойство css пишется с "-"
+
+// label for //для избежания колнфликта имен используется свойство "html"
+// label.htnlFor
+
+// style.cssFloat
+
+
+// var i = document.images[0];
+
+// console.log(i.toString());//[object HTMLImageElement]
+
+
+// form - свойства html и js
+
+// var f;
+// function f(){
+// 	f = document.forms[0];
+// 	// f.document.forms["search"];//обращение по имени
+// 	// f.document.forms["search"];
+// }
+
+// html свойства
+// f.action//"www.ya.ru"
+// f.target//"_blank"
+// f.method//"get" - по умолчанию
+
+// js свойства
+// f.length//1- количество элементов формы
+// f.elements//HTMLFormControlsCollection [input] - выводит все элементы формы
+
+// Если нет кнопки, которая отправляет форму
+// f.submit();
+
+//Сброс введенных значений
+// f.reset();
+
+
+// var form;
+
+// (function f(){
+// 	form = document.forms[1];
+// })()
+
+// var txt = form.elements.something;
+
+// свойства
+// console.log(txt.toString());//[object HTMLFieldSetElement]
+// console.log(txt.value);
+// console.log(txt.defaultValue);//чтобы изменить имя начальное
+// console.log(txt.form);//чтобы узнать в какой форме находится input
+
+// // методы
+// console.log(txt.focus());//фокус на выбранный элемент
+// console.log(txt.blur());//убрать фокус с элемента
+// console.log(txt.select());//выделяет все, что находится внутри элемента
+
+// textarea
+
+// var t = form.elements.is;
+
+// console.log(t.cols);//20
+// console.log(t.rows);//2
+
+
+/*=======================================================================================*/
+
+
+// Перед отправкой формы, программа должна проверить все поля на отсутвие пустых полей
+// Если есть пустые, то обвести их красным цветом и вызвать окно alert
 	
+
+// function checkform(){
+// 	var f = document.forms[2];
+// 	var els = f.elements;
+// 	var isEmpty = false;
+// 	for(var i = 0; i<els.length;i++){
+// 		if(els[i].type == "text"){
+// 			if(els[i].value == ""){
+// 				els[i].style.borderColor = "red";
+// 				isEmpty = true;
+// 			}else{
+// 				els[i].style.borderColor = "";
+// 			}
+// 		}
+// 	}
+// 	if(isEmpty){
+// 		alert("Fill the gaps");
+// 	}else{
+// 		f.submit();
+// 	}
+// }
+
+
+/*=======================================================================================*/
+
+
+// радио кнопки и typeCheckBox
+
+// var f = document.forms[1];
+// var x = f.elements.the;
+// console.log(f.elements.the.checked);//Проверить значение
+// console.log(f.elements.the.checked = "true");//установить значение
+// console.log(f.elements.the.defaultChecked = "true");//сделать значение по умолчанию
+
+
+/*=======================================================================================*/
+// HTMLSelectElement
+
+
+// Конструктор Options
+
+// Option(text, value, defaultSelected, selected) - "defaultSelected" значение boolean
+
+// var o = new Option("PHP5, "php");
+
+// select.add(newOpt, curOpt);//для старых браузеров(первый параметр название, второй после какого элемента)
+// select.add(newOpt.curOptIdx);//для старого IE
+// select.remove(index);
+
+//Создаем пустой объект 
+// var links = new Object();
+
+// links["Яндекс"] = "http://www.yandex.ru";
+// links["Рамблер"] = "http://www.rambler.ru";
+// links["Гуглс"] = "http://www.google.com";
+
+// //цикл для создания новой option под каджую ссылку
+// var s = document.forms[3].selURL;
+// console.log(document.forms[3].selURL);
+// for(var linkName in links){
+// 	var o = new Option();
+// 	o.value = links[linkName];
+// 	o.text = linkName;
+
+// 	// var o = new Option(linkName, links[linkName]);
+
+// 	s.add(o);
+// }
+// //Делаем элементы форм доступными
+// var f = document.forms[3];
+// for(var i=0; i<f.elements.length; i++){
+// 	f.elements[i].disabled = false;
+// }
+
+// function goToURL(){
+// 	var s = document.forms[3].selURL;
+// 	var url = s.options[s.selectedIndex].value;
+// 	location.assign(url);
+// 	console.log(s.selectedIndex);
+// }
+
+
+/*=======================================================================================*/
+
+
+//При нажатии на левую кнопку должен прибавляться год в начало списка "1970-1",
+//При нажатии на првую год в конец списка 1975+1
+
+// var s = document.forms[4].year;
+// function addYear(flag){
+// 	var val,o;
+// 	if(flag){
+// 		val = s.options[s.length-1].value*1 + 1;
+// 		o = new Option(val, val, false, true);
+// 		s.add(o,null);
+// 	}else{
+// 		val = s.options[0].value*1 - 1;
+// 		o = new Option(val, val, false, true);
+// 		s.add(o,s.options[0]);
+// 	}	
+// }
+
+
+/*=======================================================================================*/
+// images
+
+
+// var i = document.images[1];
+// i.src = "http://freevector.co/wp-content/uploads/2014/05/img-1.png"; //сменить картинку
+
+// var flag = false;
+// function loopImage(){
+// 	var i = document.images[1];
+// 	if(flag){
+// 		i.src = "http://freevector.co/wp-content/uploads/2014/05/img-1.png";
+// 	}else{
+// 		i.src = "https://im0-tub-ru.yandex.net/i?id=05af23a7b62507d7087069a4f07035ea&n=13&exp=1";
+// 	}flag = !flag;
+// }
+
+
+// Изменение размера изображения
+
+// function resizeImage(){
+// 	var i = document.images[2];
+// 	var normalWidth = 640;
+// 	if(i.width < normalWidth){
+// 		i.width *= 1.1;
+// 		i.height *= 1.1;
+// 		setTimeOut("resizeImage()", 50);
+// 	}
+// }
+
+
+/*=======================================================================================*/
+// Tables
+

@@ -13,8 +13,15 @@
 
 </head>
 <body>
-
+	<div class="test_wrapper">
+		<img src="https://im0-tub-ru.yandex.net/i?id=05af23a7b62507d7087069a4f07035ea&n=13&exp=1" alt="">
+		<form action="www.ya.ru" target="_blank" name="search">
+			<input type="text">
+			
+		</form>
+	</div>
 	<div class="wrapper">
+		
 		<div class="square colo_red"></div>
 		<div class="square color_blue"></div>
 		<div class="square color_yellow" ></div>
@@ -29,14 +36,14 @@
 	</ul>
 
 
-	<form action="#">
+	<form action="#" name="second_form">
 		<fieldset>
 			<legend>Favourite colour</legend>
 				
 				<br>
 				<br>
 
-				<input type="text" name="something" id="something">
+				<input type="text" name="something" id="something" value="Hello">
 				<label for="fav-col-1">something</label>
 				
 				<br>
@@ -71,11 +78,80 @@
 				<br>
 
 				<button type="submit">submit</button>
+				<button type="submit">отправить</button>
 
 		</fieldset>
 	</form>
+	<form action="#" name="form_for_lab">
+		<fieldset>
 
+			<legend>Labs</legend>
 
+			<br>
+			<br>
+
+			<label for="string_1">Строка 1</label>
+			<input type="text" name="string_1" class="string_1">
+
+			<label for="string_2">Строка 2</label>
+			<input type="text" name="string_2" class="string_2">
+
+			<label for="string_3">Строка 3</label>
+			<input type="text" name="string_3" class="string_3">
+
+			<label for="string_4">Строка 4</label>
+			<input type="text" name="string_4" class="string_4">
+
+			<label for="string_5">Строка 5</label>
+			<input type="text" name="string_5" class="string_5">
+
+			<label for="string_6">Строка 6</label>
+			<input type="text" name="string_6" class="string_6">
+
+			<div class="button">
+				<a href="javascript:checkform()" class="button_submit">submit</a>
+			</div>
+		</fieldset>
+		
+	</form>
+
+	<form action="" id="myForm" name="nyForm" style="height:500px">
+		<label for="selURL">Выберите адрес</label>
+		<select name="selURL" id="selURL" disabled></select>
+		<a href="javascript:goToURL()">Переход</a>
+	</form>
+	
+	<form action="">
+		<fieldset>
+			<legend>Изменение элементов списка</legend>
+			<div class="block">
+				<label for="year"><span>Год рождения</span></label>
+				<div class="group">
+					<a href="javascript:addYear(0)">+</a>
+					<select name="year" id="year">
+						<option value="1970">1970</option>
+						<option value="1971">1971</option>
+						<option value="1972">1972</option>
+						<option value="1973">1973</option>
+						<option value="1974">1974</option>
+						<option value="1975">1975</option>
+					</select>
+					<a href="javascript:addYear(1)">+</a>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<img src="https://im0-tub-ru.yandex.net/i?id=05af23a7b62507d7087069a4f07035ea&n=13&exp=1" name="image" width=:"200px" height="200px"alt="#">
+	<br>
+	<br>
+	<a href="javascript:loopImage()">Сменить картинку</a>
+	<br>
+	<br>
+	<img src="image.jpg" width=:"100px" height="100px" name="image_name"alt="#">
+	<br>
+	<br>
+	<a href="javascript:resizeImage()">Изменить размер</a>
 
 	<script type="text/javascript" src="example.js"></script>
 </body>
