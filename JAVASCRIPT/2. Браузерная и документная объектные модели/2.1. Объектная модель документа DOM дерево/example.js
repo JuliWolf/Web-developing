@@ -22,6 +22,10 @@
 // createTextNode
 // var text = document.createTextNode("Подтвердить");
 
+//свойство document
+// Получить Главный элемент документа
+// console.log(document.documentElement);//(сам HTML)
+
 
 /*=======================================================================================*/
 // Методы и свойства всех html объектов
@@ -37,11 +41,22 @@
 // getElemntsByTagName
 // var listItems = document.getElementsByTagName("li"); //где в [] указывается порядковый номер объекта в массиве. 
 
+
 // Динамическое свойство отвечающее за HTML внутри объекта
 // console.log(testElem.innerHTML);
 
 // С помощью свойства "innerHTML" можно динамически менять контент на странице. 
 // console.log(testElem.innerHTML = "Вася");
+
+
+//Проверить есть ли атрибуты у элемента
+// console.log(testElem.hasAttribute());//true
+
+// Узнать какое значение у атрибута элемента
+// console.log(testElem.getAttribute("class"));
+
+// Добавить атрибут эелементу
+// console.log(testElem.setAttribute("new", 10));
 
 
 // Выводит все дочерние элементы "ul", включая текстовые узлы. 
@@ -540,3 +555,105 @@
 /*=======================================================================================*/
 // Tables
 
+
+//Количество ячеек
+// var td_count = 10;
+
+// //Таблица
+// var t;
+
+
+// function createContent(){
+// 	t = window.tbl;
+// 	//Вызываем фунцию генерации строк для разных секций
+// 	if(!t.rows.length){
+// 		create(t.tBodies[0] || t, 4);
+// 		create(t.createTHead(), 2);
+// 		create(t.createTFoot(), 3);
+// 	}
+
+// 	//Функция заполняет переданную секцию нужным количеством строк
+// 	function create(section, tr_count){
+// 		for(var i = 0, tr; i < tr_count; i++){
+// 			//Добавляем строку в секцию
+// 			//Длина коллекции меняется динамически
+// 			tr = section.insertRow(section.rows.length);
+
+// 			//Тут надо ставить обработчик клика на строке
+// 			//tr.onClick = deleteRow
+// 			for(var j = 0, td; j < td_count; j++){
+// 				//Добавляем ячейку в строку
+// 				td = tr.insertCell(tr.cells.length);
+// 				//В ячейке пишем номер ячейки
+// 				td.innerHTML = tr.cells.length;
+// 				//В элементе <sup> ставим номер строки
+// 				td.innerHTML += "<sup>" + section.rows.length + "</sup>";
+// 				//td.textContent += "<sup>" + section.rows.length + "</sup>";
+// 			}
+// 		}
+// 	}
+// }
+
+// //Функция удаляет таблицу
+// function deleteContent(){
+// 	if(t.tHead){
+// 		t.deleteTHead();
+// 	}
+// 	if(t.tFoot){
+// 		t.deleteTFoot();
+// 	}
+// 	if(t.tBodies){
+// 		if(t.tBodies[0].rows.length){
+// 			for(var i =t.tBodies[0].rows.length; i > 0; i--){
+// 				t.tBodies[0].deleteRow(t.tBodies[0].rows[i]);
+// 			}
+// 		}
+// 	}
+// }
+
+
+/*=======================================================================================*/
+// Свойства объектов DOM
+
+
+// parentNode - ссылка на родительский элемент
+// childNodes - коллекция детей 
+// firstChild - первый дочерний узел
+// lastChild - последний дочерний узел
+// nextSibling - ближайщий соседний узел
+// ownerDocument - сам документ (DOM)
+
+// textCondent - весь текст на любой глубине узла
+
+// nodeName - имя узла
+// nodeType - тип узла
+// nodeValue - значение узла
+
+
+/*=======================================================================================*/
+
+
+//Скопировать документ на новую страницу
+
+
+// function showDOM(){
+// 	var w = window.open("","");
+// 	w.document.write("<html><body>");
+// 	showChildNodes(document.body, w.document);
+// 	w.document.write("</body></html>");
+// }
+// function showChildNodes(node, doc){
+// 	if(node.nodeType == 3){
+// 		doc.write("<li><i>" + node.nodeValue + "</i><li>");
+// 	}
+// 	if(node.nodeType == 1){
+// 		doc.write("<li><b>" + node.nodeName + "</b><ul>");
+// 		for(var i=0; i<node.childNodes.length; i++){
+// 			showChildNodes(node.childNodes[i], doc);
+// 		}
+// 		doc.write("</ul></li>")
+// 	}
+// }
+
+
+/*=======================================================================================*/

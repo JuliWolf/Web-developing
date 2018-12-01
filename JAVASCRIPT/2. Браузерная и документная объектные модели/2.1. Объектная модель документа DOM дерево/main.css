@@ -82,3 +82,27 @@ form{
 	text-align:center;
 	line-height:40px;
 }
+table{
+	cursor:default;
+}
+td{
+	padding:10px;
+	border:1px solid #369;
+}
+sup{
+	padding-left:4px;
+	font-size:14px;
+	color:#678;
+}
+thead td{
+	background:#ccf;
+}
+tfoot td{
+	background:#cfc;
+}
+caption{
+	padding:5px;
+	white-space:nowrap;
+	border:1px solid #d30;
+	background:#ffc;
+}
