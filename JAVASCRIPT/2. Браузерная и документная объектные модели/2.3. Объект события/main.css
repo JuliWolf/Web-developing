@@ -118,3 +118,6 @@
 	font:16px normal black;
 }
 
+li ul.expandable{
+	display:none;
+}

@@ -1,0 +1,46 @@
+@font-face{
+	font-family: RS;
+	src: url('RobotoSlab-Regular.ttf') format('truetype');
+}
+@font-face{
+	font-family: Norm;
+	src: url('Proxima Nova Regular.otf') format('truetype');
+}
+
+
+.body{
+	background: #e8e9f9;
+}
+h1{
+	font-family: RS;
+	color: #aeaeff;
+	text-align: center;
+}
+.wrapper{
+	max-width: 1400px;
+	margin: 50px auto;
+	background-color: #f2f5ff;
+	padding: 30px;
+	box-sizing: border-box;
+	-webkit-box-shadow: 1px 1px 10px -1px rgba(118, 174, 206, 0.75);
+	-moz-box-shadow: 1px 1px 10px -1px rgba(118, 174, 206, 0.75);
+	box-shadow: 1px 1px 10px -1px rgba(118, 174, 206, 0.75);
+}
+
+table{
+	width: 100%;
+	font-family: Norm;
+}
+th, td{
+	padding: 7px 0px 7px 15px;
+	text-align: left;
+	text-transform: lowercase;
+}
+.head_row{
+	background: #e1e7ff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+tbody tr:nth-child(2n){
+	background: #e8eefd;
+}

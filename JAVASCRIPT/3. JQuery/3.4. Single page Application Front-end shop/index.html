@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>handlbars</title>
+	<!-- Последняя компиляция и сжатый CSS -->  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Дополнение к теме -->  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="jquery.fancybox.min.css">
+	<link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 links_block"></div>
+				<div class="col-md-8 main_block">
+					<div class="col-md-12 top_menu_block"></div>
+					<div class="col-md-12 main_content_block"></div>
+				</div>
+			</div>
+			<div class="popup_block"></div>
+		</div>
+	</div>
+
+
+	<script id="table-template" type="text/x-handlebars-template">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>№</td>
+					<td>Product</td>
+					<td>Quantity</td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each this}}
+					<tr>
+						<td>{{@index}}</td>
+						<td>{{this.product.name}}</td>
+						<td>{{this.quantity}}</td>
+						<td><a href="#" data-id="{{this._id}}" class="delete_order">Удалить</a></td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</script>
+
+	<script id="popup-block" type="text/x-handlebars-template">
+		<form action="#" style="display:none" id="{{_id}}">							
+			<h3>Изменение продукта "{{name}}"</h3>
+				<div class="form-group">
+	  				<input class="form-control name_input" id="{{name}}" placeholder="{{name}}">
+	  			</div>
+	  			<div class="form-group">
+	  				<input class="form-control price_input" placeholder="{{price}}">
+	  			</div>
+	  		<input type="file" id="inputFile">	
+	  		<a href="#" class="popup_button" data-id="{{_id}}">Изменить</a>
+		</form>
+	</script>
+
+
+	<script id="top-block" type="text/x-handlebars-template">
+		<div class="col-md-12 inner_top_row">
+			<img src="new_user.png" alt="" id="{{img_login}}">
+			<img src="login.png" alt="" id="{{img_new_user}}">
+		</div>
+	</script>
+
+	<script id="product-block" type="text/x-handlebars-template">
+		{{#each this}}
+			<div class="col-md-4 product_block">
+				<div class="product">
+					<img src="http://localhost:3000/uploads/{{this.productImage}}" alt="">
+					<span>Название: {{this.name}}</span>
+					<span>Price: {{this.price}}</span>	
+					<a href="#" data-id="{{this._id}}" class="change">Изменить</a>
+					<a href="#" data-id="{{this._id}}" class="delete">Удалить</a>
+					<div class="form-group">
+						<a href="#" data-id="{{this._id}}" class="order_product">Заказать</a>
+						№ <input type="number" class="quantity_input">
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</script>
+
+
+
+	<script id="menu-template" type="text/x-handlebars-template">
+		<div class="image_block">
+			<img src="{{image_src}}" alt="">
+		</div>
+		{{#each fields}}
+			<a href="#" id={{this.id}} class={{this.class}}>{{this.name}}</a>
+		{{/each}}
+	</script>
+
+	<script id="form-template" type="text/x-handlebars-template">
+		<form action="#" class={{form_class}} id={{form_id}}>
+			<h3>{{head_text}}</h3>
+			{{#each fields}}
+				<div class="form-group">
+					<label for={{this.for}}>{{this_text}}</label>
+					<input type="{{this.type}}" class="{{this.class}}" id="{{this.id}}" placeholder="{{this.placeholder}}">
+				</div>
+			{{/each}}
+			<button type="{{button_type}}" class="{{button_class}}" id="{{button_id}}">{{button_text}}</button>
+		</form>
+	</script>
+
+	<script id="add-product-template" type="text/x-handlebars-template">
+		<form action="#" class={{form_class}} id={{form_id}}>
+			<h3>{{head_text}}</h3>
+			{{#each fields}}
+				<div class="form-group">
+					<label for={{this.for}}>{{this_text}}</label>
+					<input type="{{this.type}}" class="{{this.class}}" id="{{this.id}}" placeholder="{{this.placeholder}}">
+				</div>
+			{{/each}}
+			<input type="file" id="productImage">
+			<button type="{{button_type}}" class="{{button_class}}" id="{{button_id}}">{{button_text}}</button>
+		</form>
+	</script>
+
+<!-- Пример Handlebar -->
+
+<!-- 	<script id="form-template" type="text/x-handlebars-template" >
+		<form action="#">
+			{{#each fields}}
+				<input type="{{this.type}}" class="{{this.class}}" id="{{this.id}}" placeholder="{{this.placeholder}}">
+			{{/each}}
+			<button id="{{button_id}}">Отправить</button>
+		</form>
+	</script> -->
+
+
+	<script src="handlebars-v4.0.12.js"></script>
+	<script src="jQuery.js"></script>
+	<script src="jquery.fancybox.min.js"></script>
+  	<script src="main.js"></script>
+</body>
+</html>

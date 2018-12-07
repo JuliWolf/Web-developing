@@ -246,3 +246,61 @@ form.addEventListener("submit", function(e){
 	fileReader.readAsDataURL(fileInput.files[0]);
 })
 
+
+/*=======================================================================================*/
+// Свойства объекта событий
+
+
+// любой источник
+// type - тип события
+// target - сслыка на объект, по которому было произведено действие
+// currentTarget - при bubbling, показывает на тот объект, на котором происходит событие на данный момент
+
+// Источник мышь
+// button - клавиша, которая нажата на мышке
+// altKey, ctrlKey, shiftKey - при нажатии кнопки мыши с одной из управляющих клавиш
+// clientX, clientY - точка отсчета окна браузера, куда нажал пользователь
+
+// Источник клавиатура
+// keyCode - номер нажатой клавиши
+
+
+/*=======================================================================================*/
+// Список, сворачиваем, разворачиваем
+
+
+// function setPlusIcon(){
+// 	var allLis = document.getElementsByTagName("li");
+// 	for(var i=0; i<allLis.length; i++){
+// 		var li = allLis[i];
+// 		var allUls = li.getElementsByTagName("ul");
+// 		if(allUls.length > 0){
+// 			if(allUls[0].className == "expandable"){
+// 				li.style.listStyleImage = "url(plus.jpg)";
+// 			}
+// 		}
+// 	}
+// 	var allA = document.getElementsByTagName("a");
+// 	for(var i=0; i<allA.length; i++){
+// 		allA[i].addEventListener("click", aClick, false);
+// 	}
+// }
+// window.onload = setPlusIcon;
+
+// function aClick(e){
+// 	var objA = e.target;
+// 	var li = objA.parentNode;
+// 	var uls = li.getElementsByTagName("ul");
+// 	if(uls.length == 0){
+// 		return true;
+// 	}
+// 	if(uls[0].style.display == "block"){
+// 		uls[0].style.display = "";
+// 		li.style.listStyleImage = "url(plus.jpg)";
+// 	}else{
+// 		uls[0].style.display = "block";
+// 		li.style.listStyleImage = "url(minus.jpg)";
+// 	}
+
+// 	e.preventDefault();
+// }
