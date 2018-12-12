@@ -37,6 +37,13 @@
 // Добавление элемента в конец, добавление текстового узла
 // $("#special_data").append("Hello World");
 
+//Для нахождения детей
+// $("ul.list").children("li").css("color", "red");
+// $("ul.list").children("li").eq(1).css("color", "red"); //конкретного ребенка
+
+// для нахождения детей и их детей
+// console.log($("ul.list").find("li"));
+
 // Нахождение массива объектов по классу.
 // $(".className");
 
@@ -61,6 +68,11 @@
 
 // Проверяет есть ли класс и возвращает значение boolean
 // console.log($element.hasClass("newClass"));
+
+
+//Для проверки наличия каких-то элементов, свойств
+//console.log($element.is("newClass"));
+// console.log($("ul li:first").is(":contains('item in list 1')"));
 
 // Удаляет класс из элемента
 // console.log($element.removeClass("newClass"));
@@ -94,6 +106,30 @@
 
 // Эммулирует нажатие кнопокй мыши на элемент
 // console.log($element.trigger("click"));
+
+//Для нахождения конкретных элементов
+// var td = $("td");
+// var specialTd = td.filter("#special_data");
+// console.log(specialTd);
+
+// var notTd = td.not("#special_data");
+// console.log(notTd);
+
+// var inSpan = td.has("span");
+// console.log(inSpan);
+
+//Для обращения к родителям
+// $("li").parent("ul.list").removeClass("list");//к конкретному, ближайшему
+// $("li").parents().removeClass("list");//обращение ко всем родителям
+// $("li").closest("div").removeClass("list");//ближайший предок
+
+
+//Для добавления элементов в выборку
+// var ul = $("ul");
+// console.log(ul);
+
+// ul.add("div");
+// console.log(ul);
 
 
 /*=======================================================================================*/
@@ -136,4 +172,16 @@
 
 
 /*=======================================================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
 
