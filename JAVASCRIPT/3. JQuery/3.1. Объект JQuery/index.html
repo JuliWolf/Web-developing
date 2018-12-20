@@ -3,6 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+<script id = "myTpl" type="text/template">
+	<li><img src="{{src}}" alt="{{alt}}"></li>
+</script>
+	<link rel="stylesheet" href="main.css">
+
 </head>
 <body>
 
@@ -85,7 +90,74 @@
 	</table>
 	<input type="text" class="input">
 
-	<a href="http://ya.ru" data-type="normal">hello ya</a>
+	<a id="button" href="http://ya.ru" data-type="normal">hello ya</a>
+
+	<button class="click_button">Нажми</button>
+	
+	<br>
+	<br>
+	<br>
+	<!-- Урок 3а 3/8 -->
+	<div class="buttons">
+		<button id="toggle" id="hide">Переключить</button>
+	</div>
+	<div class="box">
+		<h1>Привет всем!</h1>
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<h1 id="header">Пробуем эффекты jQuery</h1>
+	<div id="container" class="container">
+		<ul class="mylist">
+			<li>Позиция 1</li>
+			<li>Позиция 2</li>
+			<li>Позиция 3</li>
+		</ul>
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<div id="content">
+		<h1>Какой-то текст</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem impedit hic delectus qui, architecto aperiam repellendus sed sint! Voluptatum cupiditate ullam sequi, nesciunt consectetur cum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, quae!</p>
+	</div>
+	<button class="change_button">Изменить</button>
+
+	<br>
+	<br>
+	<br>
+	<div id="jQuery_7">
+		
+		<div class="view">
+			<ul>
+				<!-- <li><img src="images/first.jpg" alt=""></li>
+				<li><img src="images/second.jpg" alt=""></li>
+				<li><img src="images/third.jpg" alt=""></li>
+				<li><img src="images/forth.jpg" alt=""></li> -->
+			</ul>
+		</div>
+		<div id="show">
+			<button id="prev">Назад</button>
+			<button id="next">Вперед</button>
+		</div>
+
+	</div>
+
+	
+	<br>
+	<br>
+	<br>
+
+
+
+
+	
+
 
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="example.js"></script>

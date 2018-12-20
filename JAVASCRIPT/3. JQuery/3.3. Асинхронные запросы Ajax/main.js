@@ -1,5 +1,30 @@
 //Запросы
 
+// 1. Что обозначает AJAX
+// 2. Для чего используется AJAX
+// 3. Как использовать
+// 4. Синхронный и асинхронный запрос
+
+
+// new XmlHttpRequest()//для всех браузеров(explorer c 7й версии)
+
+// new ActiveXObjext("Miscrosoft.XMLHTTP")//для старых версий Explorer до 6го
+// new ActiveXObjext("Msxm12.XMLHTTP")//для 6й версии Explorer
+
+//Универсальная функция, которая будет работать для 99% сслучаев
+// function getXmlHttpRequest(){
+// 	if(window.XmlHttpRequest){
+// 		try{return new XmlHttpRequest();}
+// 		catch(e){}
+// 	}else if(window.ActiveXObject){
+// 		try{return new ActiveXObjext("Msxm12.XMLHTTP");}
+// 		catch(e){}
+// 		try{return new ActiveXObjext("Miscrosoft.XMLHTTP");}
+// 		catch(e){}
+// 	}
+// 	return null;
+// }
+
 //Http(Hyper Text Transform Protocol) -Это протокол прикладного уровня передачи данных
 
 //Между клиентом и сервером передается ресурс, в обычной форме "запрос-ответ"
@@ -111,17 +136,49 @@
 
 
 
-$(".button").on("click", function(){
-	$.ajax({
-		url:"http://localhost:3000/products",
-		method:"GET",
-		success:function(r){
-			for(var i = 0; i<r.products.length; i++){
-				$(".wrapper").append("name: "+ r.products[i].name+" ");
-				$(".wrapper").append("price: "+ r.products[i].price+" ");
-				$(".wrapper").append("image: "+ r.products[i].productImage+" ");
-			}
-		}
-	})
-})
+// $(".button").on("click", function(){
+// 	$.ajax({
+// 		url:"http://localhost:3000/products",
+// 		method:"GET",
+// 		success:function(r){
+// 			for(var i = 0; i<r.products.length; i++){
+// 				$(".wrapper").append("name: "+ r.products[i].name+" ");
+// 				$(".wrapper").append("price: "+ r.products[i].price+" ");
+// 				$(".wrapper").append("image: "+ r.products[i].productImage+" ");
+// 			}
+// 		}
+// 	})
+// })
+
+
+
+
+/*---------------------------------------------------------------------------------------------------*/ 
+
+//Первый параметр - тип запроса
+//Второй параметр - параметр
+//Третий параметр - синхронный(false) или асинхронный(true) запрос
+
+// function getXmlHttpRequest(){
+// 	if(window.XmlHttpRequest){
+// 		try{return new XmlHttpRequest();}
+// 		catch(e){}
+// 	}else if(window.ActiveXObject){
+// 		try{return new ActiveXObjext("Msxm12.XMLHTTP");}
+// 		catch(e){}
+// 		try{return new ActiveXObjext("Miscrosoft.XMLHTTP");}
+// 		catch(e){}
+// 	}
+// 	return null;
+// }
+// function showDemoSample(){
+// 	var url = "http://test-ajax.ru/";
+// 	var request = getXmlHttpRequest();
+// 	request.open("GET", url, false);
+// 	request.send(null);
+// 	alert (request.responseText);
+// }
+
+//Есть 4 стадии у запроса, но не все браузеры фиксирует все стадии
+// request.onreadystatechange = function(){}//для асинхронных запросов, действие по получению ответа
 
