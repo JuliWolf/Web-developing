@@ -4,18 +4,21 @@
 	<meta charset="UTF-8">
 	<title>AJAX</title>
 	<link rel="stylesheet" href="main.css">
+	<script src="jQuery.js"></script>
+	<script src="example.js"></script>
 </head>
+
 <body>
+
 	<h1>Пример запроса данных с сервера</h1>
 	
 	<div id="sync">
-		<button onclick="getText('hello.txt')">Текст из файла</button>
-		<button onclick="getText('badFile.txt')">Файла нет</button>
-		<button onclick="getInfo('hello.txt')">Информация о файле</button>
+		<button async class="getText">Текст из файла</button>
+		<button async class="getWrongText">Файла нет</button>
+		<button async class="getInfo">Информация о файле</button>
 	</div>			
 
 	
-	<script src="jQuery.js"></script>
-	<script src="example.js"></script>
+
 </body>
 </html>

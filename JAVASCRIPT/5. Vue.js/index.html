@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+	<!-- Последняя компиляция и сжатый CSS -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Дополнение к теме -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+	
+	
+<!-- 	<div class="app" id="app">
+		<ul :class="classes" class="col-sm-4 text-center">
+			<li>1</li>
+			<li>2</li>
+			<li>{{text}}</li>
+		</ul>
+
+		
+		<p>{{classes}}</p>
+
+		<input type="text" @focus="foo('somehting else')" v-model="classes">
+
+		<img v-if="isLongEnough()" src="https://allaravel.com/wp-content/uploads/2017/04/v-bind-class-style-trong-vuejs.png" alt="">
+
+
+		<ul>
+			<li v-for="(person, index) in people">{{index}}.{{person.name}} is {{person.age}}</li>
+		</ul>
+
+	</div> -->
+	<div id="app" class="app">
+		<div class="container">
+			<div class="col-md-4">
+				<form action="">
+					<input type="text" :placeholder="idName" :id="idName" v-model="currentName">
+					<input type="text" :placeholder="idPrice" :id="idPrice" v-model="currentPrice">
+					<button :id="idButton" @click.prevent="foo">{{reversedMessage}}</button>
+				</form>
+			</div>
+			<div class="col-md-8">
+		<!--<div class="box" :style="border" v-for="product in products">
+					<h5>{{product.name}}</h5>
+					<h5>{{product.price}}</h5>
+					<h5>{{product.code}}</h5>
+				</div>-->
+			<product :data="product" v-for="product in products"> </product>
+ 			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="js/jQuery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+	<script src="js/products.js"></script>
+
+
+	
+	<script type="text/x-template" id="product-template">
+		<div  style="border: 1px solid black">
+			<h5>{{data.code}}</h5>
+			<span @click="changeCode">+</span>
+			<h5>{{data.title}}</h5>
+			<h5>{{data.weight}}</h5>
+			<h5>{{data.data}}</h5>
+		</div>
+	</script>
+	<script type="text/javascript">
+		
+		var product = Vue.component("product", {
+			template:"#product-template",
+			data: function(){
+				return {}
+			},
+			props:["data"],
+			methods:{
+				changeCode: function(){
+					this.data.code = 888888888;
+				}
+			}
+		})
+		var app = new Vue({
+			el:"#app",
+			data:{
+				idName:"name",
+				idPrice:"price",
+				idButton:"button",
+				text:"Submit",
+				border: {
+					border:"1px solid black",
+					marginTop:"20px",
+					padding:"10px",
+				},
+				currentName:"",
+				currentPrice:"",
+				products:products,
+				message: "Привет"
+			},
+			methods:{
+				foo: function(){
+					this.products.push({
+						name:this.currentName,
+						price:this.currentPrice
+					});
+					this.currentName = "";
+					this.currentPrice = "";
+				}
+			},
+			// beforeMount: function(){
+			// 	var self = this;
+			// 	$.ajax({
+			// 		method: 'GET',
+			// 		url: 'http://vue.js/products.json',
+			// 		success: function(r){
+			// 			self.products = r;
+			// 		}
+			// 	})
+			// },
+			computed: {
+				reversedMessage: function () {
+			    	return this.message.split('').reverse().join('')
+				}
+			}
+		});
+	</script>
+
+
+
+
+<!-- 	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae velit animi eum repellat placeat odio deleniti, quod voluptates unde ducimus!',
+				classes: 'hello wrold',
+				people: [
+					{
+						name: 'john',
+						age: 25
+					},
+					{
+						name: 'bob',
+						age: 40
+				}]
+			},	
+			methods: {
+				foo: function(param){
+					this.classes = param;
+					$.ajax({
+						...
+					})
+				},
+				isLongEnough: function(){
+					if(this.classes.length>70)
+						return true;
+					return false;
+				}
+			}
+		})
+	</script> -->
+
+</body>
+</html>
+<!-- 
+
+1 . Подготовка приложения vue ( создание инстанции через конструктор и определение корня )
+2 . Реактивные свойства ( связанные с DOM ) в свойстве data у инстанции vue
+3 . Директивы - особые аттрибуты для разного функционала vue
+4 . Директива для добавления атрибутов v-bing:attr(:attr) + имя свойства объекта data
+5 . Директива v-model для двухстороннего связывания данных ( two way data binding )
+6 . Директива v-on:(@)[event] для добавления обработчиков событий 
+7 . Методы у инстанции vue определюяться в свойстве methods
+8 . Директива v-if для условного отображения элементов
+9 . Компоненты - переиспользуемые экземпляры Vue со своим именем
+10. Вычисляемые значения - свойство "computed", в отличии от "methods", кеширует данные и не меняет их каждый раз при выполнении, изменения происходят только тогда, когда значение меняется
+11. События жизненного цикла - каждый экземпляр проходит через последовательночть шагов при инициализации. Практическое применение - асинхронные запросы для получения данных для инициализации выполняются на этапе жизненного цикла "beforeMount".  
+
+
+
+ -->

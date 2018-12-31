@@ -10,39 +10,55 @@
 // new ActiveXObjext("Msxm12.XMLHTTP")//для 6й версии Explorer
 
 //Универсальная функция, которая будет работать для 99% сслучаев
-function getXmlHttpRequest(){
-	if(window.XmlHttpRequest){
-		try{return new XmlHttpRequest();}
-		catch(e){}
-	}else if(window.ActiveXObject){
-		try{return new ActiveXObjext("Msxm12.XMLHTTP");}
-		catch(e){}
-		try{return new ActiveXObjext("Miscrosoft.XMLHTTP");}
-		catch(e){}
+
+
+	function getXMLHttpRequest(){
+		if(window.XMLHttpRequest){
+			try{return new XMLHttpRequest();}
+			catch(e){}
+		}else if(window.ActiveXObject){
+			try{return new ActiveXObjext("Msxm12.XMLHTTP");}
+			catch(e){}
+			try{return new ActiveXObjext("Miscrosoft.XMLHTTP");}
+			catch(e){}
+		}
+		return null;
 	}
-	return null;
-}
 
 /*---------------------------------------------------------------------------------------------------*/ 
 
-var req;
-
-function getText(fileName){
-	req = getXmlHttpRequest();
-	console.log(fileName)
-	req.onreadystatechange = function(){
-		if(req.readyState === 4){
-			console.log(req.readyState)
-			if(req.status != 200){//Если не ошибка 200
-				alert(req.status +":"+req.statusText) //вывести статус и описание
-			}else {
-				alert(req.responseText);
+	var req;
+	
+	function getText(fileName){
+		req = getXMLHttpRequest();
+		req.onreadystatechange = function(){
+			if(req.readyState === 4){
+				if(req.status != 200){//Если не ошибка 200
+					alert(req.status +":"+req.statusText) //вывести статус и описание
+				}else {
+					alert(req.responseText);
+				}
 			}
+		};
+		req.open("GET", fileName, true);
+		req.send(null);
+	}
+	
+	function getInfo(filename){
+		req = getXMLHttpRequest();
+		req.onreadystatechange = function(){
+			if(req.readyState === 4){
+				alert("Размер файла:\t " + req.getResponseHeader("Content-Length") 
+					+ "\n" + "Файл изменен: \t" 
+					+ req.getResponseHeader("Last-Modified"));
+				alert(req.getAllResponseHeaders);	
+				};
 		}
-	};
-	req.open("GET", fileName, true);
-	req.send(null);
-}
-
+		req.open("GET", fileName, true);
+		req.send(null);
+	}
+	$(".getText").on("click", getText("hello.txt"));
+	$(".getWrongText").on("click", getText("badfile.txt"));
+	$(".getInfo").on("click", getText("hello.txt"));
 
 
