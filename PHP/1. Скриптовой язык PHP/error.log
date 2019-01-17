@@ -96,3 +96,4 @@
 [29-12-2018 22:12:53] - include(): Failed opening 'index.inc.php' for inclusion (include_path='.;w:/modules/php/PHP-7.2-x64;w:/modules/php/PHP-7.2-x64/PEAR/pear') in W:\domains\first.PHP\index.php:59
 [29-12-2018 22:13:42] - Undefined index: id in W:\domains\first.PHP\index.php:8
 [29-12-2018 22:13:56] - Undefined index: id in W:\domains\first.PHP\index.php:8
+[04-01-2019 14:03:08] - Undefined index: id in W:\domains\first.PHP\index.php:8
