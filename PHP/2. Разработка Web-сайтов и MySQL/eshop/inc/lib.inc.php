@@ -88,9 +88,11 @@ function saveOrder($dt){
 			return false; 
 		foreach($goods as $item){   
 			mysqli_stmt_bind_param($stmt, "ssiiisi", $item['title'], $item['author'], $item['pubyear'], $item['price'], $item['quantity'], $basket['orderid'], $dt);
-			mysqli_stmt_execute($stmt); } mysqli_stmt_close($stmt);
-			setcookie("basket", "", 1); 
-			return true;
+			mysqli_stmt_execute($stmt); 
+		} 
+		mysqli_stmt_close($stmt);
+		setcookie('basket', "", 1); 
+		return true;
 }
 
 function getOrders(){
