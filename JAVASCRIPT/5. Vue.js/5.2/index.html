@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+</head>
+<body>
+
+
+<!-------------------------------First Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<input type="text" v-on:input="changeTitle">-->
+    <!--<p>{{title}}</p>-->
+
+<!--</div>-->
+
+
+<!-------------------------------Second Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<h1 v-once>{{title}}</h1>-->
+    <!--<p>{{sayHello()}}</p>-->
+    <!--<a v-bind:href="link">Google</a>-->
+    <!--<hr>-->
+    <!--<p v-html="finishedLink"></p>-->
+
+<!--</div>-->
+
+
+<!-------------------------------Third Part------------------------------>
+
+<div id="app">
+    <button v-on:click="increase(2, $event)"> Click Me</button>
+    <p>{{counter}}</p>
+    <p v-on:mousemove="updateCoordinates">
+        Coordinates: {{x}} / {{y}}
+        - <span v-on:mousemove.stop=""> DEAD SPOT</span>
+    </p>
+    <input type="text" v-on:keyup.enter="alertMe">
+
+</div>
+
+
+
+<script src="vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
