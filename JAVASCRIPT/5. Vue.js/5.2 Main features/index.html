@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <!-- Последняя компиляция и сжатый CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- Дополнение к теме -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+
+<!-------------------------------First Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<input type="text" v-on:input="changeTitle">-->
+    <!--<p>{{title}}</p>-->
+
+<!--</div>-->
+
+
+<!-------------------------------Second Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<h1 v-once>{{title}}</h1>-->
+    <!--<p>{{sayHello()}}</p>-->
+    <!--<a v-bind:href="link">Google</a>-->
+    <!--<hr>-->
+    <!--<p v-html="finishedLink"></p>-->
+
+<!--</div>-->
+
+
+<!-------------------------------Third Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<button v-on:click="increase(2, $event)"> Click Me</button>-->
+    <!--<button v-on:click="counter++"> Click Me</button>-->
+    <!--<p>{{counter * 2 > 10 ? 'Great than 10' : 'Smaller than 10'}}</p>-->
+    <!--<p v-on:mousemove="updateCoordinates">-->
+        <!--Coordinates: {{x}} / {{y}}-->
+        <!-- - <span v-on:mousemove.stop=""> DEAD SPOT</span>-->
+    <!--</p>-->
+    <!--<input type="text" v-on:keyup.enter="alertMe">-->
+
+<!--</div>-->
+
+
+<!-------------------------------Forth Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<input type="text" v-model="name">-->
+    <!--<p>{{name}}</p>-->
+<!--</div>-->
+
+
+<!-------------------------------Fifth Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<button v-on:click="counter++">Increase</button>-->
+    <!--<button v-on:click="counter&#45;&#45;">Decrease</button>-->
+    <!--<button v-on:click="secondCounter++">Increase Second</button>-->
+
+    <!--<p>Counter: {{counter}} | {{secondCounter}}</p>-->
+    <!--<p>Result: {{ result() }} | {{ output }}</p>-->
+<!--</div>-->
+
+
+<!-------------------------------Sixth Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<button @click="changeLink"> Click to Change</button>-->
+    <!--<a :href="link">Link</a>-->
+<!--</div>-->
+
+
+<!-------------------------------Seventh Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>-->
+    <!--<div class="demo" :class="{red: attachRed}"></div>-->
+    <!--<div class="demo" :class="[color, {red: attachRed}]"></div>-->
+    <!--<hr>-->
+    <!--<input type="text" v-model="color">-->
+<!--</div>-->
+
+
+<!-------------------------------Eighth Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<div class="demo" :style="{background: color}"></div>-->
+    <!--<div class="demo" :style="myStyle"></div>-->
+    <!--<div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>-->
+    <!--<hr>-->
+    <!--<input type="text" v-model="color">-->
+    <!--<input type="text" v-model="width">-->
+<!--</div>-->
+
+
+<!-------------------------------Nineth Part------------------------------>
+
+<!--<div id="app">-->
+    <!--<p v-if="show">You can see me! <span>Hello!</span></p>-->
+    <!--<p v-else>Now you see me!</p>-->
+    <!--<template v-if="show">-->
+        <!--<h1>Heading</h1>-->
+        <!--<p>Inside a temple</p>-->
+    <!--</template>-->
+    <!--<p v-show="show">Dow you also see me?</p>-->
+    <!--<button @click="show = !show">Switch</button>-->
+<!--</div>-->
+
+
+<!-------------------------------Tenth Part------------------------------>
+
+<!--<div id="app">-->
+
+    <!--<ul>-->
+        <!--<li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>-->
+    <!--</ul>-->
+    <!--<button @click="ingredients.push('spices')">Add New</button>-->
+
+    <!--<hr>-->
+
+    <!--<ul>-->
+        <!--<li v-for="person in persons">-->
+            <!--<div v-for="(value, key, index) in person">{{key}}:  {{value}} ({{index}})</div>-->
+        <!--</li>-->
+    <!--</ul>-->
+
+    <!--<hr>-->
+
+    <!--<span v-for="n in 10"> {{n}} </span>-->
+
+    <!--<hr>-->
+
+    <!--<template v-for="(ingredient, index) in ingredients">-->
+        <!--<h1>{{ingredient}}</h1>-->
+        <!--<p>{{index}}</p>-->
+    <!--</template>-->
+
+<!--</div>-->
+
+
+<!-------------------------------Monster Game------------------------------>
+
+<!--<div id="app">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<h1 class="text-center">YOU</h1>-->
+                <!--<div class="healthbar">-->
+                    <!--<div-->
+                            <!--class="healthbar text-center"-->
+                            <!--style="background-color:green; margin:0; color:white;"-->
+                            <!--:style="{width: playerHealth + '%'}">-->
+                        <!--{{playerHealth}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-6">-->
+                <!--<h1 class="text-center">MONSTER</h1>-->
+                <!--<div class="healthbar">-->
+                    <!--<div-->
+                            <!--class="healthbar text-center"-->
+                            <!--style="background-color:green; margin:0; color:white;"-->
+                            <!--:style="{width: monsterHealth + '%'}">-->
+                        <!--{{monsterHealth}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row" v-if="!gameIsRunning">-->
+        <!--<div class="container controls" >-->
+            <!--<div class="col-md-12">-->
+                <!--<button id="start-game" @click="startGame">START NEW GAME</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row" v-else>-->
+        <!--<div class="container controls" >-->
+            <!--<div class="col-md-12">-->
+                <!--<button id="attack" @click="attack">Attack</button>-->
+                <!--<button id="special-attack" @click="specialAttack">Special-attack</button>-->
+                <!--<button id="heal" @click="heal">Heal</button>-->
+                <!--<button id="give-up" @click="giveUp">Give-up</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row log" v-if="turns.length > 0">-->
+        <!--<div class="container">-->
+            <!--<div class="col-md-12">-->
+                <!--<ul>-->
+                    <!--<li-->
+                            <!--v-for="turn in turns"-->
+                            <!--:class="{'player-turn' : turn.isPlayer, 'monster-turn': !turn.isPlayer}">-->
+                        <!--{{turn.text}}-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+
+<!-------------------------------The Vue.js Instance------------------------------>
+
+<!--<div id="app1">-->
+    <!--<h1 ref="heading">{{title}}</h1>-->
+    <!--<button @click="show" ref="myButton">Show Paragraph</button>-->
+    <!--<p v-if="showParagraph">This is not always visible</p>-->
+<!--</div>-->
+
+<!--<div id="app2">-->
+    <!--<h1>{{title}}</h1>-->
+    <!--<button @click="onChange">Change something in Vue 1</button>-->
+<!--</div>-->
+
+<!--<div id="app3">-->
+
+<!--</div>-->
+
+
+<!-------------------------------How Vue.JS updates the DOM------------------------------>
+
+<!--<div id="app">-->
+    <!--<h1>{{title}}</h1>-->
+    <!--<button @click="title='Changed'"> Update Title</button>-->
+    <!--<button @click="destroy">Destroy</button>-->
+<!--</div>-->
+
+
+<!-------------------------------Vue CLI $ Workflows------------------------------>
+
+
+
+
+
+
+<script src="vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
