@@ -1,0 +1,82 @@
+body{
+	background-color:#efeff4;
+}
+
+.tarifs{
+	background:white;
+	margin:10px 5px 20px 0px;
+	padding:10px 10px;
+	border:1px solid #c8c7cc;
+}
+.tarifs .title{
+	color:#8ac539;
+}
+.tarifs hr{
+	margin-right:0px;
+}
+.tarifs .speed{
+	background:#70603e;
+	display:inline-block;
+	padding:10px;
+	color: white;
+	margin-top:0px;
+}
+.tarifs a{
+	font-size:18px;
+	display:block;
+	margin-bottom:20px;
+}
+
+.tarifs .img{
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	right:0;
+}
+.tarifs .img img, div.header img{
+	position:relative;
+	top:40%;
+	height:30px;
+	width:10px;
+	filter: alpha(Opacity=50);
+    opacity: 0.5;
+}
+.tarifs .img img:hover, div.header img:hover{
+	filter: alpha(Opacity=90);
+    opacity: 0.9; 
+}
+
+.header{
+	margin-bottom:20px;
+	background:white;
+	padding:10px;
+	border-bottom: 1px solid #c8c7cc;
+	text-align:center;
+	position:relative;
+}
+.paymentCount, .startTime{
+	color: #a2a7aa;
+}
+div.header img{
+	transform: scaleX(-1);
+	top:30%;
+	left:1%;
+	position:absolute;
+}
+.chooseButton{
+	padding: 15px 40px;
+	color: white;
+	background-color:#82c12b;
+	text-align:center;
+	font-size:18px;
+	display:block;
+	width:100%;
+	border:none!important;
+}
+.payment{
+	margin:20px 0;
+}
+.payPeriod, .price{
+	font-size:bold;
+}
+
