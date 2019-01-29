@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Home from './home.vue'
-Vue.component('app-servers', Home);
+
+export const eventBus = new Vue();
 
 new Vue({
   el: '#app',
