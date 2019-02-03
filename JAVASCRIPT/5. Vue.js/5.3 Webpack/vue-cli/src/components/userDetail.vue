@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import {eventBus} from '../main.js'
+  import {eventBus} from '../onload.js'
 
   export default {
     props: {
