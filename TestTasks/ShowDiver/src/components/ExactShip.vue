@@ -1,13 +1,16 @@
 <template>
-  <div class="col-md-12 exactStarship">
-    <div class="starship">
-      <p v-for="(ship, key) in exactShip">
+  <div class="row">
+    <div class="col-md-12 exactStarship">
+      <div class="starship">
+        <p v-for="(ship, key) in exactShip">
         <span v-if="checkUnknown(ship, key)">
           <b>{{key}}:</b> {{ship}}
           </span>
-      </p>
+        </p>
+      </div>
+    </div>
   </div>
-  </div>
+
 </template>
 
 <script>
@@ -17,7 +20,6 @@
         type: [Object, Array]
       },
       months: Array,
-      step: Number,
       dateConvers: Function
 
     },
@@ -38,6 +40,14 @@
   .starship{
     p:hover{
       color:$color;
+    }
+  }
+  .exactStarship{
+    img{
+      width:50px;
+      height:30px;
+      transform: scaleX(-1);
+      display: inline-block;
     }
   }
 </style>
