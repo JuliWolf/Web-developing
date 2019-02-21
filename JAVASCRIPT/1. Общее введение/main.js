@@ -1385,68 +1385,68 @@
 // Таблица типа Exel
 
 
-var block = document.createElement("div");
-block.classList.add("smallBox");
-var body = document.getElementsByTagName("body")[0];
-
-
-//Выбираем элемент "table"
-// Вводим новую переменную, которая перебирает буквы по алфавиту по их Юникоду "str.charCodeAt(index)"
-// Создаем внутри каждой ячейки "input" c "id", который был сгенерирован в "letter"
-for (var i=0; i<15; i++){
-	var row = document.querySelector("table").insertRow(-1);
-	for(var j=0; j<15; j++){
-		var letter = String.fromCharCode("A".charCodeAt(0)+j-1);
-		row.insertCell(-1).innerHTML = i&&j ? "<input id='" + letter + i + "'/>" : i || letter;	
-	}
-}
-
-// Создаем пустой объект
-// Создаем массив, состоящий из всех "input"
-var DATA = {},
-	INPUT = [].slice.call(document.querySelectorAll("input"));
-//Сохраняем значение введенное в "input" в "localStorage" при наведении
-INPUT.forEach(function(elm){
-	elm.onfocus = function(e){
-		e.target.value = localStorage[e.target.id] || "";
-	};
-// При убирании курсора с "input" задаем ранее введенное значение для данного "input"
-	elm.onblur = function(e){
-		localStorage[e.target.id] = e.target.value;
-		computeAll();
-		block.style.display = "none";
-
-	}
-	elm.onclick = function(e){
-		block.style.display = "block";
-		block.innerHTML = e.target.id;
-		block.style.left = e.pageX + "px";
-		block.style.top = e.pageY +10+ "px";
-		body.insertBefore(block,body.childNodes[0]);
-	}
-//Сохраняем значение введенное в "input" в переменную "value"
-// Задаем условие, в котром находим значение "DATA"
-// Возвращаем значение подстроки
-// Иначе, преобрзуем дробное число в целое десятичное число
-	var getter = function(){
-		var value = localStorage[elm.id] || "";
-		if(value.charAt(0) == "="){
-			with(DATA) 
-			return eval(value.substring(1));
-		}else{
-			return isNaN(parseFloat(value)) ? value : parseFloat(value);
-		}
-	};
-	// Первое значение - объект на котором определяется свойство
-	// Второе значение - имя определяемого или изменяемого свойства
-	// Третье значение - дескриптор определяемого или изменяемого свойства
-	Object.defineProperty(DATA, elm.id, {get:getter});
-	Object.defineProperty(DATA, elm.id.toLowerCase(), {get:getter});
-});
-(window.computeAll = function(){
-	INPUT.forEach(function(elm){
-		try{elm.value = DATA[elm.id];
-		}catch(e){}
-	})
-})();
+// var block = document.createElement("div");
+// block.classList.add("smallBox");
+// var body = document.getElementsByTagName("body")[0];
+//
+//
+// //Выбираем элемент "table"
+// // Вводим новую переменную, которая перебирает буквы по алфавиту по их Юникоду "str.charCodeAt(index)"
+// // Создаем внутри каждой ячейки "input" c "id", который был сгенерирован в "letter"
+// for (var i=0; i<15; i++){
+// 	var row = document.querySelector("table").insertRow(-1);
+// 	for(var j=0; j<15; j++){
+// 		var letter = String.fromCharCode("A".charCodeAt(0)+j-1);
+// 		row.insertCell(-1).innerHTML = i&&j ? "<input id='" + letter + i + "'/>" : i || letter;
+// 	}
+// }
+//
+// // Создаем пустой объект
+// // Создаем массив, состоящий из всех "input"
+// var DATA = {},
+// 	INPUT = [].slice.call(document.querySelectorAll("input"));
+// //Сохраняем значение введенное в "input" в "localStorage" при наведении
+// INPUT.forEach(function(elm){
+// 	elm.onfocus = function(e){
+// 		e.target.value = localStorage[e.target.id] || "";
+// 	};
+// // При убирании курсора с "input" задаем ранее введенное значение для данного "input"
+// 	elm.onblur = function(e){
+// 		localStorage[e.target.id] = e.target.value;
+// 		computeAll();
+// 		block.style.display = "none";
+//
+// 	}
+// 	elm.onclick = function(e){
+// 		block.style.display = "block";
+// 		block.innerHTML = e.target.id;
+// 		block.style.left = e.pageX + "px";
+// 		block.style.top = e.pageY +10+ "px";
+// 		body.insertBefore(block,body.childNodes[0]);
+// 	}
+// //Сохраняем значение введенное в "input" в переменную "value"
+// // Задаем условие, в котром находим значение "DATA"
+// // Возвращаем значение подстроки
+// // Иначе, преобрзуем дробное число в целое десятичное число
+// 	var getter = function(){
+// 		var value = localStorage[elm.id] || "";
+// 		if(value.charAt(0) == "="){
+// 			with(DATA)
+// 			return eval(value.substring(1));
+// 		}else{
+// 			return isNaN(parseFloat(value)) ? value : parseFloat(value);
+// 		}
+// 	};
+// 	// Первое значение - объект на котором определяется свойство
+// 	// Второе значение - имя определяемого или изменяемого свойства
+// 	// Третье значение - дескриптор определяемого или изменяемого свойства
+// 	Object.defineProperty(DATA, elm.id, {get:getter});
+// 	Object.defineProperty(DATA, elm.id.toLowerCase(), {get:getter});
+// });
+// (window.computeAll = function(){
+// 	INPUT.forEach(function(elm){
+// 		try{elm.value = DATA[elm.id];
+// 		}catch(e){}
+// 	})
+// })();
 
