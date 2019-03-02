@@ -1,0 +1,23 @@
+# General
+
+.DS_Store
+
+# dependency directories
+
+npm-debug.log
+node_modules
+jspm_packages
+node_modules.bak
+jspm_packages.bak
+
+# ide
+
+nbproject
+.idea
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Build and tmp folders for production
+build/
+.tmp/
