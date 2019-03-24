@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorLogsTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateAuthorLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('author_log', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('author');
+            $table->string('name');
+            $table->string('password');
+            $table->rememberToken();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateAuthorLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('author_log');
+        Schema::dropIfExists('admins');
     }
 }

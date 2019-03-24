@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Author;
 use App\Quote;
-use Illuminate\Http\Request;
-use App\Events\QuoteCreated;
-use Illuminate\Support\Facades\Event;
 use App\AuthorLog;
+use App\Events\QuoteCreated;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 
 class QuoteController extends Controller{
 
