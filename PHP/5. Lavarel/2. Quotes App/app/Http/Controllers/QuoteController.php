@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Quote;
 use Illuminate\Http\Request;
+use App\Events\QuoteCreated;
+use Illuminate\Support\Facades\Event;
+use App\AuthorLog;
 
 class QuoteController extends Controller{
 
@@ -23,7 +26,8 @@ class QuoteController extends Controller{
     public function postQuote(Request $request){
         $this->validate($request, [
             'author' => 'required|max:60|alpha',
-            'quote' => 'required|max:500'
+            'quote' => 'required|max:500',
+            'email' => 'required|email'
         ]);
         $authorText = ucfirst($request['author']);
         $quoteText = $request['quote'];
@@ -33,12 +37,15 @@ class QuoteController extends Controller{
         if(!$author){
             $author = new Author();
             $author->name = $authorText;
+            $author->email = $request['email'];
             $author->save();
         }
 
         $quote = new Quote();
         $quote->quote = $quoteText;
         $author->quotes()->save($quote);
+
+        Event::dispatch(new QuoteCreated($author));
 
         return redirect()->route('index')->with([
             'success' => 'Quote saved!'
@@ -56,5 +63,13 @@ class QuoteController extends Controller{
         $quote->delete();
         $msg = $author_deleted ? 'Quote and author deleted!' : 'Quote deleted!';
         return redirect()->route('index')->with(['success' => $msg]);
+    }
+
+    public function getMailCallback($author_name){
+        $author_log = new AuthorLog();
+        $author_log->author = $author_name;
+        $author_log->save();
+
+        return view('Email.callback', ['author' => $author_name]);
     }
 }
