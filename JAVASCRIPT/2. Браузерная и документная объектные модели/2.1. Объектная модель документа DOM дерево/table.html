@@ -1,0 +1,88 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Работа с таблицами (генерация)</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            html{font: 18px calibri, sant-serif;}
+            table{cursor: default;}
+            td{padding: 10px;border:1px solid #369;}
+            sup{padding: 10px;border:1px solid #369;}
+            thead td{background: #ccf;}
+            tfoot td{background: #cfc;}
+            caption{padding: 5px;white-space:nowrap;border:1px solid #d30;background: #ffc}
+        </style>
+        <script type="text/javascript">
+
+
+
+            //количество ячеек
+            var td_count = 10;
+            // таблица
+            var t;
+            function createContent()
+            {
+                t=window.tbl;
+// вызываем функция генерации для разных секций
+                if(!t.rows.length)
+                {
+                    create(t.tBodies[0]||t, 4);
+                    create(t.createTHead(), 2);
+                    create(t.createTFoot(), 3);
+                }
+// функция заполняет переданную секцию нужным количеством строк
+                function create(section, tr_count)
+                {
+                    for(var i = 0, tr ; i<tr_count ; i++)
+                    {
+//добавляем строку в секцию
+// длинна коллекции меняется динамически
+                        tr = section.insertRow(section.rows.length);
+// тут надо ставить обработчик клика на строке
+// tr.onclick = deleteRow;
+                        for (var j = 0, td; j < td_count; j++)
+                        {
+// добавляем ячейку в строку
+                            td = tr.insertCell(tr.cells.length);
+// в ячейке пишем номер ячейки
+                            td.innerHTML = tr.cells.length;
+                            console.log(tr.cells.length);
+// в элементе <sup> ставим номер строки
+                            td.innerHTML +="<sup>"+section.rows.length+"</sup>";
+                            console.log(section.rows.length);
+// td.textContent += "<sup>"+section.rows.length+"<sup>";
+                        }
+                    }
+                }
+            }
+
+
+
+            // Удаление таблицы
+            function deleteContent()
+            {
+                if(t.tHead)
+                    t.deleteTHead();
+                if(t.tFoot)
+                    t.deleteTFoot();
+                if(t.tBodies)
+                {
+                    if(t.tBodies[0].rows.length)
+                    {
+                        for (var i = t.tBodies[0].rows.length; i > 0; i--){
+                            t.tBodies[0].deleteRow(t.tBodies[0].rows[i]);
+                        }
+                    }
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+    <a href="javascript:createContent()">Создать таблицу</a>
+    <a href="javascript:deleteContent()">Удалить таблицу</a>
+    <table id="tbl">
+        <caption>Таблица</caption>
+    </table>
+    </body>
+    </html>
