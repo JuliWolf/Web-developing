@@ -1690,17 +1690,1044 @@
 // С помощью шаблонов проектирования описываются и формализуются типовые задачи и их решения.
 
 
-// ************************* Обзор шаблонов проектирования
+// ******************** Некоторые принципы шаблонов ********************************
 
-// Имя
-// Имена должны сочетать в себе краткость и описательность
+// ************************* Композиция и наследование
+// Наследование - это эффективный способ описания меняющихся обстоятельств или контекста.
 
-// Формулировка задачи
-// Формулировка задачи и ее контекста - это основа шаблона
+// Занятия в цниверситете - лекции/семинары
+// Лекции - фиксированная цена за лекции/почасовая оплата за лекции
+// Семинары - фиксированная цена за семинар/почасовая оплата за семинар
 
-// Решение
+// Чтобы избежать повторения формирования цены, необходимо переместить логику оплаты вверх, в супркласс
 
-// Результаты
+// abstract class Lesson {
+// 	protected $duration;
+// 	const FIXED = 1;
+// 	const TIMED = 2;
+// 	private $costtype;
 
+// 	function __construct ($duration, $costtype=1){
+// 		$this->duration = $duration;
+// 		$this->costtype = $costtype;
+// 	}
+
+// 	function cost(){
+// 		switch ($this->costtype){
+// 			CASE self::TIMED :
+// 				return (5 * $this->duration);
+// 				break;
+// 			CASE self::FIXED :
+// 				return 30;
+// 				break;
+// 			default:
+// 				$this->costtype = self::FIXED;
+// 				return 30;
+// 		}
+// 	}
+
+// 	function chargeType(){
+// 		switch ($this->costtype){
+// 			CASE self::TIMED :
+// 				return "Почасовая оплата";
+// 				break;
+// 			CASE self::FIXED :
+// 				return "Фиксированная оплата";
+// 				break;
+// 			default:
+// 				$this->costtype = self::FIXED;
+// 				return "Фиксированная ставка";
+// 		}
+// 	}
+
+// 	// Другие методы класса Lesson
+// }
+
+// class Lecture extends Lesson{
+// 	// Специфические для Lecture реализации...
+// }
+
+// class Seminar extends Lesson{
+// 	// Специфические для Seminar реализации...
+// }
+
+// Новая структура
+// Lesson (+_construct(duration, costtype=1), +cost(), +chargeType()) - Lectute/Seminar
+
+
+// ************************* Использование композиции
+
+// Создадим абстрактный класс CostStrutegy(), в котором определены абстрактные методы cost() и chargeType()
+
+// abstract class Lesson{
+// 	private $duration;
+// 	private $costStrategy;
+
+// 	function __construct($duration, CostStrategy $strategy) {
+// 		$this->duration = $duration;
+// 		$this->costStrategy = $strategy;
+// 	}
+
+// 	function cost(){
+// 		return $this->costStrategy->cost($this);
+// 	}
+
+// 	function chargeType(){
+// 		return $this->costStrategy->chargeType();
+// 	}
+
+// 	function getDuration(){
+// 		return $this->duration;
+// 	}
+// 	// Другие методы класса Lesson...
+// }
+// Конструкторы класса Lesson ередается объект типа CostStrategy, который он сохраняет в виде свойства
+// Метод Lesson::cost() просто вызывает CostStrategy::chargeType()
+// Такой явный вызов метода другого объекта называется Делегированием*
+
+// abstract class CostStrategy {
+// 	abstract function cost(Lesson $lesson);
+// 	abstract function chargeType();
+// }
+
+// class TimedCostStrategy extends CostStrategy {
+// 	function cost (Lesson $lesson){
+// 		return ($lesson->getDuration() * 5);
+// 	}
+
+// 	function chrgeType(){
+// 		return "Почасовая оплата";
+// 	}
+// }
+
+// class FixedCostStrategy extends CostStrategy {
+// 	function cost (Lesson $lesson) {
+// 		return 30;
+// 	}
+
+// 	function chargeType(){
+// 		return "Фиксированная ставка";
+// 	}
+// }
+
+// // Мы можем изменить способ расчета стоимости занятий, выполняемый любым объектом типа Lesson, передав ему другой объект типа CostStrategy
+
+// $lesson[] = new Seminar(4, new TimedCostStrategy());
+// $lesson[] = new Lecture(4, new FixedCostStrategy());
+
+// foreach ($lessons as $lesson) {
+// 	print "Оплата за занятие {$lesson->cost()}"; // Оплата за занятие 20. Тип оплаты: Почасовая оплата
+// 	print "Тип оплаты: {$lesson->chargeType()}\n"; // Оплата за занятие 30. Тип оплаты: Фиксированная ставка
+// }
+
+
+// ************************* Разделение
+
+// В программе существует множественное обращение к определенной базе данных.
+// При изменении базы данных придется будет вносить множественное изменение в код
+// Для этого существуют готовые пакеты для работы с базой данных
+// Используя такие пакеты, при изменение базы данных код необходимо будет менять только в одном месте приложения
+
+// Пример пакетов:
+// PEAR::DB
+// PEAR::MDB2
+?>
+
+
+<!----------------------- Генерация объектов ---------------------------->
+<?
+
+// ******************** Генерация объктов: задачи и решения ********************************
+
+// Определяем абстрактный базовый класс Employee
+// abstract class Employee {
+// 	protected $name;
+
+// 	function __construct($name){
+// 		$this->name = $name;
+// 	}
+
+// 	abstract function fire();
+// }
+
+// // Определяем реализующий класс Minion
+// class Minion extends Employee{
+// 	function fire(){
+// 		print "{$this->name}: убери со стола \n"
+// 	}
+// }
+
+// class NastyBoss {
+// 	private $employee = array();
+
+// 	function addEmployee($employeeName) {
+// 		$this->employees[] = new Minion ($employeeName);
+// 	}
+
+// 	function projectFails(){
+// 		if(count($this->employees) > 0){
+// 			$emp = array_pop($this->employees);
+// 			$emp->fire();
+// 		}
+// 	}
+// }
+
+// $boss = new NastyBoss();
+// $boss->addEmployee("Игорь");
+// $boss->addEmployee("Владимир");
+// $boss->addEmployee("Мария");
+// $boss->projectFails(); // Мария: убери со стола
+
+
+// Если класс NastyBoss не создает экземпляр объекта Minion
+// abstract class Employee {
+// 	protected $name;
+
+// 	function __construct($name){
+// 		$this->name = $name;
+// 	}
+
+// 	abstract function fire();
+// }
+
+// class NastyBoss {
+// 	private $employee = array();
+
+// 	function addEmployee(Employee $employee) {
+// 		$this->employees[] = $employee;
+// 	}
+
+// 	function projectFails(){
+// 		if(count($this->employees) > 0){
+// 			$emp = array_pop($this->employees);
+// 			$emp->fire();
+// 		}
+// 	}
+// }
+
+// // Новый класс типа Employee
+// class CluedUp extends Employee {
+// 	function fire(){
+// 		print "{$this->name}: вызови адвоката\n";
+// 	}
+// }
+
+// $boss = new NastyBoss();
+// $boss->addEmployee(new Minion ("Игорь"));
+// $boss->addEmployee(new CluedUp ("Владимир"));
+// $boss->addEmployee(new Minion ("Мария"));
+// $boss->projectFails();
+// $boss->projectFails();
+// $boss->projectFails();
+
+
+// Создадим статический метод к классу Employee, в котором реализована стратегия создания объекта
+
+// abstract class Employee {
+// 	protected $name;
+// 	private ststic $types = array ('Minion', 'CluedUp', 'WellConnected');
+
+// 	static function recruit ($name){
+// 		$num = rand(1, count(self::$types)) -1;
+// 		$class = self::$types[$num];
+// 		return new $class($name);
+// 	}
+
+// 	function __construct($name){
+// 		$this->name = $name;
+// 	}
+
+// 	abstract function fire();
+// }
+
+// class WellConnected extends Employee {
+// 	function fire(){
+// 		print "{$this->name} : позвони папику \n"
+// 	}
+// }
+// // Методу передается строка с именем сотрудника, которая используется для создания экземпляра конкретного подтипа Employee, выбранного случайным образом
+// $boss = new NastyBoss();
+// $boss->addEmployee(Employee::recruit("Игорь"))
+// $boss->addEmployee(Employee::recruit("Владимир"))
+// $boss->addEmployee(Employee::recruit("Мария"))
+
+
+// ************************* Шаблон Singleton
+
+// Проблема:
+// 1. Объект Preferences должен быть доступен для любого объекта в системе
+// 2. Объект Preferences не должен сохраняться в глобальной переменной, значение которой может быть случайно запорчено
+// 3. В системе не должно быть больше одного объекта Preferences
+
+// class Preferences {
+// 	private $props = array();
+// 	private static $instance;
+
+// 	public static function getInstance(){
+// 		if(empty (self::$instance)){
+// 			self::$instance = new Preferences();
+// 		}
+// 		return self::$instance;
+// 	}
+// 	private function __construct(){
+
+// 	}
+
+// 	public function setProperty($key, $val){
+// 		$this->props[$key] = $val;
+// 	}
+
+// 	public function getProperty ($key){
+// 		return $this->props[$key];
+// 	}
+// }
+
+// // Свойство $instance - закрытое и статическое, поэтому к нему нельзя подключить доступ из-за пределов класса
+// // у метода getInstance() - общедоступный и статический, его можно вызвать через класс
+
+// $pref = Preferences::getInstance();
+// $pref->setProperty("name", "Иван");
+
+// unset($pref);//Удаляем ссылку
+
+// $pref2 = Preferences::getInstance();
+// // Убедимся, что ранее установленное значение сохранено
+// print $pref2->getProperty("name"). "\n";
+
+
+// ************************* Шаблон Factory Method
+// Решает проблему создания экземпляров объектов, когда в коде используются абстрактные типы
+
+
+// abstract class ApptEncoder {
+// 	abstract function encode();
+// }
+
+// class BloggsApptEncoder extends ApptEncoder{
+// 	function encode(){
+// 		return "Данные о встрече закодированы в формате BloggsCal \n";
+// 	}
+// }
+
+// class MegaApptEncoder extends ApptEncoder {
+// 	function encode(){
+// 		return "Данные о встрече закодированы в формате MegaCal \n";
+// 	}
+// }
+
+// class CommsManager {
+// 	function getApptEncoder(){
+// 		return new BloggsApptEncoder();
+// 	}
+// }
+
+// // Класс CommsManager отвечает за генерацию объектов BloggsApptEncoder
+
+// class CommsManager {
+// 	const BLOGGS = 1;
+// 	const MEGA = 2;
+// 	private $mode = 1;
+
+// 	function __construct($mode){
+// 		$this->mode = $mode;
+// 	}
+// 	// Добавим колонтитул в каждую запись
+// 	function getHeaderText(){
+// 		switch ($this->mode){
+// 			case (self::MEGA) :
+// 				return "MegaCal верхний колонтитул \n";
+// 			default:
+// 				return "BloggsCal верхний колонтитул \n";
+// 		}
+// 	}
+
+// 	function getApptEncoder(){
+// 		switch ($this->mode){
+// 			case (self::MEGA) :
+// 				return new MegaApptEncoder();
+// 			default:
+// 				return new BloggsApptEncoder();
+// 		}
+// 	}
+// }
+
+// $comms = new CommsManager(CommsManager::MEGA);
+// $apptEncoder = $comms->getApptEncoder();
+// print $apptEncoder->encode();
+
+// До момента выполнения программы мы не знаем, какой вид объекта нам понадобится создать
+// Мы  не должны иметь возможность достаточно просто добавлять новые типы объектов
+// Каждый тип продукта связан с контекстом, который требует других специализированных операций
+
+
+// Переопределеим CommsManager в виде абстрактного класса
+
+// abstract class ApptEncoder {
+// 	abstract function encode();
+// }
+
+// class BloggsApptEncoder extends ApptEncoder{
+// 	function encode(){
+// 		return "Данные о встрече закодированы в формате BloggsCal \n";
+// 	}
+// }
+
+// abstract class CommsManager{
+// 	abstract function getHeaderText();
+// 	abstract function getApptEncoder();
+// 	abstract function getFooterText();
+// }
+
+// class BloggsCommsManager extends CommsManager {
+// 	function getHeaderText(){
+// 		return "BloggsCal верхний колонтитул\n";
+// 	}
+
+// 	function getApptEncoder(){
+// 		return new BloggsApptEncoder();
+// 	}
+
+// 	function getFootertext(){
+// 		return "BloggsCal нижний колонтитул \n";
+// 	}
+// }
+
+// Метод BloggsCommsManager::getApptEncoder() Возвращает объект типа BloggsApptEncoder
+// Клиентский код, вызывающий getApptEncoder(), ожидает получить объект типа ApptEncoder и необязательно должен знать что-либо о конкретном классе продукта
+
+
+// ************************* Шаблон Abstract Factory
+// Решает проблему настройки наследования
+
+
+// Существует 3 класса, которые реализуют абстрактный класс CommsManager
+
+// abstract class CommsManager {
+// 	abstract function getHeaderText();
+// 	abstract function getApptEncoder();
+// 	abstract function getTtdEncoder();
+// 	abstract function getContactEncoder();
+// 	abstract function getFootertext();
+// }
+
+// class BloggsCommsManager extends CommsManager {
+// 	function getHeaderText(){
+// 		return "BloggsCal верхний колонтитул \n";
+// 	}
+
+// 	function getApptEncoder(){
+// 		return new BloggsApptEncoder();
+// 	}
+
+// 	function getTtdEncoder(){
+// 		return new BloggsTtdEncoder();
+// 	}
+
+// 	function getContactEncoder(){
+// 		return new BloggsContactEncoder();
+// 	}
+
+// 	function getFooterText(){
+// 		return "BloggsCal нижний колонтитул \n";
+// 	}
+// }
+
+// Метод getContactEncoder() объявлен абстрактным классе CommsManager и реализован в классе BloggsCommsManager
+
+// Мы отделили нашу систему от деталей реализации. Мы можем добавлять и удалять любое количество кодирующих форматов в нашем примере, не опасаясь проблем
+// Мы ввели в действие группировку функционально связанных элементов нашей системы. При использовании BloggsCommsManager есть гарантия, что мы будем работать только с классами, связаннами с BloggsCal
+// Мы должны будем не только создать конкретные реализации новых продуктов, но и внести изменения в асбтрактный класс создателя, а также создать каждого из конкретных реализаторов
+
+
+// Вместо того, чтобы создавать отдельные методы для каждого объекта шаблона Factory Method, мы можем создать один метод make() и передать ему в качестве аргумента флаг, определеяющий тип возвращаемого объекта
+
+// abstract class CommsManager {
+// 	const APPT = 1;
+// 	const TTD = 2;
+// 	const CONACT = 3;
+
+// 	abstract function getHeaderText();
+// 	abstract function make($flag_int);
+// 	abstract function getFootertext();
+// }
+
+// class BloggsCommsManager extends CommsManager {
+// 	function getHeaderText(){
+// 		return "BloggsCal верхний колонтитул \n";
+// 	}
+
+// 	function make($flag_int){
+// 		switch ($flag_int){
+// 			case self::APPT:
+// 				return new BloggsApptEncoder();
+// 			case self::CONTACT:
+// 				return new BloggsContactEncoder():
+// 			case self::TTD:
+// 				return new BloggsTtdEncoder();
+// 		}
+// 	}
+
+// 	function getFooterText(){
+// 		return "BloggsCal нижний колонтитул \n";
+// 	}
+// }
+
+
+// ************************* Шаблон Prototype
+// Решает вопрос параллельных иерархий наследования, которые каждый раз при добавлении нового семейства продукта вынуждают создавать связанный с ним конкретного создателя(кодировщикам BloggsCal соответствует BloggsCommsManager)
+// Позволяет заменить наследование композицией
+// Такой подход способствует гибкости во время выполнения программы и сокращает количество классов, которые необходимо создать
+
+// !!! Используется Если не нужны параллельные иерархии наследования и нужна максимальная гибкость во время выполнения программы
+
+// class Sea {
+// 	// Свойство судоходность.
+// 	// От него зависит количество энергии движения, которое клетка моря отнимает у судна
+// 	private $navigability = 0
+
+// 	function __construct($navigability){
+// 		$this->navigability = $navigability;
+// 	}
+// }
+// class EarthSea extends Sea {};
+// class MarsSea extends Sea {};
+
+// class Plains {}
+// class EarthPlains extends Plains {}
+// class MarsPlains extends Plains {}
+
+// class Forest{}
+// class EarthForest extends Forest{}
+// class MarsForest extends Forest{}
+
+// class TerrainFactory{
+// 	private $sea;
+// 	private $forest;
+// 	private $plains;
+
+// 	function __construct(Sea $sea, Plains $plains, Forest $forest){
+// 		$this->sea = $sea;
+// 		$this->plains = $plains;
+// 		$this->forest = $forest;
+// 	}
+
+// 	function getSea(){
+// 		return clone $this->sea;
+// 	}
+
+// 	function getPlains(){
+// 		return clone $this->plains;
+// 	}
+
+// 	function getForest(){
+// 		return clone $this->forest;
+// 	}
+// }
+// // Загружаем в экземпляр конкретной фабрики типа TerrainFactory экземпляры объектов наших продуктов
+// $factory = new TerrainFactory(new EarthSea(), new EarthPlains(), new EarthForest());
+
+// print_r($factory->getSea());
+// print_r($factory->getPlains());
+// print_r($factory->getForest());
+
+// // Чтобы игра происходила на новой планете с морями и лесами как на Земле, и с равнинами, как на Марсе
+// $factory = new TerrainFactory(new EarthSea(), new MarsPlains(), new EarthForest());
+
+// // Теперь можно добавить объект Sea с модификатором судоходности
+// $factory = new TerrainFactory(new EarthSea(-1), new EarthPlains(), new EarthForest());
+
+
+// Класс, в который включен признак типа протокола календаря
+
+// class Settings{
+// 	static $COMMSTYPE = 'Mega';
+// }
+
+// // Класс, который использует значение флага для принятия решения о том, какой объект типа CommsManager нужно предоставить запросу
+
+// require_once("Settings.php");
+
+// class AppConfig{
+// 	private static $instance;
+// 	private $commsManager;
+
+// 	private functioon __construct(){
+// 		// Выполняется только один раз
+// 		$this->init();
+// 	}
+
+// 	private function init(){
+// 		switch (Settings::$COMMSTYPE){
+// 			case 'Mega':
+// 				$this->CommsManager = new MegaCommsManager();
+// 				break;
+// 			default:
+// 				$this->commsManager = new BloggsCommsManager();
+// 		}
+// 	}
+
+// 	public static function getInstance(){
+// 		if(empty(self::$instance)){
+// 			self::$instance = new self();
+// 		}
+// 		return self::$instance;
+// 	}
+
+// 	public function getCommsManager(){
+// 		return $this->commsManager;
+// 	}
+// }
+
+// // Класс AppConfig - это стандартный Singleton
+// // Мы можем легко получить ссылку на экземпляр AppConfig в любом месте системы
+
+// $commsMgr = AppConfig::getInstance()->getCommsManager();
+
+// print $commsMgr->getApptEncoder()->encode();
+?>
+
+
+<!----------------------- Шаблоны для программирования гибких объектов ---------------------------->
+<?
+
+// ******************** Как структурировать классы, чтобы достичь гибкости ********************************
+// Будут рассмотрены шаблоны:
+// 1. Шаблон Composite
+// 2. Шаблон Decorator
+// 3. Шаблон Facade
+
+// ************************* Шаблон Composite
+// Это простой способ соединения и управления группами схожих объектов
+// Иерархии наследования представляют собой деревья, корнем которых является суперкласс, а ветвями - специализированные подклассы
+
+// В классе Unit определен абстрактный метод bombardStrength(), который устанавливает атакующую силу элемента, обстреливающего клетку
+// abstract class Unit{
+// 	abstract function bombardStrength();
+// }
+
+// class Archer extends Unit{
+// 	function bombardStrendth(){
+// 		return 4;
+// 	}
+// }
+
+// class LaserCannonUnit extends Unit{
+// 	function bombardStrength(){
+// 		return 44;
+// 	}
+// }
+
+// // Организуем отдельный класс для группировки элементов
+// // class Army{
+// // 	private $units = array();
+
+// // 	function addUnit(Unit $unit){
+// // 		aray_push($this->units, $unit);
+// // 	}
+
+// // 	function bombardStrength(){
+// // 		$ret = 0;
+// // 		foreach($this->units as $unit) {
+// // 			$ret += $unit->bombardStrength()
+// // 		}
+// // 		return $ret;
+// // 	}
+// // }
+
+// // Реорганизуем класс Army так, чтобы была возможность объединять силы армий, но в тоже время сохранять индивидуальные параметры каждой армии
+// class Army{
+// 	private $units = array();
+
+// 	function addUnit(Unit $unit){
+// 		aray_push($this->units, $unit);
+// 	}
+// 	// Меняем метод, чтобы делать итерации по всем армиям и объектам типа Unit
+// 	function bombardStrength(){
+// 		$ret = 0;
+// 		foreach($this->units as $unit) {
+// 			$ret += $unit->bombardStrength()
+// 		}
+
+// 		foreach($this->army as $army){
+// 			$ret += army->bombardStrength();
+// 		}
+// 		return $ret;
+// 	}
+
+// 	function addArmy (Army $army){
+// 		array_push($this->armies, $army);
+// 	}
+// }
+
+
+// Все элементы нашей модели расширяют класс Unit - клиентский код может быть уверен, что любой объект типа Unit будет поддерживатть метод bombardStrength()
+// классы Army и TroopCarrier - это композиты: они предназначены для того, чтобы поддерживать операции с объектами типа Unit
+
+// abstract class Unit{
+// 	abstract function addUnit(Unit $unit);
+// 	abstract function removeUnit(Unit $unit);
+// 	abstract function bombardStrength();
+// }
+
+// class Army extends Unit{
+// 	private $units = array();
+
+// 	function addUnit (Unit $unit){
+// 		if(in_array($unit, $this->units, true)){
+// 			return;
+// 		}
+// 		$this->units[] = $unit;
+// 	}
+
+// 	function bombardStrength(){
+// 		$ret = 0;
+// 		foreach ($this->units as $unit) {
+// 			$ret += $unit->bombardStrength();
+// 		}
+// 		return $ret;
+// 	}
+// }
+
+// class UnitException extends Exception{}
+
+// class Archer extends Unit{
+// 	function addUnit(Unit $unit){
+// 		throw new UnitException(get_class($this) . "относится к 'листьям'");
+// 	}
+
+// 	function removeUnit(Unit $unit){
+// 		throw new UnitException(get_class($this) . "относится к 'листьям'");
+// 	}
+
+// 	function bombardStrength(){
+// 		return 4;
+// 	}
+// }
+
+// // Нам не нужна возможность добавлять объект типа Unit к объекту типа Archer
+// // Поэтому при вызове методов addUnit() и removeUnit() генерируется исключение
+
+// // Улучшим проект, заменив асбтрактные методы removeUnit() и addUnit()
+
+// abstract class Unit {
+// 	abstract function bombardStrength();
+
+// 	function addUnit(Unit $unit){
+// 		throw new UnitException(get_class($this) . " относится к 'листьям'")
+// 	}
+
+// 	function removeUnit(Unit $unit){
+// 		thrwo new UnitException(get_class($this) . " относится к 'листьям'");
+// 	}
+// }
+
+// class Archer extends Unit{
+// 	function bombardStrength(){
+// 		return 4;
+// 	}
+// }
+
+// Преимущества
+/*1. Гибкость - Во всех элементах шаблона Composite используется общий супертип, поэтому очень просто добавлять к проекту новые объекты-композиты или "листья", не меняя более широкий контекст программы
+2. Простота - Клиентский код имеет простой интерфейс
+Клиентскому коду не нужно делать различие между объектом, состоящим из других объектов, и объектом-личтом
+3. Явная досягаемость - Шаблоны организованы в древовидную структуру
+Операция над определенной часть дерева может иметь более широкий формат
+4. Неявная досягаемость - В древовидной структуре можно легко выполнить обход всех ее узлов */
+
+// Преимущества на примере
+
+// Создадим армию
+// $main_army = new Army();
+
+// // Добавим пару боевых единиц
+// $main_army->addUnit(new Archer());
+// $main_army->addUnit(new LaserCannonUnit());
+
+// // Создадим еще одну армию
+// $sub_army = new Army();
+
+// // Добавим пару боевых единиц
+// $sub_army->addUnit(new Archer());
+// $sub_army->addUnit(new Archer());
+// $sub_army->addUnit(new Archer());
+// $sub_army->addUnit(new Archer());
+
+// // Добавим вторую армию к первой
+// $main_army->addUnit($sub_army);
+
+// // Все вычисления выполняются за кулисами
+// print "Атакующая сила: {$main_army->bombardStrength()}\n";
+
+// // Мы создали новый объект типа Army и добавляем несколько боевых единиц Unit
+// // Повторяем
+// // Добавляем второй объект Army к первому
+// // Вся сложность структуры, которую мы построили, оказывается полностью скрытой
+
+// Мы можем разбить классы-композиты на подтипы CompositeUnit
+// abstract class Unit{
+// 	function getComposite(){
+// 		return null;
+// 	}
+
+// 	abstract function bombardStrength();
+// }
+
+// abstract class CompositeUnit extends Unit{
+// 	private $units = array();
+
+// 	function getComposite(){
+// 		return $this;
+// 	}
+
+// 	protected function units(){
+// 		return $this->units;
+// 	}
+
+// 	function removeUnit(Unit $unit){
+// 		$units = array();
+// 		foreach($this->units as $thisunit){
+// 			if($unit !== $thisunit){
+// 				$units[] = $thisunit;
+// 			}
+// 		}
+// 		$this->units = $units;
+// 	}
+
+// 	function addUnit(Unit $unit){
+// 		if(in_array($unit, $this->unit, true)){
+// 			return;
+// 		}
+// 		$this->units[] = $unit;
+// 	}
+// }
+
+// // Методу joinExisting() передаются два объекта типа Unit
+// // Превый - объект прибывший на клетку
+// // Второй - объект, который занимал клетку до этого
+// // Если второй объект типа Unit принадлежит к классу CompositeUnit, то первый объект попытается присоединиться к нему
+// class UnitScript {
+// 	static function joinExisting(Unit $newUnit, Unit $occupyingUnit){
+// 		if(!is_null($comp = $occupyingUnit->getComposite())){
+// 			$comp->addUnit($newUnit);
+// 		}else{
+// 			$comp = new Army();
+// 			$comp->addUnit($occupyingUnit);
+// 			$comp->addUnit($newUnit);
+// 		}
+// 		return $comp;
+// 	}
+// }
+
+// Шаблон полезен, когда нужно обращаться с набором объектов так же, как с отдельным объектом, либо потому, что набор по своей сути такой же, как компонент
+
+
+// ************************* Шаблон Decorator
+
+// Встраивание всех функций в структуру наследования может привести к бурному росту классов в системе
+// При попытке применить аналогичные изменения к разным ветвям дерева наследования, то это может привести к дублированию
+// Вместо наследования в шаблоне используется композиция и делегирование
+// В классах хранится экземпляр другого класса и его собственного типа
+// В классе реализуется собственно процесс выполнения операции и вызывается аналогичная операция на объекте, на который у него есть ссылка
+
+// abstract class Tile{
+// 	abstract function getWealthFactor();
+// }
+
+// class Plains extends Tile{
+// 	private $wealthFactor = 2;
+
+// 	function getWealthFactor(){
+// 		return $this->wealthFactor;
+// 	}
+// }
+
+// abstract class TileDecorator extends Tile{
+// 	protected $tile;
+
+// 	function __construct(Tile $tile){
+// 		$this->tile = $tile;
+// 	}
+// }
+
+// // Мы объявили классы Tile и Plains
+// // Ввели новый класс TileDecorator
+
+// class DiamondDecorator extends TileDecorator {
+// 	function getWealthFactor(){
+// 		return $this->tile->getWealthFactor()+2;
+// 	}
+// }
+
+// class PollutionDecorator extends TileDecorator {
+// 	function getWealthFactor(){
+// 		return $this->tile->getWealthFactor()-4;
+// 	}
+// }
+
+// // При вызове getWealthFactor(), каждый из этих классов сначала вызывает такой же метод у объекта Tile, а затем выполняет собственную корректировку значения
+
+// $tile = new Plains();
+// print $tile->getWealthFactor(); //Возвращается 2
+
+// $tile = new DiamondDecorator(new Plains());
+// print $tile->getWealthFactor();// Возвращает 4
+
+// // В объекте типа DiamondDecorator хранится ссылка на объект типа Plains
+// // Перед прибавлением собственного значения 2 он вызывает метод getWealthFactor() объекта типа Plains
+
+// $tile = new PollutionDecorator(new DiamondDecorator(new Plains()));
+// print $tile->getWealthFactor();//Возвращается 0
+
+
+// class RequestHelper{}
+
+// abstract class ProcessRequest {
+// 	abstract function process(RequestHelper $req);
+// }
+
+// class MainProcess extends ProcessRequest {
+// 	function process (RequestHelper $req){
+// 		print __CLASS__ . ": выполнение запроса \n";
+// 	}
+// }
+
+// abstract class DecoratorProcess extends ProcessRequest{
+// 	protected $processrequest;
+
+// 	function __construct(ProcessRequest $pr){
+// 		$this->processrequest = $pr;
+// 	}
+// }
+
+// // Мы определили абстрактный суперкласс (ProcessRequest), конкретный компонент (MainProcess) и абстрактный декоратор (DecoratorProcess)
+// // Метод MainProcess::process() только сообщает, что он был вызван
+
+// class LogRequest extends DecorateProcess{
+// 	function process(RequestHelper $req){
+// 		print __CLASS__.": регистрация запроса \n";
+// 		$this->processrequest->process($req);
+// 	}
+// }
+
+// class AuthenticateRequest extends DecorateProcess{
+// 	function process(RequestHelper $req){
+// 		print __CLASS__.": аутентификация запроса \n";
+// 		$this->processrequest->process($req);
+// 	}
+// }
+
+// class StructureRequest extends DecorateProcess {
+// 	function process(RequestHelper $req){
+// 		print __CLASS__.": упорядочение данных запроса \n";
+// 		$this->processrequest->process($req);
+// 	}
+// }
+
+// $process = new AuthenticateRequest(new StructureRequest(new LogRequest(new MainProcess())));
+// $process->process(new RequestHelper());
+
+
+// В данном шаблоне и композиция и наследование вступают в действие одновременно
+// Поскольку объект-декоратор формирует оболочку вокруг дочернего объекта, очень важно поддерживать интерфейс настолько неплотным, насколько это возможно
+
+
+// ************************* Шаблон Facade
+// - Это простой способ предоставить простой и понятный интерфейс для сложных системе
+
+// Пример запутанного процедурного кода, который из простой задачи получения информации из текстовых файлов и преобразования ее в данные объекта делает что-то очень сложное
+
+// function getProductFileLines($file){
+// 	return file($file);
+// }
+
+// function getProductObjectFromId($id, $productname){
+// 	// Выполняем запрос к базе данных
+// 	return new Product($id, $productname);
+// }
+
+// function getNameFromLine($line){
+// 	if(preg_match("/.*)\s\d+/", $line, $array)){
+// 		return str_replace('_', ' ', $array[1]);
+// 	}
+// 	return '';
+// }
+
+// function getIDFromLine($line){
+// 	if(preg_match("/^(\d{1,3})-/", $line, $array)){
+// 		return $array[1];
+// 	}
+// 	return -1;
+// }
+
+// class Product {
+// 	public $id;
+// 	public $name;
+
+// 	function __construct($id, $name){
+// 		$this->id = $id;
+// 		$this->name = $name;
+// 	}
+// }
+
+// $lines = getProductFileLines('test.txt');
+// $objects = array();
+// foreach($lines as $line){
+// 	$id = getIDFromLine ($line);
+// 	$name = getNameFromLine($line);
+// 	$object[$id] = getProductObjectFromId($id, $name);
+// }
+
+// // Если мы будем вызывать эти функции непосредственно, то наш код будет плотно вплетен в подсистему, которую он использует
+
+
+// // Пример простого класса, который предоставляет интерфейс для процедурного кода
+
+// class ProductFacade {
+// 	private $products = array();
+
+// 	function __construct($file){
+// 		$this->file = $file;
+// 		$this->compile();
+// 	}
+
+// 	private function compile(){
+// 		$lines = getProductFileLines($this->file);
+// 		foreach($lines as $line){
+// 			$id = getIDFromLine($line);
+// 			$name = getNameFromLine($line);
+// 			$this->products[$id] = getProductObjectFromId($id, $name);
+// 		}
+// 	}
+
+// 	function getProducts(){
+// 		return $this->products;
+// 	}
+
+// 	function getProduct($id){
+// 		return $this->products[$id];
+// 	}
+// }
+
+// $facade = new ProductFacade('text,txt');
+// $facade->getProduct(234);
+
+// Шаблон Facade решает вопрос создания одной точки входа для уровня или подсистемы в целом
+// В итоге мы получаем:
+// 1. Програмистам клиентского кода полезно и удобно иметь доступ к простым методам, которые выполняют понятные и очевидные вещи
+// 2. Минимизировать ошибки в комплексных подсистемах
+?>
+
+
+<!----------------------- Выполнение задач и представление результатов ---------------------------->
+<?
+
+// Шаблон Interpreter
+// Шаблон Strategy
+// Шаблон Observer
+// Шаблон Visittor
+// Шаблон Command
+
+// ******************** Шаблон Interpreter
 
 
