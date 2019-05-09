@@ -80,7 +80,6 @@
 
 // Методо-конструктор вызывается при создании объекта
 
-
 // class ShopProduct{
 // 	public $title = "Стандартный товар";
 // 	public $producerMainName = "Фамилия автора";
@@ -101,7 +100,6 @@
 
 // // Значения всех перечисленных аргументов передаются конструктору
 // $product1 = new ShopProduct("Собачье сердце", "Михаил", "Булгаков", 5.99);
-
 
 // print "Автор: {$product1->getProducer()}\n";//Автор: Михаил Булгаков
 
@@ -136,7 +134,7 @@
 // class ShopProduct{
 // 	public $title;
 // 	public $producerMainName;
-// 	public $producerFirstNameL;
+// 	public $producerFirstName;
 // 	public $price;
 // 	public $numPages;
 // 	public $playerLength;
@@ -493,6 +491,7 @@
 // С помощью static мы можем получать доступ к методам и свойствам в контексте класса, а не объекта
 
 // Статические методы - это функции используемые в контексте класса. Они сами не могут получать доступ ни к каким обычным свойствам класса,потому что такие свойства принадлежат объектам. Из статических методов можно обращаться к статическим свойствам.
+// При изменении статического свойства из подкласса, значение изменяется и в родительском классе
 
 // class StaticExample{
 // 	static public $aNum = 0;
@@ -597,9 +596,9 @@
 
 // ******************** Абстрактные классы ********************************
 
-// В абстрактом классе можно создавать свойства и методы, но любавя попытка создать его экземпляр приведет к ошибке
-// Чаще всего абстрактный класс содержит как миниму один абстрактный метод
-// Создание асбтрактного метода гарантирует, что его реализация будет доступной во всех конкретных дочерних классах, но детали этой реализации остаются неопределенными
+// В абстрактом классе можно создавать свойства и методы, но любая попытка создать его экземпляр приведет к ошибке
+// Чаще всего абстрактный класс содержит как минимум один абстрактный метод
+// Создание абстрактного метода гарантирует, что его реализация будет доступной во всех конкретных дочерних классах, но детали этой реализации остаются неопределенными
 
 // adstract class ShopProductWriter{
 // 	protected $products = array();
@@ -645,14 +644,14 @@
 
 // Интерфейс - это шаблон
 // Интерфейс может только определять функциональность, но никогда не реализует ее
-// Интерфейс может содержать объявления свойств и методом, но не тела этимх методов
+// Интерфейс может содержать объявления свойств и методом, но не тела этих методов
 
 // interface Chargeable {
 // 	public function getPrice();
 // }
 
 // Любой класс, содержащий этот интерфейс, должен реализовывать все методы, определенные в интерфейсе
-// При реализации интерфейса, имя интерфейся указывается в обхявлении класса после слова "implements"
+// При реализации интерфейса, имя интерфейся указывается в объявлении класса после слова "implements"
 
 // Реализующий класс принимает тип класса и интерфейса, который он расширяет
 // class ShopProduct implements Chargeable{
@@ -670,7 +669,7 @@
 
 // ******************** Обработка ошибок ********************************
 
-// Exception - специальный объект, который является экземплятом встроенного класса Exception
+// Exception - специальный объект, который является экземпляром встроенного класса Exception
 
 // class Conf {
 // 	private $file;
@@ -725,7 +724,7 @@
 
 // Создаем классы, расширяеющие класс Exception
 // class XmlException extends Exception {
-// 	private $arror;
+// 	private $error;
 
 // 	function __construct (LibXmlError $error){
 // 		$shortfile = basename($error->file);
@@ -825,7 +824,7 @@
 // ****************** Метод __set() || __unset()
 // Вызывается, когда клиентский код пытается присвоить значение неопределенному свойству
 // Передается два аргумента - Имя свойства и значение
-// В методе проверяется есть существует ли указанный метод, и если да, то он вызывается
+// В методе проверяется существует ли указанный метод, и если да, то он вызывается
 
 // class Person {
 // 	private $_name;
@@ -944,7 +943,8 @@
 
 // Применяются к экземпляру объекта и создает дополнительную копию
 // Метод __clone() вызывается автоматически, когда для копирования объекта используется слово clone
-// метод работае в контексте скопированного объекта, а не исходного
+// метод работает в контексте скопированного объекта, а не исходного
+
 // class CopyMe{}
 // $first = new CopyMe();
 // $second = clone $first;
@@ -1027,7 +1027,7 @@
 
 // ******************** Определение строковых значений для объектов ********************************
 
-// Метод __toString() позволяет контролировать то, какую информацию будут выводить объеты при перчати
+// Метод __toString() позволяет контролировать то, какую информацию будут выводить объекты при печати
 // Автоматические вызывается, когда объект передается функции print и echo
 
 // class Person {
@@ -1276,7 +1276,7 @@
 // $returnVal = call_user_func('MyFunction');
 
 // Для вызова метода в качестве первого аргумента указывается массив
-// Первым элементов массива должен быть объект, вторыс - имя вызываемого метода
+// Первым элементов массива должен быть объект, вторым - имя вызываемого метода
 // $returnVal = call_user_func(array($myObj, 'methodName'));
 
 // Вызываемому методу или функции можно передать любое кол-во аргументов
@@ -1532,7 +1532,7 @@
 <?
 
 
-// ******************** Объектно=ориентированное и процедурное программирование ********************************
+// ******************** Объектно-ориентированное и процедурное программирование ********************************
 // Процедурный код
 // Процедурный код имеет форму последовательности команд и вызовов функций
 // Управляющий код несет ответственность за обработку различных ситуаций
@@ -1669,7 +1669,7 @@
 
 
 // ************************* Полиморфизм
-// - Это поддержка нескольких реализация на основе общего интерфейса
+// - Это поддержка нескольких реализаций на основе общего интерфейса
 
 // ************************* Инкапсуляция
 // - Это сокрытие данных и функциональности от клиентского кода
@@ -1685,9 +1685,9 @@
 
 // Шаблон - это решение задачи в некотором контексте
 
-// В мире программного обеспечения, шаблон - это реальное проявлени генетической памяти организации
+// В мире программного обеспечения, шаблон - это реальное проявление генетической памяти организации
 
-// С помощью шаблонов проектирования описываются и формализуются типовые задачи и их решения.
+// С помощью шаблонов проектирования описываются и формулируются типовые задачи и их решения.
 
 
 // ******************** Некоторые принципы шаблонов ********************************
@@ -1695,11 +1695,11 @@
 // ************************* Композиция и наследование
 // Наследование - это эффективный способ описания меняющихся обстоятельств или контекста.
 
-// Занятия в цниверситете - лекции/семинары
+// Занятия в университете - лекции/семинары
 // Лекции - фиксированная цена за лекции/почасовая оплата за лекции
 // Семинары - фиксированная цена за семинар/почасовая оплата за семинар
 
-// Чтобы избежать повторения формирования цены, необходимо переместить логику оплаты вверх, в супркласс
+// Чтобы избежать повторения формирования цены, необходимо переместить логику оплаты вверх, в суперкласс
 
 // abstract class Lesson {
 // 	protected $duration;
@@ -1759,6 +1759,10 @@
 
 // Создадим абстрактный класс CostStrutegy(), в котором определены абстрактные методы cost() и chargeType()
 
+// Конструктору класса Lesson передается объект типа CostStrategy, который он сохраняет в виде свойства
+// Метод Lesson::cost() просто вызывает CostStrategy::chargeType()
+// Такой явный вызов метода другого объекта называется Делегированием*
+
 // abstract class Lesson{
 // 	private $duration;
 // 	private $costStrategy;
@@ -1781,9 +1785,6 @@
 // 	}
 // 	// Другие методы класса Lesson...
 // }
-// Конструкторы класса Lesson ередается объект типа CostStrategy, который он сохраняет в виде свойства
-// Метод Lesson::cost() просто вызывает CostStrategy::chargeType()
-// Такой явный вызов метода другого объекта называется Делегированием*
 
 // abstract class CostStrategy {
 // 	abstract function cost(Lesson $lesson);
@@ -1983,7 +1984,7 @@
 // }
 
 // // Свойство $instance - закрытое и статическое, поэтому к нему нельзя подключить доступ из-за пределов класса
-// // у метода getInstance() - общедоступный и статический, его можно вызвать через класс
+// // метод getInstance() - общедоступный и статический, его можно вызвать через класс
 
 // $pref = Preferences::getInstance();
 // $pref->setProperty("name", "Иван");
@@ -1996,8 +1997,8 @@
 
 
 // ************************* Шаблон Factory Method
-// Решает проблему создания экземпляров объектов, когда в коде используются абстрактные типы
 
+// Решает проблему создания экземпляров объектов, когда в коде используются абстрактные типы
 
 // abstract class ApptEncoder {
 // 	abstract function encode();
@@ -2056,11 +2057,11 @@
 // print $apptEncoder->encode();
 
 // До момента выполнения программы мы не знаем, какой вид объекта нам понадобится создать
-// Мы  не должны иметь возможность достаточно просто добавлять новые типы объектов
+// Мы не должны иметь возможность достаточно просто добавлять новые типы объектов
 // Каждый тип продукта связан с контекстом, который требует других специализированных операций
 
 
-// Переопределеим CommsManager в виде абстрактного класса
+// Переопределим CommsManager в виде абстрактного класса
 
 // abstract class ApptEncoder {
 // 	abstract function encode();
@@ -2097,6 +2098,7 @@
 
 
 // ************************* Шаблон Abstract Factory
+
 // Решает проблему настройки наследования
 
 
@@ -2174,6 +2176,7 @@
 
 
 // ************************* Шаблон Prototype
+
 // Решает вопрос параллельных иерархий наследования, которые каждый раз при добавлении нового семейства продукта вынуждают создавать связанный с ним конкретного создателя(кодировщикам BloggsCal соответствует BloggsCommsManager)
 // Позволяет заменить наследование композицией
 // Такой подход способствует гибкости во время выполнения программы и сокращает количество классов, которые необходимо создать
@@ -2297,6 +2300,7 @@
 // 3. Шаблон Facade
 
 // ************************* Шаблон Composite
+
 // Это простой способ соединения и управления группами схожих объектов
 // Иерархии наследования представляют собой деревья, корнем которых является суперкласс, а ветвями - специализированные подклассы
 
@@ -2358,7 +2362,6 @@
 // 		array_push($this->armies, $army);
 // 	}
 // }
-
 
 // Все элементы нашей модели расширяют класс Unit - клиентский код может быть уверен, что любой объект типа Unit будет поддерживатть метод bombardStrength()
 // классы Army и TroopCarrier - это композиты: они предназначены для того, чтобы поддерживать операции с объектами типа Unit
@@ -2430,7 +2433,7 @@
 // Преимущества
 /*1. Гибкость - Во всех элементах шаблона Composite используется общий супертип, поэтому очень просто добавлять к проекту новые объекты-композиты или "листья", не меняя более широкий контекст программы
 2. Простота - Клиентский код имеет простой интерфейс
-Клиентскому коду не нужно делать различие между объектом, состоящим из других объектов, и объектом-личтом
+Клиентскому коду не нужно делать различие между объектом, состоящим из других объектов, и объектом-лиcтом
 3. Явная досягаемость - Шаблоны организованы в древовидную структуру
 Операция над определенной часть дерева может иметь более широкий формат
 4. Неявная досягаемость - В древовидной структуре можно легко выполнить обход всех ее узлов */
@@ -2503,7 +2506,7 @@
 // }
 
 // // Методу joinExisting() передаются два объекта типа Unit
-// // Превый - объект прибывший на клетку
+// // Превый - объект, прибывший на клетку
 // // Второй - объект, который занимал клетку до этого
 // // Если второй объект типа Unit принадлежит к классу CompositeUnit, то первый объект попытается присоединиться к нему
 // class UnitScript {
@@ -2633,7 +2636,8 @@
 
 
 // ************************* Шаблон Facade
-// - Это простой способ предоставить простой и понятный интерфейс для сложных системе
+
+// - Это простой способ предоставить простой и понятный интерфейс для сложных систем
 
 // Пример запутанного процедурного кода, который из простой задачи получения информации из текстовых файлов и преобразования ее в данные объекта делает что-то очень сложное
 
@@ -2728,6 +2732,1041 @@
 // Шаблон Visittor
 // Шаблон Command
 
+
 // ******************** Шаблон Interpreter
+
+/*При разработке интерфейса приходится искать компромисс между функциональностью и простотой использования.
+Необходимо сделать интерфейс масимально простым и в тоже время защищенным.*/
+
+
+// abstract class Expression {
+// 	private static $keycount = 0;
+// 	private $key;
+
+// 	abstract function interpret(InterpreterContext $context);
+
+// 	function getKey(){
+// 		if(!isset ($this->key)){
+// 			self::$keycount++;
+// 			$this->key = self::$keycount;
+// 		}
+// 		return $this->key;
+// 	}
+// }
+
+// class LiteralExpression extends Expression {
+// 	private $value;
+
+// 	function __construst($value){
+// 		$this->value = $value;
+// 	}
+
+// 	// Методу нужно передать объект типа InterpreterContext
+// 	function interpret(InterpreterContext $context){
+// 		$context->replace ($this, $this->value);
+// 	}
+// }
+
+// // Представляет собой внешний интерфейс для ассоциативного массива $expressionstore, которые испльзуется для хранения данных
+// class InterpreterContext{
+// 	private $expressionstore = array();
+
+// 	// Методу передается ключ и значение, которые сохраняются в ассоциативном массиве $expressionstore
+// 	function replace(Expression $exp, $value){
+// 		$this->expressionstore[$exp->getKey()] = $value;
+// 	}
+
+// 	function lookup(Expression $exp){
+// 		return $this->expressionstore[$exp->getKey()];
+// 	}
+// }
+
+// class VariableExpression extends Expression{
+// 	private $name;
+// 	private $val;
+
+// 	// Передается два аргумента, которые сохраняются в свойствах объекта
+// 	function __construct($name, $val=null){
+// 		$this->name = $name;
+// 		$this->$val = $val;
+// 	}
+
+// 	// Проверяет имеется ли у свойства $val значение
+// 	function interpret(InterpreterContext $context){
+// 		if(!us_null($this->val)){
+// 			$context->replace($this, $this->val);
+// 			$this->val = null;
+// 		}
+// 	}
+
+// 	function setValue($value){
+// 		$this->val = $value;
+// 	}
+
+// 	function getKey(){
+// 		return $this->name;
+// 	}
+// }
+
+// $context = new InterpreterContext();
+// $myvar = new VariableExpression('input', 'Четыре');
+// $myvar->interpret($context);
+// print $context->lookup($myvar) . "\n"
+// // Выводит 'Четыре'
+
+// $newvar = $myvar = new VariableExpression('input');
+// $newvar->interpret($context);
+// print $context->lookup($newvar) . "\n"
+// // Выводит 'Четыре'
+
+// $myvar->setValue("Пять");
+// $myvar->interpret($context);
+// print $context->lookup($myvar) . "\n"
+// // Выводит 'Пять'
+
+// print $context->lookup($newvar) . "\n"
+// // Выводит 'Пять'
+
+// abstract class OperatorExpression extends Expression{
+// 	protected $l_op;
+// 	protected $r_op;
+
+// 	// Передаются два объекта типа Expression для левого и правого операндов
+// 	function __construct (Expression $l_op, Expression $r_op){
+// 		$this->l_op = $l_op;
+// 		$this->r_op = $r_op;
+// 	}
+
+// 	// Определяются значения левого и правого операндов
+// 	function interpret(InterpreterContext $context){
+// 		$this->l_op->interpret($context);
+// 		$this->r_op->interpret($context);
+// 		$result_l = $context->lookup($this->l_op);
+// 		$result_r = $context->lookup($this->r_op);
+// 		$this->dorInterpret($context, $result_l, $result_r);
+// 	}
+
+// 	protected abstract function dorInterpret(InterpreterContext $context, $result_l, $result_r);
+// }
+
+// // Класс, которые проверяет равенство двух объектов типа Expression
+// class EqualsExpression extends OperatorExpression{
+// 	protected function dorInterpret(InterpreterContext $context, $result_l, $result_r){
+// 		$context->replace($this, $result_l == $result_r);
+// 	}
+// }
+
+// class BooleanOrExpression extends OperatorExpression{
+// 	// Используется оператор "ИЛИ" и полученный результат сохраняется в контексте
+// 	protected function dorInterpret(InterpreterContext $context, $result_l, $result_r){
+// 		$context->replace($this, $result_l || $result_l);
+// 	}
+// }
+
+// class BooleanAndExpression extends OperatorExpression{
+// 	protected function dorInterpret(InterpreterContext $context, $result_l, $result_r){
+// 		$context->replace($this, $result_l && $result_r);
+// 	}
+// }
+
+// // Мы получили код для интерпретации фрагмета выражения
+// $input equals "4" or $input equals "Четыре"
+
+// // Описание оператора с помощью классов Expression
+
+// $context = new InterpreterContext();
+// // Создаем экземпляр переменной 'input', но не присваеваем ей значение
+// $input = new VariableExpression('input');
+// // Создаем объект типа BooleanOrExpression, который будет сравнивать результаты двух выражений
+// $statement = new BooleanOrExpression(
+// 	new EqualsExpression($input, new LiteralExpression('Четыре')),
+// 	new EqualsExpression($input, new LiteralExpression('4'))
+// );
+
+// Присвоим значение для входной переменной
+
+// 1. Объект $statement вызывает метод interpret() для свойства $l_op
+// 2. Первый объект EqualsExpression вызывает метод interpret() для его свойства $l_op
+// 3. Входной объект VariableExpression записывает текущее значение в предоставленный объект типа InterpreterContext
+// 4. Первый объект EqualsExpression вызывает метод interpret() для свойства $r_op
+// 5. Объект LiteralExpression регистрирует имя и значение своего ключа в объекте InterpreterContext
+// 6. Первый объект EqualsExpression извлекает значение для $l_op('Четыре') и $r_op('Четыре') из объекта InterpreterContext
+// 7. Первый объект EqualsExpression сравнивает эти два значения, проверяя их равенство и регистрирует результат
+// 8. Наверху дерева объект $statement вызывает метод interpret() для его свойства $r_op
+// 9. Объект $statement извлекает значения для каждого из своих операндов из объекта InterpreterContext и с равнивает их с помощью оператора ||
+// foreach(array("Четыре", "4", "52") as $val){
+// 	$input->setValue($val);
+// 	print "$val: \n";
+// 	$statement->interpret($context);
+// 	if($context->lookup($statement)){
+// 		print "соответствует \n\n";
+// 	}else{
+// 		print "не соответствует \n\n";
+// 	}
+// }
+
+// Проблема
+// Большое количество классов, которые необходимо создать для реализации
+
+
+// ******************** Шаблон Strategy
+
+// Часто появляется необходимость разбить большой класс на подклассы
+
+// Когда классы должны поддерживать несколько реализаций интерфейса, то наилудший подход - это выделить эти реализации и поместить их в собственный тип
+// abstract class Question{
+// 	protected $prompt;
+// 	protected $marker;
+
+// 	function __construct($prompt, Marker $marker){
+// 		$this->marker = $marker;
+// 		$this->prompt = $prompt;
+// 	}
+
+// 	function mark($response){
+// 		return $this->marker->mark($response);
+// 	}
+// }
+
+// class TextQuestion extends Question {
+// 	// Выполняются действия, специфичные для текстовых вопросов
+// }
+
+// class AVQuestion extends Question{
+// 	// Выполняются действия, специфичные для мультимедийных
+// 	// (аудио- и видео-) вопросов
+// }
+
+// abstract class Marker{
+// 	protected $test;
+
+// 	function __construct($test){
+// 		$this->test = $test;
+// 	}
+
+// 	abstract function mark($response);
+// }
+
+// class MarkLogicMarker extends Marker{
+// 	private $engine;
+
+// 	function __construct($test){
+// 		parent::__construct($test);
+// 		// $this->engine = new MarkParse($test);
+// 	}
+
+// 	function mark($response){
+// 		// return $this->evaluate($response);
+// 		// Возвратим фиктивное значение
+// 		return true;
+// 	}
+// }
+
+// class MatchMarker extends Marker{
+// 	function mark($response){
+// 		return ($this->test == $response)
+// 	}
+// }
+
+// class RegexpMarker extends Marker {
+// 	function mark ($response){
+// 		return (preg_match($this->test, $response));
+// 	}
+// }
+
+// Код, проверяющий наши классы в деле
+// Создаем 3 объекта, содержащие стратегии оценки ответов, которые по очереди используются для создания объектов типа TextQuestion
+// $markers = array(new RegexpMarker("/П.ть"),
+// 				new MatchMarker("Пять"),
+// 				new MarkLogicMarker('$input equals "Пять"'));
+// foreach($markers as $marker){
+// 	print get_class($marker) . "\n";
+// 	$question = new TextQuestion("Сколько лучей у Кремлевской звезды?", $marker);
+// 	foreach(array("Пять", "Четыре") as $response){
+// 		print "\t Ответ: $response: ";
+// 		if($question->mark($response)){
+// 			print "Правильно! \n";
+// 		}else{
+// 			print "Неверно! \n"
+// 		}
+// 	}
+// }
+
+
+// ******************** Шаблон Observer
+
+// Цель - изменение и перемещение компонентов с минимальным воздействием на другие компоненты
+
+// Имитирует процесс входа в систему с помощью функции rand()
+// class Login {
+// 	const LOGIN_USER_UNKNOWN = 1;
+// 	const LOGIN_WRONG_PASS = 2;
+// 	const LOGIN_ACCESS = 3;
+// 	private $status = array();
+
+// 	function handleLogin($user, $pass, $ip){
+// 		switch(rand(1,3)){
+// 			case 1:
+// 				$this->setStatus(self::LOGIN_ACCESS, $user, $ip);
+// 				$ret = true;
+// 				break;
+// 			case 2:
+// 				$this->setStatus(self::LOGIN_WRONG_PASS, $user, $ip);
+// 				$ret = false;
+// 				break;
+// 			case 3:
+// 				$this->setStatus(self::LOGIN_USER_UNKNOWN, $user, $ip);
+// 				$ret = false;
+// 				break;
+// 		}
+// 		// Регистрация IP-адреса пользователей
+// 		Logger::logIP($user, $ip, $this->getStatus());
+// 		return $ret;
+// 	}
+
+// 	private function setStatus($status, $user, $ip){
+// 		$this->status = array($status, $user, $ip);
+// 	}
+
+// 	function getStatus(){
+// 		return $this->status;
+// 	}
+// }
+
+// В основе шаблона Observer лежит принцип отсоединения клиентских элементов от центрального класса
+// Наблюдатели должны быть проинформированы, когда происходят события, о которых знает субъект
+
+// interface Observable {
+// 	function attach(Observer $observer);
+// 	function detach(Observer $observer);
+// 	function nofity();
+// }
+
+// // Класс управляет списком объектов-наблюдателей
+// // Объекты могут быть добавлены третьей стороной с помощью метода attach() и удалены с помощью detach()
+// // Метод notify проходит по списку объектов-наблюдателей чтобы сказать наблюдателям о том, что произошло
+// 	// Класс login
+// 	private $observers;
+// 	// ...
+// 	function attach(Observer $observer){
+// 		$this->observers[] = $observer;
+// 	}
+
+// 	function detach(Observer $observer){
+// 		$newobservers = array();
+// 		foreach($this->observers as $obs){
+// 			if(($obs !== $observer)){
+// 				$newobservers[] = $obs;
+// 			}
+// 		}
+// 		$this->observers = $newobservers;
+// 	}
+
+// 	function notify(){
+// 		foreach($this->observers as $obs){
+// 			$obs->update($this);
+// 		}
+// 	}
+
+
+// 		function handleLogin($user, $pass, $ip){
+// 		switch(rand(1,3)){
+// 			case 1:
+// 				$this->setStatus(self::LOGIN_ACCESS, $user, $ip);
+// 				$ret = true;
+// 				break;
+// 			case 2:
+// 				$this->setStatus(self::LOGIN_WRONG_PASS, $user, $ip);
+// 				$ret = false;
+// 				break;
+// 			case 3:
+// 				$this->setStatus(self::LOGIN_USER_UNKNOWN, $user, $ip);
+// 				$ret = false;
+// 				break;
+// 		}
+// 		$this->notify();
+// 		return $ret;
+// 	}
+
+// // Определим интерфейс класса Observer
+// interface Observer {
+// 	function update(Observable $observable);
+// }
+// // Любой объект, использующий этот интерфейс можно добавить к классу Login  с помощью attach()
+// class SecurityMonitor implements Observer{
+// 	function update (Observable $observable){
+// 		$status = $observable->getStatus();
+// 		if($status[] == Login::LOGIN_WRONG_PASS){
+// 			// Отправим почту системному администратору
+// 			print __CLASS__ . ":\t Отправка почты системному администратору \n";
+// 		}
+// 	}
+// }
+
+// $login = new Login();
+// $login->attach(new SecurityMonitor());
+
+// метод getStatus, который могут вызвать наблюдатели, используется для получения информации о текущем состоянии
+
+// При вызове Login::getStatus(), классу SecurityMonitor передается больше информации, чем хотелось бы
+// Чтобы это исправить есть 2 варианта:
+// 1. Расширить класс Observable
+// 2. сохранить класс Observable, но сделать так, чтобы классы Observable были отвественными за работу с субъектами правильного типа
+
+
+
+// abstract class LoginObserver implements Observer{
+// 	private $login;
+
+// 	// Конструктору нужно передать объект типа Login
+// 	// Он сохраняет на него ссылку и вызывает метод Login::attach()
+// 	function __construct(Login $login){
+// 		$this->login - $login;
+// 		$login->attach($this);
+// 	}
+// 	// При вызове метода, вначале проверяется, что ему передана корректная ссылка на объект типа Observable
+// 	// Затем вызывается шаблонный метод doUpdate()
+// 	function update(Observable $observable){
+// 		if($observable === $this->login){
+// 			$this->doUpdate($observable)
+// 		}
+// 	}
+
+// 	abstract function doUpdate(Login $login);
+// }
+
+// // Теперь мы можем создать набор объектов типа LoginObserver
+// // Все они могут быть уверены, что работают с объектом Login
+
+// class SecurityMonitor extends LoginObserver{
+// 	function doUpdate (Login $login){
+// 		$status = $login->getStatus();
+// 		if($status[] == Login::LOGIN_WRONG_PASS){
+// 			// Отправим почту системному администратору
+// 			print __CLASS__ . ":\t Отправка почты системному администратору \n";
+// 		}
+// 	}
+// }
+
+// class GeneralLogger extends LoginObserver {
+// 	function doUpdate(Login $login){
+// 		$status = $login->getStatus();
+// 		// Зарегистрируем подключение в журнале
+// 		print __CLASS__ . ":\t Регистрация в системном журнале \n";
+// 	}
+// }
+
+// class PartnershipTool extends LoginObserver {
+// 	function doUpdate(Login $login){
+// 		$status = $login->getStatus();
+// 		// Проверяем IP-адрес
+// 		// Отправим cookie-файл, если адрес соответствует списку
+// 		print __CLASS__ . ":\tОтправка cookie-файла, если адрес соответствует списку\n";
+// 	}
+// }
+
+// $login = new Login();
+// new SecurityMonitor($login);
+// new GeneralLogger($login);
+// new PartnershipTool($login);
+
+
+
+
+
+// При расширении системы у вас не всегда есть информация обо всех операциях, которые может понадобиться осуществить на структуре
+// В результате добавления подержки новых операций класс обрастает ненужными функциями
+
+// Мы создали армию компонентов
+// с целыми частями можно обращаться попеременно
+// Объекты-листья выполняют операцию, а объекты-компоненты вызывают свои дочерние объекты
+// class Army extends CompositeUnit {
+// 	function bombardStrength(){
+// 		$ret = 0;
+// 		foreach($this->units() as $unit){
+// 			$ret += $unit->bombardStrength();
+// 		}
+// 		return $ret;
+// 	}
+// }
+
+// class LaserCannonUnit extends Unit {
+// 	function bombardStrength(){
+// 		return 44;
+// 	}
+// }
+
+// // Если операция является составной частью ответсвенности класса-композита, то проблемы нет
+
+// // Unit
+// // Затем этот метод можно переопределить в классе CompositeUnit
+// function textDump ($num = 0){
+// 	$ret = "";
+// 	$pad = 4*$num;
+// 	$ret .= sprintf("%{$pad}s", "");
+// 	$ret .= get_class($this) . ": ";
+// 	$ret .= "Огневая мощь: ". $this->bombardStrength() . "\n";
+// 	return $ret;
+// }
+
+// // CompositeUnit
+// function textDump($num = 0){
+// 	$ret = parent::textDump($num);
+// 	foreach($this->units as $unit){
+// 		$ret .= $unit->textDump($num + 1);
+// 	}
+// 	return $ret;
+// }
+
+
+// Реализация
+
+// Unit
+// Определим метод accept()
+
+// Метод ожидает, что ему будет передан объект ArmyVisitor
+// function accept(ArmyVisitor $visitor){
+// 	$method = "visitor" . get_class($this);
+// 	$visitor->$method($this);
+// }
+
+// // Метод вызывается родителем элемента, когда тот добавляет его к дереву из метода CompositeUnit::addUnit()
+// protected function setDepth($depth){
+// 	$this->depth = $depth;
+// }
+
+// function getDepth(){
+// 	return $this->depth;
+// }
+
+// function addUnit(Unit $unit){
+// 	foreach($this->units as $thisunit){
+// 		if($unit === $thisunit){
+// 			return;
+// 		}
+// 	}
+// 	$unit->setDepth($this->depth+1);
+// 	$this->units[] = $unit;
+// }
+
+// // Определим еще один метод accept() в абстрактном классе-композите
+// // Делает тоже самое, что и Unit::accept(), но с одним добавлением
+// // Он динамически создает имя метода на основе имени текущего класса и вызывает метод для предоставленного объекта ArmyVisitor
+// // function accept(ArmyVisitor $visitor){
+// // 	$method = "visit" . get_class($this);
+// // 	$visitor->$method($this);
+// // 	foreach($this->units as $thisunit){
+// // 		$thisunit->accept($visitor);
+// // 	}
+// // }
+
+// // Поскольку метод accept() заменяет операцию своего родителя, мы можем избавиться от повторения
+// function accept(ArmyVisitor $visitor){
+// 	parent::accept($visitor);
+// 	foreach($this->units as $thisunit){
+// 		$thisunit->accept($visitor);
+// 	}
+// }
+
+// abstract class ArmyVisitor {
+// 	abstract function visit(Unit $node);
+
+// 	function visitArcher(Archer $node){
+// 		$this->visit($node);
+// 	}
+
+// 	function visitCavalry(Cavalry $node){
+// 		$this->visit($node);
+// 	}
+
+// 	function visitLaserCannonUnit(LaserCannonUnit $node){
+// 		$this->visit($node);
+// 	}
+
+// 	function visitTroopCarrierUnit(TroopCarrierUnit $node){
+// 		$this->visit($node);
+// 	}
+
+// 	function visitArmy(Army $node){
+// 		$this->visit($node);
+// 	}
+// }
+
+// // Код, выводящий текстовый дамп
+// class TextDumpArmyVisitor extends ArmyVisitor{
+// 	private $text = "";
+
+// 	function visit(Unit $node){
+// 		$ret = "";
+// 		$pad = 4*$num;
+// 		$ret .= sprintf("%{$pad}s", "");
+// 		$ret .= get_class($this) . ": ";
+// 		$ret .= "Огневая мощь: ". $this->bombardStrength() . "\n";
+// 		$this->text .= $ret;
+// 		return $ret;
+// 	}
+
+// 	function getText(){
+// 		return $this->text;
+// 	}
+// }
+
+// // Клиентский код
+// // $main_army = new Army();
+// // $main_army->addUnit(new Archer());
+// // $main_army->addUnit(new LaserCannonUnit());
+// // $main_army->addUnit(new Cavalry());
+// // $textDump = new TextDumpArmyVisitor();
+// // $main_army->accept($textdump);
+// // print $textdump->getText();
+
+// // Процесс
+// // 1. Создаем обхект Army
+// // 2. Метод addUnit(), который есть у Army используем для добавления дополнительных объектов типа Unit
+// // 3. Создаем объект TextDumpArmyVisitor
+// // 4. Передаем объект TextDumpArmyVisitor методу Army::accept()
+// // 5. Метод accept() создает имя метода и вызывает TextDumpArmyVisitor::visitArmy()
+// // 6. Вызов передается общему методу visit()
+// // 7. Методу visit() передает по ссылке объект Army
+// // 8. Объект Army вызывает свои методы, включая getDepth(), который сообщает всем, кому надо знать, глубину вложения элемента в иерархии объекта
+// // 9. Операция Army::accept() теперь вызывает по очереди метод accept() для своих дочерних объектов, передавая объект-посетителя
+
+
+// // На некоторых клетках в нашей игре армии должны платить налоги
+// // Сборщик налогов посещает армию и берет плату за каждый элемент
+
+// class TaxCollectionVisitor extends ArmyVisitor{
+// 	private $due = 0;
+// 	private $report = "";
+
+// 	function visit(Unit $node){
+// 		$this->levy($node, 1);
+// 	}
+
+// 	function visitArcher(Archer $node){
+// 		$this->levy($node, 2);
+// 	}
+
+// 	function visitCavalry(Cavalry $node){
+// 		$this->levy($node, 3);
+// 	}
+
+// 	function visitLaserCannonUnit(LaserCannonUnit $node){
+// 		$this->levy($node, 5);
+// 	}
+
+// 	private function levy(Unit $unit, $amount){
+// 		$this->report .= "Налог для " . get_class($unit);
+// 		$this->report .= ": $amount\n";
+// 		$this->due += $amount;
+// 	}
+
+// 	function getReport(){
+// 		return $this->report;
+// 	}
+
+// 	function getTax(){
+// 		return $this->due;
+// 	}
+// }
+
+// $main_army = new Army();
+// $main_army->addUnit(new Archer());
+// $main_army->addUnit(new LaserCannonUnit());
+// $main_army->addUnit(new Cavalry());
+// $taxcollector = new TaxCollectionVisitor();
+// $main_army->accept($taxcollector);
+// print $taxcollector->getReport() . "\n";
+// print "Итого: ";
+// print $taxcollector->getTax() . "\n";
+
+
+// Проблемы
+// Экспортируя операции, есть риск "скомпроментировать" инкапсуляцию
+// Один из способов избежать раскрытия данных - передать ответсвенность за выполнение итерации в объекты-посетители(но это может привести к дублированию кода)
+
+
+// ******************** Шаблон Command
+
+// Помогает создавать хорошо организованнные системы, которые легко расширять
+
+// Проблема
+// Если страницы должны решать множество различных задач, то задачи должны быть представлены как то, что можно инкапсулировать
+
+// Реализация
+// Интерфейс Command требует реализации только одного метода execute()
+// В шаблоне может быть до трех других участников: участник, клиент, получатель
+
+// abstract class Command {
+// 	abstract function execute(CommandContext $context);
+// }
+
+// // Предназначен для работы с объектом типа AccessManager
+// // AccessManager - это воображаемый класс, задача которого - управлять механизмом входа пользователей в систему
+// class LoginCommand extends Command {
+// 	function execute (CommandContext $context){
+// 		$manager = Registry::getAccessManager();
+// 		$user = $context->get('username');
+// 		$pass = $context->get('pass');
+// 		$user_obj = $manager->login($user, $pass);
+// 		if(is_null($user_obj)){
+// 			$context->setError($manager->getError());
+// 			return false;
+// 		}
+// 		$context->addParam("user", $user_obj);
+// 		return true;
+// 	}
+// }
+
+// class CommandContext{
+// 	private $params = array();
+// 	private $error = "";
+
+// 	function __construct(){
+// 		$this->params = $_REQUEST;
+// 	}
+
+// 	function addParam($key, $val){
+// 		$this->params[$key] = $val;
+// 	}
+
+// 	function get($key){
+// 		return $this->params[$key]
+// 	}
+
+// 	function setError($error){
+// 		$this->error = $error;
+// 	}
+
+// 	function getError(){
+// 		return $this->error;
+// 	}
+// }
+
+// // Теперь класс LoginCommand может получить доступ к полученным данным запроса: имени пользователя и паролю
+
+
+// // Создаем клиента
+// class CommandNotFoundException extends Exception{}
+
+// // Класс CommandFactory просто ищет в каталоге commands определенный файл класса
+// // Если файл найден и класс существует, то он возвращается вызывающему объекту
+// class CommandFactory {
+// 	private static $dir = 'commands';
+
+// 	static function getCommand ($action = 'Default'){
+// 		if(preg_match('/\W/', $action)){
+// 			throw new Exception("Недопустимые символы в команде");
+// 		}
+// 		$class = UCFirst(strtolower($action)) . "Command";
+// 		$file = self::$dir . DIRECTORY_SEPARATOR . "{$class}.php";
+// 		if(!file_exists($file)){
+// 			throw new CommandNotFoundException("Файл '$file' не найден");
+// 		}
+// 		$cmd = new $class();
+// 		return $cmd;
+// 	}
+// }
+
+// class Controller {
+// 	private $context;
+
+// 	function __construct(){
+// 		$this->context = new CommandContext();
+// 	}
+
+// 	function getContext(){
+// 		return $this->context;
+// 	}
+
+// 	function process(){
+// 		$cmd = CommandFactory::getCommand($this->context->get('action'));
+// 		if(!$cmd->execute($this->context)){
+// 			// Обработка ошибки
+// 		}else{
+// 			// Все прошло успешно
+// 			// Теперь отобразим результаты
+// 		}
+
+// 	}
+// }
+
+// // Прежде чем вызывать метод Controller::process() мы иммитируем веб-запрос
+// // Метод process() делегирует создание экземпляров объектов объекту CommandFactory
+// // Затем вызывает метод execute()
+// $controller = new Controller();
+// // Эмулирует запрос пользователя
+// $context = $controller->getContext();
+// $context->addParam('action', 'login');
+// $context->addParam('username', 'bob');
+// $context->addParam('pass', 'tiddles');
+// $controller->process();
+
+// // Создадим еще один класс типа Command
+// class FeedbackCommand extends Command{
+// 	function execute(CommandContext $context){
+// 		$msgSystem = Registry::getMessageSystem();
+// 		$email = $context->get('email');
+// 		$msg = $context->get('msg');
+// 		$topic = $context->get('topic');
+// 		$result = $msgSystem->send($email, $msg, $topic);
+// 		if(!$resilt){
+// 			$context->setError($msgSystem->getError());
+// 			return false;
+// 		}
+// 		return true;
+// 	}
+// }
+?>
+
+
+<!----------------------- Шаблоны корпоративных приложений ---------------------------->
+<?
+
+// Обзор архитектуры
+// Шаблон Registry
+// Уровень представления данных
+// Уровень логики приложения
+
+// ******************** Обзор архитектуры ********************************
+
+// ******************** Шаблоны ********************************
+
+// Registry
+// Front Controller
+// Application Controller
+// Template View
+// Page Controller
+// Transaction Script
+// Domain Model
+
+
+// ******************** Приложения и уровни ********************************
+
+// ******************** Уровни типичной корпоративной системы
+
+/*
+_________________________________________________________________________
+|Генерирует запрос, 													|
+|направленный на 		*Представление данных*							|
+|уровень управления														|
+|								-										|
+|Интерпретирует запрос 							Оценивает результаты	|
+|и заправишает			*Комманды и управление*	и выбирает правильное 	|
+|уровень приложения				-				представление 			|
+|																		|
+|																		|
+|Решает поставленную 	*Логика приложения* 	Возвращает результаты	|
+|задачу							-										|
+|																		|
+|Управляет получением	      *Данные*								  	|
+|и сохранением данных												  	|
+|_______________________________________________________________________|
+*/
+
+/*Уровень представление данных - содержит интерфейс, который реально видят и с которым взаимодействуют пользователи системы.
+Отвечает за представление результатов запроса пользователя и обеспечение механизма, посредством которого можно сделать следующий запрос в систему*/
+
+/*Уровеь команд и управления обрабатывает запрос от пользователя. На основе этого анализа он делегирует уровню логики приложения полномочия по любой обработке, необходимой для выполнения запроса
+Затем он решает, какой шаблон лучше всего подходит для представления результатов пользователю*/
+
+/*Уровень логики приложения отвечает за обработку бизнес-запроса
+Выполняет все необходимые вычисления и упорядочивает полученные в результате данные*/
+
+/*Уровень данных отделяет остальную систему от механизма хранения и получения необходимой информации
+В некоторых системых уровень управления и команд использует уровеь данных, чтобы получить объекты приложения, с которым ему нужно работать*/
+
+
+// ******************** Шаблон Registry
+
+// Предназначен для того, чтобы предоставлять доступ к объектам по всей системе
+
+// Предположим, что данные о конфигурации приложения загружаются в классе ApplicationHelper
+
+// function getOptions(){
+// 	if(!file_exists("data/woo_options.xml")){
+// 		throw new woo_base_AppException("Файл с параметрами не найден");
+// 	}
+// 	$options = simplexml_load_file("data/woo_options.xml");
+// 	$dsn = (string)$oprions->dsn;
+// 	// И что нам со всем этим делать
+// }
+
+// Проблема
+// Как доставить информацию на тот уровень данных, где она используется впоследствии
+// Как получить остальную информацию, которая должна быть доступна по всей системе
+
+// Решение
+// 1.Передать информацию по системе от одного объекта к другому
+// Но
+// Необходимо будет изменить интерфейс всех объектов и включить в него объект ApplicationHelper, независимо от того, нужно им его использование или нет
+
+// 2. Системный реестр
+// ***Системный реестр(Registry) - это просто класс, который предоставляет доступ к данным с помощью статических методов(или с помощью реализации методов шаблона Singleton)
+
+// Реализация
+// class Registry {
+// 	private static $instance;
+// 	private $request;
+
+// 	private function __construct(){}
+
+// 	static function instance(){
+// 		if(!isset(self::$instance)){
+// 			self::$instance = new self();
+// 		}
+// 		return self::$instance;
+// 	}
+
+// 	function getRequest(){
+// 		return $this->request;
+// 	}
+
+// 	function setRequest(Request $request){
+// 		$this->request = $request;
+// 	}
+// }
+
+// // Пустой класс для тестирования
+// class Request{}
+
+// // После этого в одной из частей системы можно добавить объект типа Request
+// $reg = Registry::instance();
+// $reg->setRequest(new Request());
+
+// // И получить к нему доступ из другой части системы
+// $reg = Registry::instance();
+// print_r($reg->getRequest());
+
+// Преимущество заключается в том, что вам не нужно создавать методы для каждого объекта, который нужно сохранять и возвращать
+// Недостаток в том, что вы снова и снова вводите глобальные переменные
+// Использование произвольных строк в качестве ключей означает, что никто не помешает в одной из частей системы при добавлении объекта изменить пару "ключ/значение"
+
+// class Registry {
+// 	private static $instance;
+// 	private $request;
+
+// 	private function __construct(){}
+
+// 	static function instance(){
+// 		if(!isset(self::$instance)){
+// 			self::$instance = new self();
+// 		}
+// 		return self::$instance;
+// 	}
+
+// 	function get($key){
+// 		if(isset($this->values[$key])){
+// 			return $this->values[$key];
+// 		}
+// 		return null;
+// 	}
+
+// 	function set($key, $value){
+// 		$this->values[$key] = $values;
+// 	}
+
+// 	function getRequest(){
+// 		return $this->request;
+// 	}
+
+// 	function setRequest(Request $request){
+// 		$this->request = $request;
+// 	}
+
+// 	// Вместо того, чтобы сохранять предоставленный объект, класс-реестр создает экземпляр, а затем сохраняет в кем-память ссылку на него
+// 	// классы TreeBuilder и Conf это просто пустые классы
+// 	function treeeBuilder(){
+// 		if(!isset($this->treeBuilder)){
+// 			$this->treeBuilder = new TreeBuilder($this->conf()->get('treedir'));
+// 		}
+// 		return $this->treeBuilder;
+// 	}
+
+// 	function conf(){
+// 		if(!isset($this->conf)){
+// 			$this->conf = new Conf();
+// 		}
+// 		return $this->conf;
+// 	}
+// }
+
+// // Клиентский код, которому нужен TreeBuilder может не заботиться о сложносях инициализации
+
+
+// ******************** Шаблон Front Controller
+
+// Предоставляет центральную точку доступа для обработки всех входящих запросов и в конечном итоге для вывода результатов пользователю передает их уровень представления
+
+// Проблема
+// Когда запросы обрабатываются в нескольких точках системы, это может привести к дублированию в коде
+// Трудность в управлении продвижением от одного представления к другому
+
+// Реализация
+// class woo_controller_Controller{
+// 	private $aaplicationHelper;
+
+// 	private function __construct(){}
+
+// 	// метод введен для удобства
+// 	// Поскльку конструктор класса закрытый, для клиентского кода существует единственная возможность начать выполнение системы - вызвать метод run()
+// 	static function run(){
+// 		$instance = new woo_controller_Controller();
+// 		$instance->init();
+// 		$instance->handleRequest();
+// 	}
+
+// 	function init(){
+// 		$applicationHelper = woo_controller_ApplicationHelper::instance();
+// 		$applicationHelper->init();
+// 	}
+
+// 	function handleRequest(){
+// 		$request = new woo_controller_Request();
+// 		$cmd_r = new woo_command_CommandResolver();
+// 		$cmd = $cmd_r->getCommand($request);
+// 		$cnd->execute($request);
+// 	}
+// }
+
+// Класс ApplicationHelper
+
+class woo_controller_ApplicationHelper {
+	private static $instance;
+	private $config = "/tmp/data/woo_options.xml";
+
+	private function __construct(){}
+
+	static function instance(){
+		if(!self::$instance){
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+
+	function init(){
+		$dsn = woo_base_applicationRegistry::getDSN();
+		if(!is_null($dsn)){
+			return;
+		}
+		$this->getOptions();
+	}
+
+	private function getOptions(){
+		$this->ensure(file_exists($this->config), "Файл конфигурации не найден");
+		$options = @simplexml_load_file($this->config);
+		$this->ensure($options instanceof SimpleXMLElement, "Файл конфигурации запорчен");
+		$dsn = (string)$options->dsn;
+		$this->ensure($dsn, "DSN не найден");
+		woo_base_applicationRegistry::setDSN($dsn);
+		// Установите другие значения
+	}
+
+	private function ensure($expr, $message){
+		if(!$expr){
+			throw new woo_base_AppException($message);
+		}
+	}
+}
 
 
