@@ -1,6 +1,6 @@
 Карта развития/Developing Map
 =====================
-### [писок книг/ Books List](#Book_list)
+### [Cписок книг/ Books List](#Book_list)
 
 ###  <a name="Book_list">Список книг/ Books List:</a> 
 ____
