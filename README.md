@@ -1,9 +1,13 @@
 Карта развития/Developing Map
 =====================
+
+
 ### [Стек технологий/Tecknology Stack](#Tech_stack)
 ### [Проекты/Projects](#projects)
 ### [Cписок книг/ Books List](#Book_list)
 
+
+____
 ###  <a name="Tech_stack">Стек технологий/Tecknology Stack:</a> 
 + Javascript
 
@@ -25,13 +29,17 @@
 
 + Laravel
 
-###  <a name="Tech_stack">Стек технологий/Tecknology Stack:</a> 
+
+____
+###  <a name="projects">Проекты/Projects:</a> 
 
 + [VueStarWars](http://juliwolf.beget.tech/)
 
 
-###  <a name="Book_list">Список книг/ Books List:</a> 
+
 ____
+###  <a name="Book_list">Список книг/ Books List:</a> 
+
 :white_check_mark: Ready:
 
 + Совершенный код. Мастер класс. (Стив Макконнелл) 
@@ -40,7 +48,7 @@ ____
 
 + Рефакторинг улучшение существующего кода (Мартин Фаулер)
 
-____
+
 :black_square_button: Plans:
 
 + Структура и интерпретация компьютерных программ (Абельсон, Сассман)  
