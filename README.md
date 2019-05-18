@@ -1,6 +1,6 @@
-h1 Карта развития/Developing Map
+Карта развития/Developing Map
 =====================
-### h3  Список книг/ Books List:
+###  Список книг/ Books List:
 ____
 :white_check_mark:Ready:
 
