@@ -2,9 +2,9 @@
 =====================
 
 
-### [Стек технологий/Tecknology Stack](#Tech_stack)
-### [Проекты/Projects](#projects)
-### [Cписок книг/ Books List](#Book_list)
+1. ### [Стек технологий/Tecknology Stack](#Tech_stack)
+2. ### [Проекты/Projects](#projects)
+3. ### [Cписок книг/ Books List](#Book_list)
 
 
 ____
