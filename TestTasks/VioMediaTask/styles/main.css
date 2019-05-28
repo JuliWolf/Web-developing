@@ -1,0 +1,31 @@
+.collection{
+    width:30%;
+    border:1px solid black;
+    padding:10px;
+    margin:30px 20px;
+    vertical-align:top;
+    display:inline-block;
+}
+#template, .imageInf{
+    display:none;
+    text-align:center;
+}
+
+.imageInf img{
+    vertical-align:top;
+    margin:10px 20px;
+}
+
+.inf{
+    border:1px solid black;
+    vertical-align:top;
+    width:30%;
+    display:inline-block;
+    padding:15px;
+    margin-right:10px;
+}
+#arrow{
+    padding:10px;
+    margin:20px;
+
+}
