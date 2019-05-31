@@ -3731,42 +3731,266 @@ _________________________________________________________________________
 
 // Класс ApplicationHelper
 
-class woo_controller_ApplicationHelper {
-	private static $instance;
-	private $config = "/tmp/data/woo_options.xml";
+// Не обязателен, но в большинстве реализаций приложений используется
 
-	private function __construct(){}
+// class woo_controller_ApplicationHelper {
+// 	private static $instance;
+// 	private $config = "/tmp/data/woo_options.xml";
 
-	static function instance(){
-		if(!self::$instance){
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
+// 	private function __construct(){}
 
-	function init(){
-		$dsn = woo_base_applicationRegistry::getDSN();
-		if(!is_null($dsn)){
-			return;
-		}
-		$this->getOptions();
-	}
+// 	static function instance(){
+// 		if(!self::$instance){
+// 			self::$instance = new self();
+// 		}
+// 		return self::$instance;
+// 	}
 
-	private function getOptions(){
-		$this->ensure(file_exists($this->config), "Файл конфигурации не найден");
-		$options = @simplexml_load_file($this->config);
-		$this->ensure($options instanceof SimpleXMLElement, "Файл конфигурации запорчен");
-		$dsn = (string)$options->dsn;
-		$this->ensure($dsn, "DSN не найден");
-		woo_base_applicationRegistry::setDSN($dsn);
-		// Установите другие значения
-	}
+// 	// Отвечате за загрузку данных конфигурации
+// 	// Он проверяет ApplicationRegistry, чтобы узнать, сохранены ли уже данные в кеш-памяти
+// 	function init(){
+// 		$dsn = woo_base_applicationRegistry::getDSN();
+// 		if(!is_null($dsn)){
+// 			return;
+// 		}
+// 		$this->getOptions();
+// 	}
 
-	private function ensure($expr, $message){
-		if(!$expr){
-			throw new woo_base_AppException($message);
-		}
-	}
-}
+// 	private function getOptions(){
+// 		$this->ensure(file_exists($this->config), "Файл конфигурации не найден");
+// 		$options = @simplexml_load_file($this->config);
+// 		$this->ensure($options instanceof SimpleXMLElement, "Файл конфигурации запорчен");
+// 		$dsn = (string)$options->dsn;
+// 		$this->ensure($dsn, "DSN не найден");
+// 		woo_base_applicationRegistry::setDSN($dsn);
+// 		// Установите другие значения
+// 	}
+
+// 	// Централизована проверка условия и вызов операторов throw
+// 	private function ensure($expr, $message){
+// 		if(!$expr){
+// 			throw new woo_base_AppException($message);
+// 		}
+// 	}
+// }
+
+// Этот класс просто читает файл конфигурации и делает значения доступным для клиентского кода
+
+
+// Класс CommandResolver
+
+// Контроллеру нужен способ, позволяющий решить, как интерпретировать HTTP-запрос, чтобы можно было легко вызывать нужный код для обработки этого запроса
+// Использование рефлексии с целью увеличения безопасности
+
+// class woo_command_CommandResolver{
+// 	private static $base_cmd;
+// 	private static $default_cmd;
+
+// 	function __construct(){
+// 		if(! self::$base_cmd){
+// 			self::$base_cmd = new ReflectionClass("woo_command_Command");
+// 			self::$default_cmd = new woo_command_DefaultCommand();
+// 		}
+// 	}
+
+// 	function getCommand(woo_command_Request $request){
+// 		$cmd = $request->getProperty('cmd');
+// 		$sep = DIRECTORY_SEPARATOR;
+// 		if(!$cmd){
+// 			return self::$default_cmd;
+// 		}
+// 		$cmd = str_replace(array('.', $sep), "", $cmd);
+// 		$filepath = "woo{$sep}command{$sep}{$cmd}.php";
+// 		$classname = "woo_command_$cmd";
+// 		if(file_exists($filepath)){
+// 			@require_once("$filepath");
+// 			if(class_exists($classname)){
+// 				$cmd_class = new ReflectionClass($classname);
+// 				if($cmd_class->isSubClassOf(self::$base_cmd)){
+// 					return $cmd_class->newInstance();
+// 				}else{
+// 					$request->addFeedback("Объект Command команды '$cmd' не найден");
+// 				}
+// 			}
+// 		}
+// 		$request->addFeedback("Команда '$cmd' не найдена");
+// 		return clone self::$default_cmd;
+// 	}
+// }
+
+// // Предположим, что параметр запроса cmd найден и соответствует реальному файлу класса в каталоге команд, и что этот файл класса содержит нужный тип класса
+// // Тогда метод getCommand() создает и возвращает экземпляр соответсвующего класса
+// // Если какие-то из условий не удовлетворяются, то метод getCommand() возвращает стандартный объект Command
+
+
+// Запрос
+// Шаблон Registry, который позволит генерировать различные классы Rrgistry в соответствии с контекстом приложения
+// Объект Registry - это также полезное хранилище для данных
+
+// class woo_controller_Request{
+// 	private $properties;
+// 	private $feedback = array();
+
+// 	function __construct(){
+// 		$this->init();
+// 		woo_base_RequestRegistry::setRequest($this);
+// 	}
+
+// 	function init(){
+// 		if(isset($_SERVER['REQUEST_METHOD'])){
+// 			$this->properties = $_REQUEST;
+// 			return;
+// 		}
+// 		foreach($_SERVER['argv'] as $arg){
+// 			if(strpos($arg, '=')){
+// 				list($key, $val) = explode("=", $arg);
+// 				$this->setProperty($key, $val);
+// 			}
+// 		}
+// 	}
+
+// 	function getProperty($key){
+// 		if(isset($this->properties[$key])){
+// 			return $this->properties[$key];
+// 		}
+// 	}
+
+// 	function setProperty($key, $val){
+// 		$this->properties[$key] = $val;
+// 	}
+
+// 	function addFeedback($msg){
+// 		array_push($this->feedback, $msg);
+// 	}
+
+// 	function getFeedback(){
+// 		return $this->feedback;
+// 	}
+
+// 	function getFeedbackString($separator = "\n"){
+// 		return implode($separator, $this->feedback);
+// 	}
+// }
+
+// // Большую часть этого класса занимают механизмы установки и получения свойств
+// // Метод Init() отвечает за наполнение закрытого массива $properties
+// // Как только будет получен объект Request, должна быть возможность обратиться к параметру HTTP - запроса с помощью getProperty(), которому передается строка ключа
+// // Он возвращает соответствующее значение
+
+
+// Команда
+
+// class woo_command_DefaultCommand extends woo_command_Comamnd{
+// 	// Методу execute() передается объект типа Request, через который обеспечивается доступ к данным
+// 	function doExecute(woo_controller_Request $request){
+// 		$request->addFeedback("Добро пожаловать в Woo!");
+// 		// Команда передает управление странице представления, вызывая метод include
+// 		include("woo/view/main.php");
+// 	}
+// }
+
+
+// Описание
+
+// Front Controller делегирует инициализацию объекту ApplicationHelper
+// Затем Controller получает объект Command от объекта CommandResolver
+// Объект Command вызывает метод Command::execute(), чтобы запустить логику приложения
+
+
+// Регультаты
+
+// Преимуществом шаблона Front Controller является то, что в нем централизована логика управления представлениями в системе
+// Это означает, что вы в одном месте можете осуществить контроль над тем, как обрабатываются запросы и выбираются представления
+// Это позволит сократить дублирование и уменьшить вероятность ошибок
+
+
+// ******************** Шаблон Application Controller
+
+// Шаблон отвечает за соответствие запросов командам и команд их представлениям
+// Позволяет легко изменять наборы представлений, не трогая базовый код
+// Позволяет владельцу системы изменять ход выполнения приложения, не затрагивая его внутреннее содержание
+
+
+// Проблема
+
+// Администратор хочет иметь возможность добавлять заведение [Venue] к системе и связывать с ним место [Space]
+// Поэтому система может поддерживать команды AddVenue и AddSpace
+// Обе команды могут быть связаны, по меньшей мере , с двумя различными представлениями: основным - для отображения формы ввода входных данных и экраном ошибки
+
+// Такой уровень жесткого закодирования приемлем, пока команды всегда используются одинакого.
+
+// Класс контроллера приложения может взять на себя управление этой логикой, освободив классы типа Command, чтобы они могли сосредоточиться на своей работе
+
+
+// Реализация
+
+// Класс Front Controller
+// function handleRequest(){
+// 	$request = new woo_controller_Request();
+// 	$app_c = woo_base_ApplicationRegistry::appController();
+// 	while($cmd = $app_c->getCommand($request)){
+// 		print "Выполняется ".get_class($cmd) . "\n";
+// 		$cmd->execute($request);
+// 	}
+// 	$this->invokeView($app_c->getView($request));
+// }
+
+// function invokeView($target){
+// 	include("woo/view/$target.php");
+// 	exit;
+// }
+
+// Объекты Command извлекаются и выполняются в цикле
+
+
+// Обзор реализации
+// Объекты Command сообщают системе о своем текущем состоянии, устанавливая специальный код состояния
+
+// private static $STATUS_STRINGS = array(
+// 	'CMD_DEFAULT' => 0,
+// 	'CMD_OK' => 1,
+// 	'CMD_ERROR' => 2,
+// 	'CMD_INSUFFICIENT_DATA' => 3
+// )
+
+// Сочетание объекта Command и кода состояния можно сравнить с внутренней структурой данных, чтобы определить, какая команда должна быть запущена следующей или - какое представление нужно отобразить
+
+
+// Файл конфигурации
+
+// Владелец системы может определить, как должны совместно работать команды и представления, указав набор директив в файле конфигурации
+
+// Абстрагирование потока команд и его привязки к представлениям внутри классов типа Command
+// <control>
+// 	<view>main</view>
+// 	<view status="CMD_OK">main</view>
+// 	<view status="CMD_ERROR">error</view>
+
+// 	<command name="ListVenues">
+// 		<view>listvenues</view>
+// 	</command>
+
+// 	<command name="QuickAddVenue">
+// 		<classroot name="ADDVenue">
+// 		<view>quickadd</view>
+// 	</command>
+
+// 	<command name="AddVenue">
+// 		<view>addvenue</view>
+// 		<status value="CMD_OK">
+// 			<forward> AddSpace</forward>
+// 		</status>
+// 	</command>
+
+// 	<command name="AddSpace">
+// 		<view>addsapce</view>
+// 		<status value="CMD_OK">
+// 			<forward>ListVeniues</forward>
+// 		</status>
+// 	</command>
+// </control>
+
+// Первый элемент view определяет стандартное представление для всех команд, если никакая другая директива не противоречит заданному в нем условию
+// Другие элементы более специфичные, поэтому они имеют приоритет
 
 
