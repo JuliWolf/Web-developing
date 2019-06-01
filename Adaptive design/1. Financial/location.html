@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Mirrilise</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.png" class="graficlogo"></a>
+    </div>
+    <nav>
+        <div class="topnav" id="myTopnav">
+            <a href="index.html">Hone</a>
+            <a href="projects.html">Projects</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="location.html">Location</a>
+            <a id="menu" class="icon" href="#">&#9776</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <h1>Location</h1>
+    <div id="map"></div>
+</main>
+<footer>
+    <nav>
+        <a href="index.html">Hone</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="location.html">Location</a>
+    </nav>
+    <div class="logo">
+        <a href="index.html">
+            <img src="img/logo.png" class="graficlogo" alt="">
+        </a>
+    </div>
+    <div class="social">
+        <a href="#">
+            <img src="img/footer_icons/em.png" >
+        </a>
+        <a href="#">
+            <img src="img/footer_icons/face.png" >
+        </a>
+        <a href="#">
+            <img src="img/footer_icons/goo.png" >
+        </a>
+        <a href="#">
+            <img src="img/footer_icons/inst.png" >
+        </a>
+        <a href="#">
+            <img src="img/footer_icons/pint.png" >
+        </a>
+    </div>
+    <p>Web Developer Blog</p>
+</footer>
+
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 5
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>
