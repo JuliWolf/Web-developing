@@ -19,6 +19,7 @@ $(document).ready(function(){
 		$.getJSON( productsData, {
 		  format: "json"
 		}).done(function( data ) {
+			console.log(data);
 			if(productsQuantity != 0){
 				productsArray = data.slice(0, productsQuantity)
 				constructor(productsArray);
