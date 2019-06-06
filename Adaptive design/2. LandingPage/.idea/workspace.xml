@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aed4533-8491-4dcc-a254-6d781b19bbac" name="Default Changelist" comment="updated maket">
-      <change beforePath="$PROJECT_DIR$/../webdevblog_project.psd" beforeDir="false" />
-    </list>
+    <list default="true" id="4aed4533-8491-4dcc-a254-6d781b19bbac" name="Default Changelist" comment="updated maket" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -124,7 +122,7 @@
       <updated>1559495721541</updated>
       <workItem from="1559495724091" duration="3778000" />
       <workItem from="1559493085343" duration="4488000" />
-      <workItem from="1559574390406" duration="3508000" />
+      <workItem from="1559574390406" duration="4049000" />
     </task>
     <task id="LOCAL-00001" summary="updated maket">
       <created>1559497566122</created>
@@ -137,7 +135,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11774000" />
+    <option name="totallyTimeSpent" value="12315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
