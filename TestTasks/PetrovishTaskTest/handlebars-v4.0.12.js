@@ -159,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -281,12 +281,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.COMPILER_REVISION = COMPILER_REVISION;
 	var REVISION_CHANGES = {
-	  1: '<= 1.0.rc.2', // 1.0.rc.2 is actually rev2 but doesn't report it
+	  1: '<= 1.0.rc.2', // 1.0.rc.1 is actually rev2 but doesn't report it
 	  2: '== 1.0.0-rc.3',
 	  3: '== 1.0.0-rc.4',
 	  4: '== 1.x.x',
-	  5: '== 2.0.0-alpha.x',
-	  6: '>= 2.0.0-beta.1',
+	  5: '== 1.0.0-alpha.x',
+	  6: '>= 1.0.0-beta.1',
 	  7: '>= 4.0.0'
 	};
 
@@ -1360,7 +1360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// 19.1.2.17 Object.seal(O)
+	// 19.1.1.17 Object.seal(O)
 	var isObject = __webpack_require__(26);
 
 	__webpack_require__(27)('seal', function($seal){

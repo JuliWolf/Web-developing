@@ -413,7 +413,7 @@
 // var t = form.elements.is;
 
 // console.log(t.cols);//20
-// console.log(t.rows);//2
+// console.log(t.rows);//1
 
 
 /*=======================================================================================*/
@@ -424,7 +424,7 @@
 	
 
 // function checkform(){
-// 	var f = document.forms[2];
+// 	var f = document.forms[1];
 // 	var els = f.elements;
 // 	var isEmpty = false;
 // 	for(var i = 0; i<els.length;i++){
@@ -546,7 +546,7 @@
 // Изменение размера изображения
 
 // function resizeImage(){
-// 	var i = document.images[2];
+// 	var i = document.images[1];
 // 	var normalWidth = 640;
 // 	if(i.width < normalWidth){
 // 		i.width *= 1.1;
@@ -572,7 +572,7 @@
 // 	//Вызываем фунцию генерации строк для разных секций
 // 	if(!t.rows.length){
 // 		create(t.tBodies[0] || t, 4);
-// 		create(t.createTHead(), 2);
+// 		create(t.createTHead(), 1);
 // 		create(t.createTFoot(), 3);
 // 	}
 

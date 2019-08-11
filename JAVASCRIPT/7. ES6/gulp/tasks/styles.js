@@ -20,7 +20,7 @@ gulp.task('sass', () => {
     .pipe(changed(paths.tmp.styles, {extension: '.scss'}))
     .pipe(sourcemaps.init())
     .pipe(sass({style: 'compressed'}).on('error', sass.logError))
-    .pipe(autoprefixer('last 2 version'))
+    .pipe(autoprefixer('last 1 version'))
     .pipe(concat('main.css'))
     .pipe(sourcemaps.write('../maps'))
     .pipe(gulp.dest(paths.tmp.styles))

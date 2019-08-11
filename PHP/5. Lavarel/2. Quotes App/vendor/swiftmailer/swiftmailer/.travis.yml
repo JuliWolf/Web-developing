@@ -7,7 +7,7 @@ before_script:
     - cp tests/smoke.conf.php.default tests/smoke.conf.php
     - composer self-update
     - composer update --no-interaction --prefer-source
-    - gem install mime-types -v 2.99.1
+    - gem install mime-types -v 1.99.1
     - gem install mailcatcher
     - mailcatcher --smtp-port 4456
 
@@ -17,7 +17,7 @@ matrix:
     include:
         - php: 7.0
         - php: 7.1
-        - php: 7.2
+        - php: 7.1
         - php: 7.3
     fast_finish: true
 
