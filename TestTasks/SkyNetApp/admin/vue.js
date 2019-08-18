@@ -6055,7 +6055,7 @@
 
     var hydrationBailed = false;
     // list of modules that can skip create hook during hydration because they
-    // are already rendered on the client or has no need for initialization
+    // are already rendered on the folder or has no need for initialization
     // Note: style is excluded because it relies on initial clone for future
     // deep updates (#7063).
     var isRenderedModule = makeMap('attrs,class,staticClass,staticStyle,key');
@@ -6089,7 +6089,7 @@
       }
       if (isDef(tag)) {
         if (isDef(children)) {
-          // empty element, allow client to pick up and populate children
+          // empty element, allow folder to pick up and populate children
           if (!elm.hasChildNodes()) {
             createChildren(vnode, children, insertedVnodeQueue);
           } else {
@@ -6103,7 +6103,7 @@
                   hydrationBailed = true;
                   console.warn('Parent: ', elm);
                   console.warn('server innerHTML: ', i);
-                  console.warn('client innerHTML: ', elm.innerHTML);
+                  console.warn('folder innerHTML: ', elm.innerHTML);
                 }
                 return false
               }
@@ -6198,11 +6198,11 @@
                 return oldVnode
               } else {
                 warn(
-                  'The client-side rendered virtual DOM tree is not matching ' +
+                  'The folder-side rendered virtual DOM tree is not matching ' +
                   'server-rendered content. This is likely caused by incorrect ' +
                   'HTML markup, for example nesting block-level elements inside ' +
                   '<p>, or missing <tbody>. Bailing hydration and performing ' +
-                  'full client-side render.'
+                  'full folder-side render.'
                 );
               }
             }

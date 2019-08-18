@@ -55,7 +55,7 @@
 
 // *** node server.js
 // *** node make-request.js
-// *** node client.js
+// *** node folder.js
 
 // *** node lab-4.js
 // *** node get-file.js

@@ -1,0 +1,11 @@
+<h3>Результат поиска по <%= keyword %></h3>
+<d1>
+    <% planets.forEach(function(planet){ %>
+    <dt>
+        <a href="<%- planet.url%>"><%- planet.name %></a>
+    </dt>
+    <dd>
+        <%- planet.diameter %>
+    </dd>
+    <% }) %>
+</d1>

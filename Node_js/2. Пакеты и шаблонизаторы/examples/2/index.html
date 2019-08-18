@@ -1,0 +1,33 @@
+<!-- такой папки нет, но сервер знает, что туда надо обратиться-->
+<script src="/socket.io/socket.io.js">
+</script>
+
+<script>
+    var socket = io.connect('http://localhost:8080');
+    window.onunload = () => {
+        socket.disconnect();
+    };
+    socket.on('hello', (data) => {
+        alert(data.hello);
+    });
+
+    function getName(first){
+        var name = prompt('как вас зовут?', 'Гость');
+        if(name){
+            if(first){
+                socket.emit('message', name);
+            }else{
+                socket.emit('new_message', name);
+            }
+
+        }
+    }
+</script>
+
+<button onclick="getName(0)">
+    Представьтесь
+</button>
+<button onclick="getName(1)">
+    Сменить имя
+</button>
+

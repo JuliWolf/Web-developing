@@ -3759,7 +3759,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    //
 	    // When using true SourceNodes, this will update all references to the given alias
 	    // as the source nodes are reused in situ. For the non-source node compilation mode,
-	    // aliases will not be used, but this case is already being run on the client and
+	    // aliases will not be used, but this case is already being run on the folder and
 	    // we aren't concern about minimizing the template size.
 	    var aliasCount = 0;
 	    for (var alias in this.aliases) {
