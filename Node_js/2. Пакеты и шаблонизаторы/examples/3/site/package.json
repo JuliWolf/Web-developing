@@ -1,0 +1,13 @@
+{
+  "name": "NodeChat",
+  "version": "1.0.0",
+  "description": "My first Node.js chat",
+  "dependencies": {
+    "express": "latest",
+    "express-ejs-layouts": "^2.5.0",
+    "pug": "latest",
+    "socket.io": "latest",
+    "socket.io-client": "latest"
+  },
+  "author": "Julia Wolf"
+}

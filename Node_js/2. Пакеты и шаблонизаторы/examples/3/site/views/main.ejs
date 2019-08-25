@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title><%= title%></title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>
+    <body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">Наш сайт</p>
+            </div>
+            <div class="float-right">
+                <%- partial("menu")%>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <section class="main-content">
+            <h1><%= blocks.header%></h1>
+            <%-body -%>
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>Все права защищены &copy; 2019</p>
+            </div>
+            <div class="float-right">
+                <ul id="social">
+
+                </ul>
+            </div>
+        </div>
+    </footer>
+        <h1><%= title%></h1>
+        <%-partial('menu')%>
+        <%=blocks.header%>
+
+    </body>
+</html>
