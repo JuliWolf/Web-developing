@@ -33,6 +33,16 @@
 // *** node events-1.js
 
 
+
+//*******************-NextTick-***********************
+
+// we instruct the engine to invoke this function at the end of the current operation
+// process.nectTick()
+
+//Execute some piece of code as soon as possible
+// setImmediate()
+
+
 //*******************-Потоки-***********************
 
 // *** node stream.js
@@ -65,6 +75,3 @@
 
 // *** node server.js
 // *** node app.js
-
-
-
