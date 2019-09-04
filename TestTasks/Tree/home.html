@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div style="margin-top:70px" id="client">
+
+    <div class="row" id="demo">
+        <div>
+            <ul>
+                <!-- Передаем значение дочернему компоненту через : -->
+                <!-- Передаем дочернему компоненту событие (метод)  @make-folder="makeFolder" -->
+<!--                 <tree-item
+                        class="item"
+                        :item="treeData"
+                        @make-folder="makeFolder"
+                ></tree-item> -->
+            </ul>
+        </div>
+    </div>
+    <div id="app">
+
+    </div>
+</div>
+<!--===============================================================================================-->
+<script src="static/js/vue.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<!-- <script type="text/x-template" id="item-template">
+    <li>
+        <div
+                @click="toggle"
+                @dblclick="makeFolder">
+            {{ item.title }} srt - {{ item.srt}}
+            <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+        </div>
+        <ul v-show="isOpen" v-if="isFolder">
+            <tree-item
+                    class="item"
+                    v-for="(child, index) in item.children"
+                    :key="index"
+                    :item="child"
+                    @make-folder="$emit('make-folder', $event)"
+            ></tree-item>
+        </ul>
+    </li>
+</script>
+ -->
+<!--===============================================================================================-->
+<!-- <script src="static/js/home.js"></script> -->
+<script src="static/js/main.js"></script>
+</body>
+</html>
