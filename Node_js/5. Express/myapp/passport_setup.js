@@ -25,21 +25,21 @@ module.exports = function(passport){
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
-        passReqRoCallback: true
-    }, function(email, password, done){
+        passReqToCallback: true
+    }, function(req, email, password, done){
         return models.User.findOne({
             where: {
                 'email': email
             },
         }).then(user => {
             if(user === null) {
-                // req.flash('message', 'Incorrect credentials.');
+                req.flash('message', 'Incorrect credentials.');
                 return done(null, false);
             }else if(user.password === null || user.password === undefined){
-                // req.flash('message', 'You must reset your password.');
+                req.flash('message', 'You must reset your password.');
                 return done(null, false);
             }else if(!validPassword(user, password)){
-                // req.flash('message', 'Incorrect credentials.');
+                req.flash('message', 'Incorrect credentials.');
                 return done(null, false);
             }
             return done(null, user);

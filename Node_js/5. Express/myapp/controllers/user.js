@@ -13,7 +13,11 @@ exports.show_signup = function(req, res, next){
 };
 
 exports.login = function(req, res, next){
-
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })(req, res, next);
 };
 const generateHash = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -32,3 +36,11 @@ exports.signup = function(req, res, next){
         })(req, res, next);
     });
 };
+
+exports.logout = function(req, res, next){
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+};
+
+
