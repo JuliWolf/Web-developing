@@ -7,22 +7,36 @@ function App() {
         name: 'Anna',
         hobbies: ["Sports", "Reading"]
     };
-  return (
-    <div className="container">
-        <div className="row">
-            <div className="col-xs-10 col-sx-offset-1">
-                <Header/>
+    function onGreet() {
+        alert('Hello');
+    }
+    function onChangeLinkName(newName){
+        this.setState({
+            homeLink: newName
+        });
+    }
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-xs-10 col-sx-offset-1">
+                    <Header homeLink={this.state.homeLink}/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-xs-10 col-sx-offset-1">
+                    <Home
+                        name={"Julia"}
+                        initialAge={23}
+                        user={user}
+                        greet={onGreet}
+                        changeLink={onChangeLinkName.bind(this)}>
+
+                        <p>This is a paragraph!</p>
+                    </Home>
+                </div>
             </div>
         </div>
-        <div className="row">
-            <div className="col-xs-10 col-sx-offset-1">
-                <Home name={"Julia"} age={23} user={user}>
-                    <p>This is a paragraph!</p>
-                </Home>
-            </div>
-        </div>
-    </div>
-  );
+    );
 }
 
 export default App;
