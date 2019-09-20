@@ -10,16 +10,12 @@ function App() {
     function onGreet() {
         alert('Hello');
     }
-    function onChangeLinkName(newName){
-        this.setState({
-            homeLink: newName
-        });
-    }
+
     return (
         <div className="container">
             <div className="row">
                 <div className="col-xs-10 col-sx-offset-1">
-                    <Header homeLink={this.state.homeLink}/>
+                    <Header homeLink="Home"/>
                 </div>
             </div>
             <div className="row">
@@ -28,8 +24,7 @@ function App() {
                         name={"Julia"}
                         initialAge={23}
                         user={user}
-                        greet={onGreet}
-                        changeLink={onChangeLinkName.bind(this)}>
+                        greet={onGreet}>
 
                         <p>This is a paragraph!</p>
                     </Home>

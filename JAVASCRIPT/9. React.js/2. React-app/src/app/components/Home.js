@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {ChildProps} from "./ChildProps";
 
 export class Home extends React.Component{
     constructor(props){
@@ -8,9 +9,33 @@ export class Home extends React.Component{
         this.state = {
             age: props.initialAge,
             status: 0,
-            homeLink: "Changed Link"
+            homeLink: "Home"
         };
+        console.log('Constructor');
     }
+    componentWillMount() {
+        console.log('Component will mount');
+    }
+    componentDidMount() {
+        console.log('Component did mount');
+    }
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log('Component will receive props', nextProps);
+    }
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('Should Component update', nextProps, nextState);
+        return true
+    }
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        console.log("Component will update", nextProps, nextState);
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("Component did update", prevProps, prevState);
+    }
+    componentWillUnmount() {
+        console.log("component will unmount");
+    }
+
     onMakeOlder(){
         // this.age += 3;
         this.setState({
@@ -18,8 +43,10 @@ export class Home extends React.Component{
         });
         console.log(this.age);
     }
-    onChangeName(){
-        this.props.changeLink(this.state.homeLink)
+    onChangeLinkName(newName){
+        this.setState({
+            homeLink: newName
+        });
     }
 
     render(){
@@ -52,7 +79,12 @@ export class Home extends React.Component{
                 <hr/>
                 <button onClick={this.props.greet} className="btn btn-primary">Greet</button>
                 <hr/>
-                <button onClick={this.onChangeName.bind(this)} className="btn btn-primary">Change Header Link</button>
+                <p>{this.state.homeLink}</p>
+                <ChildProps
+                    changeLink={this.onChangeLinkName.bind(this)}
+                    initialLinkName={this.state.homeLink}
+                />
+
             </div>
         )
     }
@@ -62,6 +94,5 @@ Home.propTypes = {
     initialAge: PropTypes.number,
     user: PropTypes.object,
     children: PropTypes.element.isRequired,
-    greet: PropTypes.func,
-    changeLink: PropTypes.func,
+    greet: PropTypes.func
 };
