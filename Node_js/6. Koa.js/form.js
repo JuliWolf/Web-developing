@@ -27,7 +27,6 @@ async function renderForm(ctx, next){
 
 async function handleForm(ctx, next){
     console.log(ctx.request.body);
-    console.log(ctx.req.body);
     ctx.body = ctx.request.body;
 }
 

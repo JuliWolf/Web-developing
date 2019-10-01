@@ -1,0 +1,1 @@
+Hello people. This is txt file being served from the public directory;
