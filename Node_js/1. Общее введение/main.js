@@ -172,3 +172,100 @@
 // };
 //
 // countBreeds()
+
+
+//*******************-Debugger-***********************
+
+// global.x = 5;
+// setTimeout(() => {
+//     debugger;
+//     console.log('world');
+// }, 1000);
+//
+// console.log('Hello');
+// debug> next
+// Press Ctrl + C to leave debug repl
+// debug> repl
+// debug> .exit
+
+
+//*******************-Генератор событий-***********************
+
+// //Расширение функциональности
+// const fs = require('fs');
+// const events = require('events');
+//
+// class Watcher extends events.EventEmitter {
+//     constructor(watchDir, processedDir){
+//         super();
+//         this.watchDir = watchDir;
+//         this.processedDir = processedDir;
+//     }
+// }
+//
+// // Перебирает содержимое каталога и обрабатывает все найденные файлы
+// watch(){
+//     fs.readdir(this.watchDir, (err, files) => {
+//         if(err) throw err;
+//         for(var index in files){
+//             this.emit('process', files[index]);
+//         }
+//     });
+// }
+//
+// // Запускает отслеживание каталога
+// start(){
+//     fs.watchFile(this.watchDir, () => {
+//         this.watch();
+//     });
+// }
+//
+// // После определения Watcher создаем объект
+// const watcher = new Watcher(watchDir, processedDir);
+//
+// //Вызов метода On, унаследованного от класса генератора события
+// watcher.on('process', (file) => {
+//     const watchFile = `${watchDir}/${file}`;
+//     const processedFile = `${processedDir}/${file.toLowerCase()}`;
+//     fs.rename(watchFile, processedFile, err => {
+//         if(err) throw err;
+//     });
+// });
+
+
+//*******************-Потоки выполнения-***********************
+
+// Последовательный поток - задачи выполняются одна за другой
+// Необходимо отслеживать задачу, выполняемую в настоящий момент
+
+// Параллельный поток - задачи не обязаны выполняться одна за другой
+// необходимо хранить информацию о том, сколько задач отработало до завершения
+
+// Иммитация вложенных setTimeout()
+
+// npm install async
+
+// const async = require('async');
+
+// Для избежания множества вложенных обратных вызовов
+// async.series([
+//     callback => {
+//         setTimeout(() => {
+//             console.log('I execute first');
+//             callback();
+//         }, 1000);
+//     },
+//     callback => {
+//         setTimeout(() => {
+//             console.log('I execute next.');
+//             callback();
+//         }, 500);
+//     },
+//     callback => {
+//         setTimeout(() => {
+//             console.log('I execute Last');
+//             callback();
+//         }, 100);
+//     }
+// ]);
+
