@@ -28,7 +28,7 @@ module.exports = {
                 res.writeHead(404);
                 res.write('Route not defined');
                 res.end();
-        }``
+        }
     },
 
 };
