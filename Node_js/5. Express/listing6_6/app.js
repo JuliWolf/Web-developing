@@ -5,9 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const entries = require('./routes/entries');
 const validate = require('./middleware/validate');
+const session = require('express-session');
 const register = require('./routes/register');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const messages = require('./middleware/messages');
+const methodOverride = require('method-override');
+const login = require('./routes/login');
+const user = require('./middleware/user');
 
 var app = express();
 
@@ -18,11 +21,19 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use(methodOverride('X-HTTP-Method'));//          Microsoft
+app.use(methodOverride('X-HTTP-Method-Override'));// Google/GData
+app.use(methodOverride('X-Method-Override')); //
+app.use(cookieParser());
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(express.static(__dirname + '/public'));
+app.use(user);
+app.use(messages);
 
 app.get('/post', entries.form);
 app.post('/post',
@@ -32,6 +43,9 @@ app.post('/post',
 app.get('/', entries.list);
 app.get('/register', register.form);
 app.post('/register', register.submit);
+app.get('/login', login.form);
+app.post('/login', login.submit);
+app.get('/logout', login.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
