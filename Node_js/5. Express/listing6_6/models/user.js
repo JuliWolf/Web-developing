@@ -46,6 +46,13 @@ class User{
         });
     }
 
+    toJSON(){
+        return {
+            id: this.id,
+            name: this.name
+        };
+    }
+
     static getByName(name, cb){
         User.getId(name, (err, id) => {
             if(err) return cb(err);
@@ -54,11 +61,11 @@ class User{
     }
 
     static getId (name, cb){
-        db.set(`user:id:${name}`, cb);
+        db.get(`user:id:${name}`, cb);
     }
 
     static get(id, cb){
-        db.hgerall(`user:${id}`, (err, user) => {
+        db.hgetall(`user:${id}`, (err, user) => {
             if(err) return cb(err);
             cb(null, new User(user));
         });

@@ -11,6 +11,8 @@ const messages = require('./middleware/messages');
 const methodOverride = require('method-override');
 const login = require('./routes/login');
 const user = require('./middleware/user');
+const api = require('./routes/api');
+const Entry = require('./models/entry');
 
 var app = express();
 
@@ -32,8 +34,10 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(express.static(__dirname + '/public'));
+app.use('/api', api.auth);
 app.use(user);
 app.use(messages);
+
 
 app.get('/post', entries.form);
 app.post('/post',
@@ -46,6 +50,11 @@ app.post('/register', register.submit);
 app.get('/login', login.form);
 app.post('/login', login.submit);
 app.get('/logout', login.logout);
+
+app.get('/api/user/:id', api.user);
+app.get('/api/entries/:page?', api.entries);
+// app.post('/api/entry', api.add);
+app.post('/api/entry', entries.submit);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

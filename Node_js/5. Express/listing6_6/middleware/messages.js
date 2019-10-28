@@ -5,7 +5,7 @@ function message(req){
         type = type || 'info';
         let sess = req.session;
         sess.messages = sess.messages || [];
-        sess.messages.oush({type: type, string: msg});
+        sess.messages.push({type: type, string: msg});
     };
 }
 
