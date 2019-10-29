@@ -12,7 +12,6 @@ exports.auth = (req, res, next) => {
 };
 
 exports.user = (req, res, next) => {
-    console.log(req);
     User.get(req.params.id, (err, user) => {
         if(err) return next(err);
         if(!user.id) return res.sendStatus(404);
@@ -22,8 +21,27 @@ exports.user = (req, res, next) => {
 
 exports.entries = (req, res, next) => {
     const page = req.page;
+    console.log(page);
     Entry.getRange(page.from, page.to, (err, entries) => {
         if(err) return next(err);
-        res.json(entries);
+        res.format({
+            json: () => {
+                res.send(entries);
+            },
+            xml: () => {
+                // res.write('<entries>\n');
+                // entries.forEach((entry) => {
+                //     res.write(
+                //         <entry>
+                //             <title> ${entry.title}</title>
+                //             <body>${entry.body}</body>
+                //             <username>${entry.username}</username>
+                //         </entry>
+                //     )
+                // });
+                // res.send('</entries>');
+                res.render('entries/xml', {entries: entries})
+            }
+        });
     });
 };
