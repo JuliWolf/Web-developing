@@ -8,6 +8,7 @@ const validate = require('./middleware/validate');
 const session = require('express-session');
 const register = require('./routes/register');
 const messages = require('./middleware/messages');
+const page = require('./middleware/page');
 const methodOverride = require('method-override');
 const login = require('./routes/login');
 const user = require('./middleware/user');
@@ -34,9 +35,9 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(express.static(__dirname + '/public'));
-app.use('/api', api.auth);
 app.use(user);
 app.use(messages);
+app.use(page);
 
 
 app.get('/post', entries.form);
@@ -52,8 +53,7 @@ app.post('/login', login.submit);
 app.get('/logout', login.logout);
 
 app.get('/api/user/:id', api.user);
-app.get('/api/entries/:page?', api.entries);
-// app.post('/api/entry', api.add);
+app.get('/api/entries/:page?', page(Entry.count), api.entries);
 app.post('/api/entry', entries.submit);
 
 // catch 404 and forward to error handler
