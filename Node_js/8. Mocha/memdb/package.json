@@ -1,7 +1,6 @@
 {
   "name": "memdb",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -17,5 +16,6 @@
   },
   "dependencies": {
     "assert": "^2.0.0"
-  }
+  },
+  "description": ""
 }
