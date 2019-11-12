@@ -1,0 +1,49 @@
+
+.border{
+    border: 1px solid rgba(108, 108, 102, 0.64);
+}
+.workPanel_container{
+    position: relative;
+}
+.workPanel_container h3, .workPanel_container p{
+    display: inline-block;
+}
+.workPanel_container p{
+    position: relative;
+    left: 10%;
+    font-weight: bold;
+}
+.blocks{
+    width: 1000px;
+    height: 200px;
+    position: relative;
+}
+.workPanel{
+    width: 600px;
+    height: 400px;
+    position: relative;
+}
+
+.draggable{
+    position: absolute;
+    background-color: rgba(203, 203, 203, 0.53);
+    border: 1px solid #606060;
+    margin: 5px;
+    display: inline-block;
+}
+.draggable_count{
+    position: relative;
+    right: 1px;
+    top: 3px;
+    border-radius: 50%;
+    size: 11px;
+    background-color: black;
+    color: white;
+    padding: 3px;
+}
+span.size{
+    font-size: 11px;
+    color: rgba(128, 128, 128, 0.66);
+    margin-left: 20px;
+}
+
