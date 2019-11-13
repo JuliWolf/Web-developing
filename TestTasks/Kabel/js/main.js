@@ -5,9 +5,9 @@ var blocks = [
     {"height": 100, "width": 100, "count": 15},
     {"height": 150, "width": 30, "count": 3},
     {"height": 190, "width": 150, "count": 4},
+    {"height": 120, "width": 80, "count": 3},
     {"height": 140, "width": 240, "count": 5},
     {"height": 50, "width": 360, "count": 7},
-    {"height": 120, "width": 80, "count": 3},
     {"height": 190, "width": 60, "count": 8}
 ];
 
@@ -43,66 +43,47 @@ function createWorkingBlocks (obj){
 }
 
 function createDraggableBlocks(blocks){
-    var points = {},
-        reset = false;
     for(var i in blocks){
         var el = blocks[i];
-        var block = $('<div class="draggable" data-height="'+ el.height +'" data-width="'+ el.width +'"></div>').css({'height': el.height, 'width': el.width});
+        var block = $('<div class="draggable" data-height="'+ el.height +'" data-width="'+ el.width +'"><div class="draggable_count">' + el.count + '</div></div>').css({'height': el.height, 'width': el.width});
         $('.blocks_container .blocks').append(block);
-        var result = displayBlock(points, block[0], reset);
-        points = result.points;
-        reset = result.reset;
     }
+    var $grid = $(".blocks").packery({
+        itemSelector: ".draggable",
+        gutter: 2,
+        horizontal: true
+    });
+
+    $grid.find(".draggable").each(function(i, gridItem) {
+        var draggie = new Draggabilly(gridItem);
+        $grid.packery("bindDraggabillyEvents", draggie);
+    });
+    assignEvent();
 }
 
-function displayBlock(points, block, reset){
-    var parentElem = $('.blocks_container .blocks'),
-        endWidth = 0,
-        endHeight = 0;
-    if($(parentElem).find('.draggable').length === 1){
-        endWidth = block.offsetLeft + block.clientWidth;
-        endHeight =  block.offsetTop + block.clientHeight;
-        points = setEndPoint(points, endWidth, endHeight);
-    }else{
-        var bottomPlace = $(parentElem).height() - points.height - 5;
-        var leftPlace = $(parentElem).width() - points.width - 5;
-        if(bottomPlace >= block.clientHeight && leftPlace >= block.clientWidth){
-            if(!reset){
-                $(block).css({top: points.height});
-            }else{
-                $(block).css({top: points.height, left: points.width});
-            }
-            endHeight = points.height + block.clientHeight;
-            endWidth = points.width;
-            reset = false;
-        }else if(leftPlace >= block.clientWidth && bottomPlace < block.clientHeight){
-            $(block).css({left: points.width});
-            endHeight = block.clientHeight;
-            endWidth = points.width + block.clientWidth;
-
-        }
-        points = setEndPoint(points, endWidth, endHeight, reset);
-
-    }
-    return {points: points, reset: reset};
+function createDraggableContainer(){
+    var $grid = $(".workPanel").packery({
+        itemSelector: ".draggable",
+        gutter: 2,
+        horizontal: true
+    });
 }
 
-function setEndPoint(points, width, height, reset){
-    if(Object.keys(points).length){
-        if(points.width < width || reset){
-            points.width = width + 5;
-        }
-        if(points.height < height || reset){
-            points.height = height + 5;
-        }
-    }else{
-        points.width = width;
-        points.height = height;
-
-    }
-    return points;
+function assignEvent(){
+    $(".blocks").on( 'drag','.draggable', function(event) {
+        event.preventDefault();
+        console.log(event.target)
+    });
 }
+
+
+
+
+
+
+
 
 
 createWorkingBlocks(header);
 createDraggableBlocks(blocks);
+createDraggableContainer();

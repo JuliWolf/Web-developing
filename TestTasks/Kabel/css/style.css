@@ -14,9 +14,12 @@
     font-weight: bold;
 }
 .blocks{
-    width: 1000px;
+    width: 1000px!important;
     height: 200px;
     position: relative;
+    list-style: none;
+    display: block;
+    padding: 0;
 }
 .workPanel{
     width: 600px;
@@ -25,25 +28,23 @@
 }
 
 .draggable{
-    position: absolute;
     background-color: rgba(203, 203, 203, 0.53);
     border: 1px solid #606060;
-    margin: 5px;
+    padding: 1px;
+    float: left;
+    text-align: center;
     display: inline-block;
 }
 .draggable_count{
     position: relative;
-    right: 1px;
-    top: 3px;
     border-radius: 50%;
-    size: 11px;
+    font-size: 12px;
     background-color: black;
     color: white;
     padding: 3px;
-}
-span.size{
-    font-size: 11px;
-    color: rgba(128, 128, 128, 0.66);
-    margin-left: 20px;
+    float: right;
+    width: 15px;
+    height: 15px;
+    text-align: center;
 }
 
