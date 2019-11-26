@@ -56,7 +56,6 @@ function createDraggableContainer(){
     var $grid = $(".workPanel").packery({
         itemSelector: ".droppable",
         gutter: 5,
-        horizontal: true,
         resize: false
     });
     assignEvent();
