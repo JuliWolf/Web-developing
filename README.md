@@ -12,23 +12,15 @@ ____
 ###  <a name="Tech_stack">Стек технологий/Tecknology Stack:</a> 
 + Javascript
 
++ Vue.js (VUEX, AXIOS, Vuetify)
+
++ Ext.js
+
++ React.js (Native)
+
 + HTML
 
 + CSS
-
-+ MYSQL
-
-+ Jquery
-
-+ Ajax
-
-+ PHP
-
-+ Bootstrap
-
-+ Vue.js (VUEX, AXIOS, Vuetify)
-
-+ Laravel
 
 + Node.js
 
@@ -36,6 +28,11 @@ ____
 
 + Koa.js
 
++ MYSQL
+
++ PHP
+
++ Laravel
 
 ____
 ###  <a name="projects">Проекты/Projects:</a> 
