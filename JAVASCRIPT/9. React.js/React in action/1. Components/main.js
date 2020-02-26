@@ -96,7 +96,9 @@ const data = {
 //     }
 // }
 
+//
 // With JSX
+//
 class Post extends React.Component {
     render() {
         return (
@@ -140,7 +142,9 @@ Post.propTypes = {
 //     }
 // }
 
+//
 // With JSX
+//
 class Comment extends React.Component {
     render() {
         return (
@@ -219,8 +223,9 @@ Comment.propTypes = {
 //     }
 // }
 
+//
 // With JSX
-
+//
 class CreateComment extends React.Component {
     constructor(props){
         super(props);
@@ -326,7 +331,9 @@ CreateComment.propTypes = {
 //     }
 // }
 
+//
 // With JSX
+//
 class CommentBox extends React.Component {
     constructor(props){
         super(props);
@@ -374,8 +381,9 @@ CommentBox.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object)
 };
 
-
+//
 // Передаем класс Post React функции React.createElement вместе с некоторыми свойствами для создания элемента
+//
 const App = React.createElement(
     Post,
     {
@@ -408,5 +416,3 @@ ReactDOM.render(
     />,
     node
 );
-
-
