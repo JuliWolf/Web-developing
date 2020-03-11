@@ -62,14 +62,20 @@ class App extends Component {
             });
     }
 
-    createNewPost(post){
-        this.setState(prevState => {
-            return {
-                posts: orderBy(prevState.posts.concat(newPost), 'date', 'desc')
-            }
-        })
+    createNewPost(post) {
+        return API.createPost(post)
+            .then(res => res.json())
+            .then(newPost => {
+                this.setState(prevState => {
+                    return {
+                        posts: orderBy(prevState.posts.concat(newPost), 'date', 'desc')
+                    };
+                });
+            })
+            .catch(err => {
+                this.setState(() => ({ error: err }));
+            });
     }
-
     static propTypes = {
         children: PropTypes.node,
     };

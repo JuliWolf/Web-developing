@@ -23,6 +23,10 @@ class CreatePost extends Component {
         this.handlePostChange = this.handlePostChange.bind(this);
     }
 
+    fetchPosts(){
+
+    }
+
     handlePostChange(e){
         const content = filter.clean(e.target.value);
 
@@ -39,6 +43,19 @@ class CreatePost extends Component {
         if(!this.state.valid){
             return;
         }
+        if(this.props.onSubmit){
+            const newPost = {
+                date: Date.now(),
+            //    Присвоение публикации временного ключа; API создаст один
+                id: Date.now(),
+                content: this.state.content
+            };
+            this.props.onSubmit(newPost);
+            this.setState({
+                content: '',
+                valid: null
+            });
+        }
         const newPost = {
             content: this.state.content
         };
@@ -49,7 +66,7 @@ class CreatePost extends Component {
     render() {
         return (
             <div className="create-post">
-                <button onClick={this.handleSubmit}></button>
+                <button onClick={this.handleSubmit}>Post</button>
                 <textarea
                     value={this.state.content}
                     onChange={this.handlePostChange}
