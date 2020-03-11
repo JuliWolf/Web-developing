@@ -7,7 +7,7 @@ import Image from "./Image";
 import Link from "./Link";
 import PostActionSection from "./PostActionSection";
 import Comments from "../comment/Comments";
-import UserHeader from "../post/UserHeader";
+// import UserHeader from "../post/UserHeader";
 import Loader from "../Loader";
 
 export class Post extends Component {

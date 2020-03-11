@@ -10,6 +10,7 @@ import Ad from './components/ad/Ad';
 import Navbar from './components/nav/navbar';
 import Post from './components/post/Post';
 import Welcome from './components/welcome/Welcome';
+import CreatePost from "./components/post/Create";
 
 /**
  * The app component serves as a root for the project and renders either children,
@@ -61,6 +62,14 @@ class App extends Component {
             });
     }
 
+    createNewPost(post){
+        this.setState(prevState => {
+            return {
+                posts: orderBy(prevState.posts.concat(newPost), 'date', 'desc')
+            }
+        })
+    }
+
     static propTypes = {
         children: PropTypes.node,
     };
@@ -88,6 +97,7 @@ class App extends Component {
                             <button className="block" onClick={this.getPosts}>
                                 Load more posts
                             </button>
+                            <CreatePost onSubmit={this.createNewPost}/>
                         </div>
                         <div>
                             <Ad
