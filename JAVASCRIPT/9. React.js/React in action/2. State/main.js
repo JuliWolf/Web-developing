@@ -113,16 +113,44 @@
 //
 // Компонент без состояния
 //
-function Greeting(props){
-    return <div>Hello {props.for}</div>
-}
+// function Greeting(props){
+//     return <div>Hello {props.for}</div>
+// }
+//
+// Greeting.propTypes = {
+//     for: PropTypes.string.isRequired
+// };
+//
+// Greeting.defaultProps = {
+//     for: 'friend'
+// };
+//
+// ReactDOM.render(<Greeting for="Mark"/>, document.getElementById("root"));
 
-Greeting.propTypes = {
-    for: PropTypes.string.isRequired
+
+//
+// Передача данных родитель-потомок
+//
+
+// Создание функционального компонента без состояние, которые возвращает указанное изображение
+const UserProfile = props => {
+    return <img src={`https://source.unsplash.com/user/${props.username}`} />;
+};
+UserProfile.propTypes = {
+    pagename: PropTypes.string
 };
 
-Greeting.defaultProps = {
-    for: 'friend'
+const USerProfileLink = props => {
+    return <a href={`https://ifelse.io/${props.username}`}> {props.username} </a>
 };
 
-ReactDOM.render(<Greeting for="Mark"/>, document.getElementById("root"));
+const UserCard = props => {
+    return (
+        <div>
+            <UserProfile username={props.username}/>
+            <USerProfileLink username={props.username}/>
+        </div>
+    );
+};
+
+ReactDOM.render(<UserCard username='erondu'/>, document.getElementById('root'));
