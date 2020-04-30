@@ -12,7 +12,7 @@
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
     "cropper": "^4.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "vue": "^2.5.11"
   },
   "browserslist": [
