@@ -503,3 +503,9 @@ public class Number{
 
 
 
+Виды моделей:
+
+- модель представления (View Model)
+- модель домена (Domain Model)
+- транспортная модель (Data Transfer Objects) DTO
+- модель хранения (Persistance Model, Data Access Objects) DAO

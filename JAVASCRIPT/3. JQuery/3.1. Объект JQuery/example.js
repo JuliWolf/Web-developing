@@ -257,21 +257,23 @@
 
 // Отбор значений в столбце с помощью перебора массива
 
-// var tr = $("table tbody tr");
-// var complexes = tr.map(function(i, obj){
-// 	return $(obj).children().eq(3).text();	
-// });
+var tr = $("table tbody tr");
+var complexes = tr.map(function(i, obj){
+	return $(obj).children().eq(3).text();	
+});
 
-// function unique(arr){
-// 	var tmp = [];
-// 	for(var i=0; i<arr.length; i++){
-// 		if(tmp.indexOf(arr[i]) == -1){
-// 			tmp.push(arr[i]);
-// 		}
-// 	}
-// 	return tmp;
-// }
-// complexes = unique(complexes);
+function unique(arr){
+	var tmp = [];
+	for(var i=0; i<arr.length; i++){
+		if(tmp.indexOf(arr[i]) == -1){
+			tmp.push(arr[i]);
+		}
+	}
+	return tmp;
+}
+complexes = unique(complexes);
+
+console.log(complexes)
 
 
 /*=======================================================================================*/
